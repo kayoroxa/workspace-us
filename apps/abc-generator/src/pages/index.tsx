@@ -1,7 +1,9 @@
 import styles from '@/styles/Home.module.css'
+import { Butin } from 'bub'
 import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import { Button } from 'ui'
+// import {Butin} from 'bub'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,6 +17,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <Butin />
         <Button />
       </main>
     </>
