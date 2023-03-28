@@ -27,10 +27,12 @@ export default function GenerateScript() {
 
   useFetch<Data>(async () => {
     const response = await axiosApi.get<Data>('/categories')
-    return response.data.map(post => ({
-      ...post,
-      options: post.options.sort((a, b) => a.countReview - b.countReview),
-    }))
+    return response.data.map(post => {
+      return {
+        ...post,
+        options: post.options.sort((a, b) => a.countReview - b.countReview),
+      }
+    })
   }, setCategories)
 
   return (

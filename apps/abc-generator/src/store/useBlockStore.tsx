@@ -1,3 +1,4 @@
+import { axiosApi } from '@/utils/axiosApi'
 import { create } from 'zustand'
 
 type optionSelected = string
@@ -7,6 +8,7 @@ interface State {
     [category: string]: optionSelected
   }
   setAsSelect: (category: string, optionSelected: string | false) => void
+  saveSentence: (sentenceKey: string) => void
 }
 
 const useBlockStore = create<State>()(set => ({
@@ -23,6 +25,18 @@ const useBlockStore = create<State>()(set => ({
 
       return { selectedIn: newSelectIn }
     })
+  },
+  saveSentence: sentenceKey => {
+    //add sentences on backend
+    axiosApi
+      .post('/sentences', {
+        sentence: sentenceKey,
+      })
+      .finally(() => {
+        set(() => {
+          return { selectedIn: {} }
+        })
+      })
   },
 }))
 

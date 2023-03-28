@@ -1,3 +1,4 @@
+import { axiosApi } from '@/utils/axiosApi'
 import { Category } from '@/utils/types/Category'
 import { create } from 'zustand'
 
@@ -13,9 +14,11 @@ interface appState {
   ) => void
   changeCountReview: (categoryId: number, optionName: string) => void
   sortOptions: () => void
+  saveAllData: () => void
+
 }
 
-const useAppStore = create<appState>()(set => ({
+const useAppStore = create<appState>()((set, get) => ({
   modalCategoryId: null,
   changeModalCategoryId: by => set(() => ({ modalCategoryId: by })),
   blocksOnBoard: [],
@@ -25,6 +28,7 @@ const useAppStore = create<appState>()(set => ({
     set(() => ({ categories }))
   },
 
+
   changeCountReview: (categoryId: number, optionName: string) => {
     set(store => {
       const newCategories = [...store.categories]
@@ -33,7 +37,7 @@ const useAppStore = create<appState>()(set => ({
       const option = category.options.find(v => v.name === optionName)
       if (!option) return store
       option.countReview++
-
+      get().saveAllData()
       return { categories: newCategories }
     })
   },
@@ -57,6 +61,7 @@ const useAppStore = create<appState>()(set => ({
       if (optionIndex === -1) return store
 
       newCategories[categoryIndex].options[optionIndex].isOnBoard = isTrue
+      get().saveAllData()
 
       return {
         categories: newCategories,
@@ -76,6 +81,17 @@ const useAppStore = create<appState>()(set => ({
       return {
         categories: newCategories,
       }
+    })
+  },
+  saveAllData: () => {
+    //get categories
+    const categories = get().categories
+
+    categories.forEach((category, i) => {
+      axiosApi.put(`/categories/${i + 1}`, {
+        ...category,
+        options: category.options,
+      })
     })
   },
 }))
