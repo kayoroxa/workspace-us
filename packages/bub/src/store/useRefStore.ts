@@ -1,7 +1,7 @@
 import { RefObject } from 'react'
 import { create } from 'zustand'
 
-export type _Ref = RefObject<HTMLDivElement>
+export type _Ref = RefObject<HTMLElement>
 
 interface RefState {
   refs: [string, _Ref][]

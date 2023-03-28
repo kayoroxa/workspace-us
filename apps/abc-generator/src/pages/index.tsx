@@ -1,13 +1,12 @@
 import styles from '@/styles/Home.module.css'
-import { Butin } from 'bub'
+import useBub, { Button, Input, Title } from 'bub'
 import { Inter } from 'next/font/google'
 import Head from 'next/head'
-import { Button } from 'ui'
-// import {Butin} from 'bub'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const { getRef, action, ref } = useBub()
   return (
     <>
       <Head>
@@ -17,8 +16,26 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Butin />
-        <Button />
+        <Input type="text" id="nome" />
+        <Title className="text-3xl" id="title-1">
+          Hello word
+        </Title>
+        <Button
+          onClick={() => {
+            action.toggleShowElement('title-1')
+            // action.changeValue('title-1', ref['nome'])
+          }}
+          id="button-1"
+          className="
+            bg-blue-500
+            hover:bg-blue-700
+            text-white
+            font-bold
+            py-2 px-4
+            rounded"
+        >
+          CLick
+        </Button>
       </main>
     </>
   )

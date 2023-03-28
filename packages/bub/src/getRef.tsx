@@ -1,8 +1,8 @@
-import useRefStore from '@/store/useRefStore'
 import { useEffect, useRef } from 'react'
+import useRefStore from './store/useRefStore'
 
 export default function GetRef(name: string) {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<any>(null)
 
   const addRef = useRefStore(state => state.addRef)
 
