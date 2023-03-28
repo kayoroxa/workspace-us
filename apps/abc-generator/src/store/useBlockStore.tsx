@@ -6,7 +6,7 @@ interface State {
   selectedIn: {
     [category: string]: optionSelected
   }
-  setAsSelect: (category: string, optionSelected: string) => void
+  setAsSelect: (category: string, optionSelected: string | false) => void
 }
 
 const useBlockStore = create<State>()(set => ({
@@ -15,7 +15,12 @@ const useBlockStore = create<State>()(set => ({
     set(state => {
       const newSelectIn = { ...state.selectedIn }
 
-      newSelectIn[category] = optionSelected
+      if (optionSelected === false) {
+        delete newSelectIn[category]
+      } else {
+        newSelectIn[category] = optionSelected
+      }
+
       return { selectedIn: newSelectIn }
     })
   },

@@ -20,14 +20,14 @@ export default function CellOption({ option, onCLick, categoryName }: Props) {
 
   function handleCLick(e: any) {
     if (e.ctrlKey) {
-      if (isActive) setAsSelect(categoryName, '')
-      setOptionOnBoard(categoryName, option.name, false)
+      if (isActive) setAsSelect(categoryName, false)
+      setOptionOnBoard(categoryName, option.name)
     } else if (!isActive) {
-      if (isActive) setAsSelect(categoryName, '')
+      if (isActive) setAsSelect(categoryName, false)
       setAsSelect(categoryName, option.name)
     }
 
-    if (isActive) setAsSelect(categoryName, '')
+    if (isActive) setAsSelect(categoryName, false)
   }
 
   const [countReview, setCountReview] = useState(option.countReview)
