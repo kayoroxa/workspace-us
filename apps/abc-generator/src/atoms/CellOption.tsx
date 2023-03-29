@@ -1,5 +1,7 @@
+import useSave from '@/hooks/useSave'
 import useAppStore from '@/store/useAppStore'
 import useBlockStore from '@/store/useBlockStore'
+import { Category } from '@/utils/types/Category'
 import { useEffect, useState } from 'react'
 
 interface Props {
@@ -8,20 +10,24 @@ interface Props {
     countReview: number
   }
   onCLick: () => void
-  categoryName: string
+  category: Category
 }
 
-export default function CellOption({ option, onCLick, categoryName }: Props) {
+export default function CellOption({ option, onCLick, category }: Props) {
   const selectedIn = useBlockStore(s => s.selectedIn)
   const setAsSelect = useBlockStore(s => s.setAsSelect)
   const setOptionOnBoard = useAppStore(s => s.setOptionOnBoard)
+  const { saveCategory } = useSave()
+
+  const categoryName = category.name
 
   const isActive = selectedIn[categoryName] === option.name
 
   function handleCLick(e: any) {
     if (e.ctrlKey) {
       if (isActive) setAsSelect(categoryName, false)
-      setOptionOnBoard(categoryName, option.name)
+      setOptionOnBoard(categoryName, option.name, false)
+      saveCategory(category.id, category)
     } else if (!isActive) {
       if (isActive) setAsSelect(categoryName, false)
       setAsSelect(categoryName, option.name)

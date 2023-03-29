@@ -25,7 +25,7 @@ export default function ColumnBlocks({ category }: { category: Category }) {
         .filter(op => op.isOnBoard)
         .map(option => (
           <CellOption
-            categoryName={category.name}
+            category={category}
             option={option}
             key={option.name}
             onCLick={() => {

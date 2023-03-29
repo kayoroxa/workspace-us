@@ -7,75 +7,87 @@
         {
           "name": "i",
           "countReview": 0,
-          "isOnBoard": true
+          "isOnBoard": false
         },
         {
           "name": "he",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "it",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "they",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "you",
-          "countReview": 0
-        },
-        {
-          "name": "your dog",
           "countReview": 0,
-          "isOnBoard": true
+          "isOnBoard": false
         },
         {
           "name": "The manager",
           "countReview": 0,
-          "isOnBoard": true
+          "isOnBoard": false
         },
         {
           "name": "Our team",
           "countReview": 0,
-          "isOnBoard": true
+          "isOnBoard": false
         },
         {
           "name": "My parents",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "The doctor",
           "countReview": 0,
-          "isOnBoard": true
+          "isOnBoard": false
         },
         {
           "name": "The customer",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "The professor",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "The CEO",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "The athlete",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "she",
-          "countReview": 1
+          "countReview": 1,
+          "isOnBoard": false
         },
         {
           "name": "we",
-          "countReview": 2
+          "countReview": 2,
+          "isOnBoard": false
         },
         {
           "name": "your mom",
-          "countReview": 3
+          "countReview": 3,
+          "isOnBoard": false
+        },
+        {
+          "name": "your dog",
+          "countReview": 13,
+          "isOnBoard": true
         }
       ]
     },
@@ -86,46 +98,51 @@
         {
           "name": "is Running a marathon",
           "countReview": 0,
-          "isOnBoard": true
-        },
-        {
-          "name": "is Cooking dinner",
-          "countReview": 0
+          "isOnBoard": false
         },
         {
           "name": "is Reading a book",
           "countReview": 0,
-          "isOnBoard": true
+          "isOnBoard": false
         },
         {
           "name": "is Studying for an exam",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "is Watching a movie",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "is Cleaning the house",
           "countReview": 0,
-          "isOnBoard": true
+          "isOnBoard": false
         },
         {
           "name": "is Teaching a class",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "is Playing guitar",
           "countReview": 1,
-          "isOnBoard": true
+          "isOnBoard": false
         },
         {
           "name": "is Making a phone call",
-          "countReview": 2
+          "countReview": 2,
+          "isOnBoard": false
         },
         {
           "name": "is Writing a letter",
           "countReview": 3,
+          "isOnBoard": false
+        },
+        {
+          "name": "is Cooking dinner",
+          "countReview": 7,
           "isOnBoard": true
         }
       ]
@@ -136,64 +153,78 @@
       "options": [
         {
           "name": "today",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "Yesterday",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "Last week",
-          "countReview": 0
-        },
-        {
-          "name": "Next month",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "In the morning",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "At night",
           "countReview": 0,
+          "isOnBoard": false
+        },
+        {
+          "name": "After the meeting",
+          "countReview": 0,
+          "isOnBoard": false
+        },
+        {
+          "name": "Before the deadline",
+          "countReview": 0,
+          "isOnBoard": false
+        },
+        {
+          "name": "In a few minutes",
+          "countReview": 0,
+          "isOnBoard": false
+        },
+        {
+          "name": "tomorrow",
+          "countReview": 0,
+          "isOnBoard": false
+        },
+        {
+          "name": "next week",
+          "countReview": 0,
+          "isOnBoard": false
+        },
+        {
+          "name": "next month",
+          "countReview": 0,
+          "isOnBoard": false
+        },
+        {
+          "name": "next year",
+          "countReview": 0,
+          "isOnBoard": false
+        },
+        {
+          "name": "On Monday",
+          "countReview": 4,
+          "isOnBoard": true
+        },
+        {
+          "name": "Next month",
+          "countReview": 5,
           "isOnBoard": true
         },
         {
           "name": "During the summer",
-          "countReview": 0
-        },
-        {
-          "name": "On Monday",
-          "countReview": 0
-        },
-        {
-          "name": "After the meeting",
-          "countReview": 0
-        },
-        {
-          "name": "Before the deadline",
-          "countReview": 0
-        },
-        {
-          "name": "In a few minutes",
-          "countReview": 0
-        },
-        {
-          "name": "tomorrow",
-          "countReview": 0
-        },
-        {
-          "name": "next week",
-          "countReview": 0
-        },
-        {
-          "name": "next month",
-          "countReview": 0
-        },
-        {
-          "name": "next year",
-          "countReview": 0
+          "countReview": 5,
+          "isOnBoard": true
         }
       ]
     },
@@ -203,43 +234,53 @@
       "options": [
         {
           "name": "At home",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "In the office",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "At the store",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "In the city",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "In the park",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "On the beach",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "At the airport",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "In the restaurant",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "In the classroom",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "In the library        ",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         }
       ]
     },
@@ -249,43 +290,53 @@
       "options": [
         {
           "name": "To achieve success",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "To improve performance",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "To make a difference",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "To avoid mistakes",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "To save time",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "To help others",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "To learn something new",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "To follow the rules",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "To meet the deadline",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         },
         {
           "name": "To fulfill the requirement",
-          "countReview": 0
+          "countReview": 0,
+          "isOnBoard": false
         }
       ]
     }
@@ -378,14 +429,204 @@
       "countReview": 0
     }
   ],
+  "profile": {
+    "name": {
+      "id": 4,
+      "name": "asd",
+      "options": [
+        {
+          "name": "",
+          "countReview": 0
+        },
+        {
+          "name": "",
+          "countReview": 0
+        },
+        {
+          "name": "",
+          "countReview": 0
+        },
+        {
+          "name": "",
+          "countReview": 0
+        },
+        {
+          "name": "",
+          "countReview": 0
+        },
+        {
+          "name": "",
+          "countReview": 0
+        },
+        {
+          "name": "",
+          "countReview": 0
+        },
+        {
+          "name": "",
+          "countReview": 0
+        },
+        {
+          "name": "",
+          "countReview": 0
+        },
+        {
+          "name": "",
+          "countReview": 0
+        }
+      ]
+    }
+  },
   "sentences": [
     {
-      "sentence": "{The manager} {is Reading a book} {At night}",
+      "sentence": "{Our team} {is Cooking dinner}",
       "id": 1
     },
+    [
+      {
+        "sentence": "{Our teams} {is Cooking dinner}",
+        "id": 1
+      }
+    ],
     {
-      "sentence": "{Our team} {is Writing a letter}",
-      "id": 2
+      "sentence": "{is Studying for an exam} {At night} {At the store}",
+      "id": 3
+    },
+    {
+      "sentence": "{is Studying for an exam} {At night} {In the office}",
+      "id": 4
+    },
+    {
+      "sentence": "{is Studying for an exam} {Next month} {At home}",
+      "id": 5
+    },
+    {
+      "sentence": "{is Watching a movie} {At night} {In the office}",
+      "id": 6
+    },
+    {
+      "sentence": "{At night} {In the office} {is Watching a movie}",
+      "id": 7
+    },
+    {
+      "sentence": "{is Watching a movie} {At night} {At the store}",
+      "id": 8
+    },
+    {
+      "sentence": "{is Cooking dinner} {Last week} {At home}",
+      "id": 9
+    },
+    {
+      "sentence": "{is Cooking dinner}",
+      "id": 10
+    },
+    {
+      "sentence": "{At night} {is Cooking dinner}",
+      "id": 11
+    },
+    {
+      "sentence": "{During the summer} {is Cooking dinner}",
+      "id": 12
+    },
+    {
+      "sentence": "{During the summer} {is Cooking dinner}",
+      "id": 13
+    },
+    {
+      "sentence": "{your dog}",
+      "id": 14
+    },
+    {
+      "sentence": "{your dog}",
+      "id": 15
+    },
+    {
+      "sentence": "{is Cooking dinner}",
+      "id": 16
+    },
+    {
+      "sentence": "{your dog}",
+      "id": 17
+    },
+    {
+      "sentence": "{Next month}",
+      "id": 18
+    },
+    {
+      "sentence": "{On Monday}",
+      "id": 19
+    },
+    {
+      "sentence": "{is Cooking dinner}",
+      "id": 20
+    },
+    {
+      "sentence": "{your dog} {is Cooking dinner} {During the summer}",
+      "id": 21
+    },
+    {
+      "sentence": "{your dog} {is Cooking dinner} {On Monday}",
+      "id": 22
+    },
+    {
+      "sentence": "{your dog} {During the summer}",
+      "id": 23
+    },
+    {
+      "sentence": "{your dog} {Next month}",
+      "id": 24
+    },
+    {
+      "sentence": "{your dog} {is Cooking dinner} {Next month}",
+      "id": 25
+    },
+    {
+      "sentence": "{your dog} {During the summer}",
+      "id": 26
+    },
+    {
+      "sentence": "{During the summer} {is Cooking dinner}",
+      "id": 27
+    },
+    {
+      "sentence": "{your dog} {Next month}",
+      "id": 28
+    },
+    {
+      "sentence": "{your dog} {Next month}",
+      "id": 29
+    },
+    {
+      "sentence": "{your dog} {is Cooking dinner}",
+      "id": 30
+    },
+    {
+      "sentence": "{your dog} {On Monday}",
+      "id": 31
+    },
+    {
+      "sentence": "{During the summer} {is Cooking dinner}",
+      "id": 32
+    },
+    {
+      "sentence": "{Next month} {your dog}",
+      "id": 33
+    },
+    {
+      "sentence": "{is Cooking dinner} {On Monday}",
+      "id": 34
+    },
+    {
+      "sentence": "{is Cooking dinner} {Next month}",
+      "id": 35
+    },
+    {
+      "sentence": "{your dog} {On Monday}",
+      "id": 36
+    },
+    {
+      "sentence": "{is Cooking dinner}",
+      "id": 37
     }
   ]
 }

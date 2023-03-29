@@ -9,10 +9,12 @@ interface State {
   }
   setAsSelect: (category: string, optionSelected: string | false) => void
   saveSentence: (sentenceKey: string) => void
+  resetSelectedIn: () => void
 }
 
 const useBlockStore = create<State>()(set => ({
   selectedIn: {},
+  resetSelectedIn: () => set(() => ({ selectedIn: {} })),
   setAsSelect: (category, optionSelected) => {
     set(state => {
       const newSelectIn = { ...state.selectedIn }
@@ -26,17 +28,15 @@ const useBlockStore = create<State>()(set => ({
       return { selectedIn: newSelectIn }
     })
   },
-  saveSentence: sentenceKey => {
+
+  saveSentence: async sentenceKey => {
     //add sentences on backend
-    axiosApi
-      .post('/sentences', {
-        sentence: sentenceKey,
-      })
-      .finally(() => {
-        set(() => {
-          return { selectedIn: {} }
-        })
-      })
+    await axiosApi.post('/sentences', {
+      sentence: sentenceKey,
+    })
+    set(() => {
+      return { selectedIn: {} }
+    })
   },
 }))
 

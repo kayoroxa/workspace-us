@@ -12,10 +12,10 @@ interface appState {
     optionName: string,
     isTrue?: boolean
   ) => void
-  changeCountReview: (categoryId: number, optionName: string) => void
+  changeCountReview: (categoryId: number | string, optionName: string) => void
   sortOptions: () => void
   saveAllData: () => void
-
+  addCountReviewAllSelected: (selectedOptions: string[]) => void
 }
 
 const useAppStore = create<appState>()((set, get) => ({
@@ -27,21 +27,42 @@ const useAppStore = create<appState>()((set, get) => ({
   setCategories: (categories: Category[]) => {
     set(() => ({ categories }))
   },
+  addCountReviewAllSelected: selectedOptions => {
+    set(store => {
+      let newCategories = [...store.categories]
 
+      newCategories = newCategories.map(category => {
+        return {
+          ...category,
+          options: category.options.map(option => {
+            const has = selectedOptions.find(q => q === option.name)
+            return {
+              ...option,
+              countReview: has ? option.countReview + 1 : option.countReview,
+            }
+          }),
+        }
+      })
 
-  changeCountReview: (categoryId: number, optionName: string) => {
+      return { categories: newCategories }
+    })
+  },
+  changeCountReview: (categoryId, optionName: string) => {
     set(store => {
       const newCategories = [...store.categories]
-      const category = newCategories.find(v => v.id === categoryId)
+      const category =
+        typeof categoryId === 'string'
+          ? newCategories.find(v => v.name === categoryId)
+          : newCategories.find(v => v.id === categoryId)
       if (!category) return store
       const option = category.options.find(v => v.name === optionName)
       if (!option) return store
       option.countReview++
-      get().saveAllData()
+
       return { categories: newCategories }
     })
   },
-  setOptionOnBoard: (categoryId, optionName, isTrue = true) => {
+  setOptionOnBoard: async (categoryId, optionName, isTrue = true) => {
     set(store => {
       const newCategories = [...store.categories]
 
@@ -61,7 +82,6 @@ const useAppStore = create<appState>()((set, get) => ({
       if (optionIndex === -1) return store
 
       newCategories[categoryIndex].options[optionIndex].isOnBoard = isTrue
-      get().saveAllData()
 
       return {
         categories: newCategories,

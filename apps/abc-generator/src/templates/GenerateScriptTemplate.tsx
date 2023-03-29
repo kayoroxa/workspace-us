@@ -1,7 +1,7 @@
+import useSave from '@/hooks/useSave'
 import useSentence from '@/hooks/useSentence'
 import ColumnBlocks from '@/organisms/ColumnBlocks'
 import ShowSentenceResult from '@/organisms/showSentenceResult'
-import useBlockStore from '@/store/useBlockStore'
 import { Category } from '@/utils/types/Category'
 import ModalSelect from '../organisms/ModalSelect'
 
@@ -10,8 +10,8 @@ interface IProps {
 }
 
 export default function GenerateScriptTemplate({ data: categories }: IProps) {
-  const saveSentence = useBlockStore(s => s.saveSentence)
   const { sentenceWithKey } = useSentence()
+  const { saveSentence, saveCategories } = useSave()
   return (
     <div className="bg-zinc-900 min-h-screen text-white">
       <ShowSentenceResult />
@@ -25,9 +25,15 @@ export default function GenerateScriptTemplate({ data: categories }: IProps) {
           py-4 px-10 rounded-2xl bg-green-600 fixed bottom-7 right-7
           hover:bg-green-500 transition-all
         "
-        onClick={() =>
-          sentenceWithKey.length > 0 && saveSentence(sentenceWithKey)
-        }
+        onClick={() => {
+          if (sentenceWithKey.length === 0) return
+          saveCategories(true)
+          saveSentence()
+
+          // Object.keys(selectedIn).forEach(key => {
+          //   changeCountReview(key, selectedIn[key])
+          // })
+        }}
       >
         Save
       </button>
