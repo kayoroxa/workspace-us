@@ -1,6 +1,8 @@
 import useQ from '@/hooks/useQ'
 import useAppStore from '@/store/useAppStore'
+import { Option } from '@/utils/types/Category'
 import { useRef, useState } from 'react'
+import { useQuery } from 'react-query'
 
 export default function Input() {
   const { addOptions } = useQ()
@@ -8,12 +10,24 @@ export default function Input() {
   const modalCategoryId = useAppStore(s => s.modalCategoryId)
   const textRef = useRef<HTMLTextAreaElement>(null)
 
+  const { data: options } = useQuery<Option[]>(
+    ['options', , modalCategoryId],
+    () =>
+      fetch(`http://localhost:4000/options?categoryId=${modalCategoryId}`).then(
+        res => res.json()
+      )
+  )
+
   function handleSubmit(e: any) {
     e.preventDefault()
     const names = data
       .split(',')
       .map(v => v.trim())
-      .filter(Boolean)
+      .filter(opName => {
+        if (opName.trim() === '') return false
+        if (options?.find(op => op.name === opName)) return false
+        return true
+      })
     const datas = names.map(name => ({
       name,
       categoryId: modalCategoryId,

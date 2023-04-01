@@ -3,311 +3,47 @@
     {
       "id": 1,
       "name": "who",
-      "options": [
-        {
-          "name": "he",
-          "countReview": 0
-        },
-        {
-          "name": "she",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "it",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "they",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "your mom",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "your dog",
-          "countReview": 0
-        },
-        {
-          "name": "The manager",
-          "countReview": 0
-        },
-        {
-          "name": "My parents",
-          "countReview": 0
-        },
-        {
-          "name": "The doctor",
-          "countReview": 0
-        },
-        {
-          "name": "The customer",
-          "countReview": 0
-        },
-        {
-          "name": "The professor",
-          "countReview": 0
-        },
-        {
-          "name": "The CEO",
-          "countReview": 0
-        },
-        {
-          "name": "The athlete",
-          "countReview": 0
-        },
-        {
-          "name": "you",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "i",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "Our team",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "we",
-          "countReview": 0,
-          "isOnBoard": false
-        }
-      ]
+      "position": 0
     },
     {
       "id": 2,
       "name": "what-ing",
-      "options": [
-        {
-          "name": "is Writing a letter",
-          "countReview": 0
-        },
-        {
-          "name": "is Cooking dinner",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "is Playing guitar",
-          "countReview": 0
-        },
-        {
-          "name": "is Watching a movie",
-          "countReview": 0
-        },
-        {
-          "name": "is Running a marathon",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "is Cleaning the house",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "is Studying for an exam",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "is Reading a book",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "is Teaching a class",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "is Making a phone call",
-          "countReview": 0,
-          "isOnBoard": false
-        }
-      ]
+      "position": 1
+    },
+    {
+      "id": 6,
+      "name": "what",
+      "position": 2
+    },
+    {
+      "id": 7,
+      "name": "what-past",
+      "position": 2
+    },
+    {
+      "id": 9,
+      "name": "with",
+      "position": 2
     },
     {
       "id": 3,
       "name": "when",
-      "options": [
-        {
-          "name": "today",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "Yesterday",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "Last week",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "Next month",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "In the morning",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "At night",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "During the summer",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "On Monday",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "After the meeting",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "Before the deadline",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "In a few minutes",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "next month",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "next week",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "next year",
-          "countReview": 0,
-          "isOnBoard": false
-        },
-        {
-          "name": "tomorrow",
-          "countReview": 0,
-          "isOnBoard": false
-        }
-      ]
+      "position": 3
+    },
+    {
+      "id": 8,
+      "name": "when-past",
+      "position": 3
     },
     {
       "id": 4,
       "name": "where",
-      "options": [
-        {
-          "name": "At home",
-          "countReview": 0
-        },
-        {
-          "name": "In the office",
-          "countReview": 0
-        },
-        {
-          "name": "At the store",
-          "countReview": 0
-        },
-        {
-          "name": "In the city",
-          "countReview": 0
-        },
-        {
-          "name": "On the beach",
-          "countReview": 0
-        },
-        {
-          "name": "At the airport",
-          "countReview": 0
-        },
-        {
-          "name": "In the restaurant",
-          "countReview": 0
-        },
-        {
-          "name": "In the classroom",
-          "countReview": 0
-        },
-        {
-          "name": "In the library        ",
-          "countReview": 0
-        },
-        {
-          "name": "In the park",
-          "countReview": 0,
-          "isOnBoard": false
-        }
-      ]
+      "position": 4
     },
     {
       "id": 5,
       "name": "why",
-      "options": [
-        {
-          "name": "To achieve success",
-          "countReview": 0
-        },
-        {
-          "name": "To improve performance",
-          "countReview": 0
-        },
-        {
-          "name": "To make a difference",
-          "countReview": 0
-        },
-        {
-          "name": "To avoid mistakes",
-          "countReview": 0
-        },
-        {
-          "name": "To save time",
-          "countReview": 0
-        },
-        {
-          "name": "To help others",
-          "countReview": 0
-        },
-        {
-          "name": "To learn something new",
-          "countReview": 0
-        },
-        {
-          "name": "To follow the rules",
-          "countReview": 0
-        },
-        {
-          "name": "To meet the deadline",
-          "countReview": 0
-        },
-        {
-          "name": "To fulfill the requirement",
-          "countReview": 0
-        }
-      ]
+      "position": 5
     }
   ],
   "options": [
@@ -330,7 +66,7 @@
       "categoryId": 1,
       "name": "she",
       "countReview": 1,
-      "isOnBoard": true
+      "isOnBoard": false
     },
     {
       "id": 4,
@@ -338,12 +74,1337 @@
       "name": "it",
       "countReview": 0,
       "isOnBoard": false
+    },
+    {
+      "name": "you",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 5
+    },
+    {
+      "name": "my mom",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 6
+    },
+    {
+      "name": "the president",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 7
+    },
+    {
+      "name": "you guys",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 8
+    },
+    {
+      "name": "your sister",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 9
+    },
+    {
+      "name": "Monica",
+      "categoryId": 1,
+      "isOnBoard": true,
+      "countReview": 0,
+      "id": 10
+    },
+    {
+      "name": "my father",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 11
+    },
+    {
+      "name": "is doing that",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 12
+    },
+    {
+      "name": "is seeing you",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 13
+    },
+    {
+      "name": "is beautiful",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 14
+    },
+    {
+      "name": "isn't bad",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 15
+    },
+    {
+      "name": "they",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 16
+    },
+    {
+      "name": "everyone",
+      "categoryId": 1,
+      "isOnBoard": true,
+      "countReview": 0,
+      "id": 17
+    },
+    {
+      "name": "my dad",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 18
+    },
+    {
+      "name": "my cousin",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 20
+    },
+    {
+      "name": "the guys",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 21
+    },
+    {
+      "name": "are making cookie",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 23
+    },
+    {
+      "name": "because it's cool",
+      "categoryId": 5,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 24
+    },
+    {
+      "name": "cause i want it",
+      "categoryId": 5,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 25
+    },
+    {
+      "name": "every day",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 26
+    },
+    {
+      "name": "today",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 27
+    },
+    {
+      "name": "i don't know why",
+      "categoryId": 5,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 28
+    },
+    {
+      "name": "yesterday",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 29
+    },
+    {
+      "name": "last week",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 30
+    },
+    {
+      "name": "next month",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 31
+    },
+    {
+      "name": "in the morning",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 32
+    },
+    {
+      "name": "at night",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 33
+    },
+    {
+      "name": "during the summer",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 34
+    },
+    {
+      "name": "on Monday",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 35
+    },
+    {
+      "name": "after the meeting",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 36
+    },
+    {
+      "name": "before the deadline",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 37
+    },
+    {
+      "name": "next month",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 38
+    },
+    {
+      "name": "in a few minutes",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 39
+    },
+    {
+      "name": "next week",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 40
+    },
+    {
+      "name": "tomorrow",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 41
+    },
+    {
+      "name": "next year",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 42
+    },
+    {
+      "name": "at home",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 43
+    },
+    {
+      "name": "in the classroom",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 44
+    },
+    {
+      "name": "in the library",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 45
+    },
+    {
+      "name": "in the office",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 46
+    },
+    {
+      "name": "at the store",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 47
+    },
+    {
+      "name": "in the park",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 48
+    },
+    {
+      "name": "in the city",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 49
+    },
+    {
+      "name": "on the beach",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 50
+    },
+    {
+      "name": "at the airport",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 51
+    },
+    {
+      "name": "in the restaurant",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 52
+    },
+    {
+      "name": "to achieve success",
+      "categoryId": 5,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 53
+    },
+    {
+      "name": "to learn something new",
+      "categoryId": 5,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 54
+    },
+    {
+      "name": "to follow the rules",
+      "categoryId": 5,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 55
+    },
+    {
+      "name": "to improve performance",
+      "categoryId": 5,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 56
+    },
+    {
+      "name": "to meet the deadline",
+      "categoryId": 5,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 57
+    },
+    {
+      "name": "to fulfill the requirement",
+      "categoryId": 5,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 58
+    },
+    {
+      "name": "to make a difference",
+      "categoryId": 5,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 59
+    },
+    {
+      "name": "to avoid mistakes",
+      "categoryId": 5,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 60
+    },
+    {
+      "name": "to save time",
+      "categoryId": 5,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 61
+    },
+    {
+      "name": "to help others",
+      "categoryId": 5,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 62
+    },
+    {
+      "name": "to help others",
+      "categoryId": 5,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 63
+    },
+    {
+      "name": "is writing a letter",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 64
+    },
+    {
+      "name": "is reading a book",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 65
+    },
+    {
+      "name": "is playing guitar",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 66
+    },
+    {
+      "name": "is making a phone call",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 67
+    },
+    {
+      "name": "is studying for an exam",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 68
+    },
+    {
+      "name": "is running a marathon",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 69
+    },
+    {
+      "name": "is watching a movie",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 70
+    },
+    {
+      "name": "is cleaning the house",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 71
+    },
+    {
+      "name": "is teaching a class",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 72
+    },
+    {
+      "name": "is cooking dinner",
+      "categoryId": 2,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 73
+    },
+    {
+      "name": "Rose and Joyce",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 74
+    },
+    {
+      "name": "William and you",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 75
+    },
+    {
+      "name": "the crowd",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 76
+    },
+    {
+      "name": "the employees",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 77
+    },
+    {
+      "name": "my team",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 78
+    },
+    {
+      "name": "my family",
+      "categoryId": 1,
+      "isOnBoard": true,
+      "countReview": 0,
+      "id": 79
+    },
+    {
+      "name": "nobody",
+      "categoryId": 1,
+      "isOnBoard": true,
+      "countReview": 0,
+      "id": 80
+    },
+    {
+      "name": "the students",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 81
+    },
+    {
+      "name": "someone",
+      "categoryId": 1,
+      "isOnBoard": true,
+      "countReview": 0,
+      "id": 82
+    },
+    {
+      "name": "my teacher",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 83
+    },
+    {
+      "name": "the new guy",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 84
+    },
+    {
+      "name": "the neighbors",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 85
+    },
+    {
+      "name": "the customers",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 86
+    },
+    {
+      "name": "the team leader",
+      "categoryId": 1,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 87
+    },
+    {
+      "name": "goes to the party",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 88
+    },
+    {
+      "name": "goes eat cake",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 89
+    },
+    {
+      "name": "is asking",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 90
+    },
+    {
+      "name": "will be happy",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 91
+    },
+    {
+      "name": "will buy a car",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 92
+    },
+    {
+      "name": "will buy pizza",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 93
+    },
+    {
+      "name": "wants to see you",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 94
+    },
+    {
+      "name": "wants to talk to you",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 95
+    },
+    {
+      "name": "can be here",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 96
+    },
+    {
+      "name": "can see you now",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 97
+    },
+    {
+      "name": "would like to know you",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 98
+    },
+    {
+      "name": "talks to me",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 99
+    },
+    {
+      "name": "wants to express gratitude",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 100
+    },
+    {
+      "name": "wants to improve a relationship",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 101
+    },
+    {
+      "name": "would like to know you",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 102
+    },
+    {
+      "name": "can be here",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 103
+    },
+    {
+      "name": "talks to me",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 104
+    },
+    {
+      "name": "should have been done",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 105
+    },
+    {
+      "name": "talks to me",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 106
+    },
+    {
+      "name": "should have been done",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 107
+    },
+    {
+      "name": "could have been avoided",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 108
+    },
+    {
+      "name": "must fix the equipment",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 109
+    },
+    {
+      "name": "wants to go on a vacation",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 110
+    },
+    {
+      "name": "needs some help",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 111
+    },
+    {
+      "name": "is feeling stressed",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 112
+    },
+    {
+      "name": "needs some advice",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 113
+    },
+    {
+      "name": "is planning a surprise",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 114
+    },
+    {
+      "name": "wants to volunteer",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 115
+    },
+    {
+      "name": "is celebrating a birthday",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 116
+    },
+    {
+      "name": "needs some feedback",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 117
+    },
+    {
+      "name": "is looking for a partner",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 118
+    },
+    {
+      "name": "needs to resolve a conflict",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 119
+    },
+    {
+      "name": "wants to improve a relationship",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 120
+    },
+    {
+      "name": "wants to express gratitude",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 121
+    },
+    {
+      "name": "wants to learn a new skill",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 122
+    },
+    {
+      "name": "is trying to find a new job",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 123
+    },
+    {
+      "name": "needs a favor",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 124
+    },
+    {
+      "name": "wants to make a change",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 125
+    },
+    {
+      "name": "is running late",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 126
+    },
+    {
+      "name": "wants to go for a walk",
+      "categoryId": 6,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 127
+    },
+    {
+      "name": "at 2 am",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 128
+    },
+    {
+      "name": "shortly",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 129
+    },
+    {
+      "name": "almost every day",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 130
+    },
+    {
+      "name": "it's been a while",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 131
+    },
+    {
+      "name": "almost all the time",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 132
+    },
+    {
+      "name": "since always",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 133
+    },
+    {
+      "name": "in a couple of days",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 134
+    },
+    {
+      "name": "right now",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 135
+    },
+    {
+      "name": "last year",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 136
+    },
+    {
+      "name": "a while ago",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 137
+    },
+    {
+      "name": "in the near future",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 138
+    },
+    {
+      "name": "at some point",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 139
+    },
+    {
+      "name": "in the near future",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 140
+    },
+    {
+      "name": "in the distant future",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 141
+    },
+    {
+      "name": "soon",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 142
+    },
+    {
+      "name": "right now",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 143
+    },
+    {
+      "name": "tonight",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 144
+    },
+    {
+      "name": "now",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 145
+    },
+    {
+      "name": "on the weekend",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 146
+    },
+    {
+      "name": "tomorrow morning",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 147
+    },
+    {
+      "name": "in a few days",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 148
+    },
+    {
+      "name": "in the afternoon",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 149
+    },
+    {
+      "name": "in the evening",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 150
+    },
+    {
+      "name": "in a couple of weeks",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 151
+    },
+    {
+      "name": "early in the morning",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 152
+    },
+    {
+      "name": "at lunchtime",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 153
+    },
+    {
+      "name": "in the middle of the day",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 154
+    },
+    {
+      "name": "at dawn",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 155
+    },
+    {
+      "name": "during the week",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 156
+    },
+    {
+      "name": "at dusk",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 157
+    },
+    {
+      "name": "on a specific date",
+      "categoryId": 3,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 158
+    },
+    {
+      "name": "did not go",
+      "categoryId": 7,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 159
+    },
+    {
+      "name": "did not study",
+      "categoryId": 7,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 160
+    },
+    {
+      "name": "study English",
+      "categoryId": 7,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 161
+    },
+    {
+      "name": "smiled",
+      "categoryId": 7,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 162
+    },
+    {
+      "name": "got sick",
+      "categoryId": 7,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 163
+    },
+    {
+      "name": "tried not to upset you",
+      "categoryId": 7,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 164
+    },
+    {
+      "name": "just wanted to protect you",
+      "categoryId": 7,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 165
+    },
+    {
+      "name": "had a great time",
+      "categoryId": 7,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 166
+    },
+    {
+      "name": "had a bad experience",
+      "categoryId": 7,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 167
+    },
+    {
+      "name": "felt embarrassed",
+      "categoryId": 7,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 168
+    },
+    {
+      "name": "enjoyed the show",
+      "categoryId": 7,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 169
+    },
+    {
+      "name": "did not expect it",
+      "categoryId": 7,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 170
+    },
+    {
+      "name": "felt disappointed",
+      "categoryId": 7,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 171
+    },
+    {
+      "name": "since last year",
+      "categoryId": 8,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 172
+    },
+    {
+      "name": "when I lived abroad",
+      "categoryId": 8,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 173
+    },
+    {
+      "name": "just a few months",
+      "categoryId": 8,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 174
+    },
+    {
+      "name": "last night",
+      "categoryId": 8,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 175
+    },
+    {
+      "name": "it's been a while",
+      "categoryId": 8,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 176
+    },
+    {
+      "name": "a few years ago",
+      "categoryId": 8,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 177
+    },
+    {
+      "name": "last summer",
+      "categoryId": 8,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 178
+    },
+    {
+      "name": "when I was a child",
+      "categoryId": 8,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 179
+    },
+    {
+      "name": "during my vacation",
+      "categoryId": 8,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 180
+    },
+    {
+      "name": "when I was in college",
+      "categoryId": 8,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 181
+    },
+    {
+      "name": "when I was in college",
+      "categoryId": 8,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 182
+    },
+    {
+      "name": "close to home",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 183
+    },
+    {
+      "name": "far away",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 184
+    },
+    {
+      "name": "at the office",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 186
+    },
+    {
+      "name": "at my house",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 187
+    },
+    {
+      "name": "at the gym",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 188
+    },
+    {
+      "name": "in the city center",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 189
+    },
+    {
+      "name": "in the countryside",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 190
+    },
+    {
+      "name": "in my work",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 191
+    },
+    {
+      "name": "at her house",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 192
+    },
+    {
+      "name": "near the beach",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 193
+    },
+    {
+      "name": "in the countryside",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 194
+    },
+    {
+      "name": "at the restaurant",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 195
+    },
+    {
+      "name": "in the mountains",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 196
+    },
+    {
+      "name": "in the city center",
+      "categoryId": 4,
+      "isOnBoard": false,
+      "countReview": 0,
+      "id": 197
     }
   ],
-  "sentences": [
-    {
-      "sentence": "{she}",
-      "id": 1
-    }
-  ]
+  "sentences": []
 }

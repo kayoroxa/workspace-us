@@ -44,7 +44,7 @@ export default function ModalSelect() {
       <header className="flex justify-center items-center gap-5 w-full">
         <Input />
       </header>
-      <main className="w-[40vw] flex flex-col gap-2">
+      <main className="h-[80vh] w-[40vw] flex flex-col gap-2 overflow-auto">
         {!addOptionsSession &&
           options &&
           options
@@ -52,7 +52,7 @@ export default function ModalSelect() {
             .map(option => (
               <div
                 key={option.name}
-                className="bg-zinc-700 p-2 hover:bg-zinc-600/70 hover:cursor-pointer flex justify-between"
+                className=" bg-zinc-700 p-2 hover:bg-zinc-600/70 hover:cursor-pointer flex justify-between"
                 onClick={() => {
                   changeDataOption(option.id, { isOnBoard: true })
                   // setOptionOnBoard(category.id, option.name)
@@ -61,7 +61,12 @@ export default function ModalSelect() {
                 // onClick={() => changeModalCategoryId(category.id, option.name)}
               >
                 <span>{option.name}</span>
-                <button onClick={() => deleteOptions(option.id)}>🚮</button>
+                <button
+                  onClick={() => deleteOptions(option.id)}
+                  className="bg-red-500 p-[1px] hover:scale-125"
+                >
+                  🚮
+                </button>
               </div>
             ))}
       </main>
