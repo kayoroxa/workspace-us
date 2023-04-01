@@ -4,14 +4,14 @@
       "id": 1,
       "name": "who",
       "options": [
-        { "name": "i", "countReview": 0, "isOnBoard": true },
+        { "name": "i", "countReview": 0 },
         { "name": "he", "countReview": 0 },
-        { "name": "she", "countReview": 1 },
+        { "name": "she", "countReview": 0 },
         { "name": "it", "countReview": 0 },
         { "name": "they", "countReview": 0 },
         { "name": "you", "countReview": 0 },
-        { "name": "we", "countReview": 2 },
-        { "name": "your mom", "countReview": 3 },
+        { "name": "we", "countReview": 0 },
+        { "name": "your mom", "countReview": 0 },
         { "name": "your dog", "countReview": 0 },
         { "name": "The manager", "countReview": 0 },
         { "name": "Our team", "countReview": 0 },
@@ -27,12 +27,12 @@
       "id": 2,
       "name": "what-ing",
       "options": [
-        { "name": "is Writing a letter", "countReview": 3 },
-        { "name": "is Making a phone call", "countReview": 2 },
+        { "name": "is Writing a letter", "countReview": 0 },
+        { "name": "is Making a phone call", "countReview": 0 },
         { "name": "is Running a marathon", "countReview": 0 },
         { "name": "is Cooking dinner", "countReview": 0 },
         { "name": "is Reading a book", "countReview": 0 },
-        { "name": "is Playing guitar", "countReview": 1 },
+        { "name": "is Playing guitar", "countReview": 0 },
         { "name": "is Studying for an exam", "countReview": 0 },
         { "name": "is Watching a movie", "countReview": 0 },
         { "name": "is Cleaning the house", "countReview": 0 },
@@ -112,22 +112,6 @@
     { "categoryName": "who", "name": "The CEO", "countReview": 0 },
     { "categoryName": "who", "name": "The athlete", "countReview": 0 }
   ],
-  "profile": {
-    "name": {
-      "id": 4,
-      "name": "asd",
-      "options": [
-        { "name": "", "countReview": 0 },
-        { "name": "", "countReview": 0 },
-        { "name": "", "countReview": 0 },
-        { "name": "", "countReview": 0 },
-        { "name": "", "countReview": 0 },
-        { "name": "", "countReview": 0 },
-        { "name": "", "countReview": 0 },
-        { "name": "", "countReview": 0 },
-        { "name": "", "countReview": 0 },
-        { "name": "", "countReview": 0 }
-      ]
-    }
-  }
+
+  "sentences": []
 }

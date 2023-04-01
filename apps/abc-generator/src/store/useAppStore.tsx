@@ -63,45 +63,38 @@ const useAppStore = create<appState>()((set, get) => ({
     })
   },
   setOptionOnBoard: async (categoryId, optionName, isTrue = true) => {
-    set(store => {
-      const newCategories = [...store.categories]
-
-      const categoryIndex =
-        typeof categoryId === 'number'
-          ? newCategories.findIndex(v => String(v.id) === String(categoryId))
-          : newCategories.findIndex(v => String(v.name) === String(categoryId))
-
-      if (categoryIndex === -1) return store
-
-      const category = newCategories[categoryIndex]
-
-      const optionIndex = category.options.findIndex(
-        v => String(v.name) === String(optionName)
-      )
-
-      if (optionIndex === -1) return store
-
-      newCategories[categoryIndex].options[optionIndex].isOnBoard = isTrue
-
-      return {
-        categories: newCategories,
-      }
-    })
+    console.log('remove setOptionOnBoard')
+    // set(store => {
+    //   const newCategories = [...store.categories]
+    //   const categoryIndex =
+    //     typeof categoryId === 'number'
+    //       ? newCategories.findIndex(v => String(v.id) === String(categoryId))
+    //       : newCategories.findIndex(v => String(v.name) === String(categoryId))
+    //   if (categoryIndex === -1) return store
+    //   const category = newCategories[categoryIndex]
+    //   const optionIndex = category.options.findIndex(
+    //     v => String(v.name) === String(optionName)
+    //   )
+    //   if (optionIndex === -1) return store
+    //   newCategories[categoryIndex].options[optionIndex].isOnBoard = isTrue
+    //   return {
+    //     categories: newCategories,
+    //   }
+    // })
   },
   sortOptions: () => {
-    set(store => {
-      const newCategories = [...store.categories]
-
-      for (let category of newCategories) {
-        category.options = category.options.sort(
-          (a, b) => a.countReview - b.countReview
-        )
-      }
-
-      return {
-        categories: newCategories,
-      }
-    })
+    console.log('cancela o Sort options')
+    // set(store => {
+    //   const newCategories = [...store.categories]
+    //   for (let category of newCategories) {
+    //     category.options = category.options.sort(
+    //       (a, b) => a.countReview - b.countReview
+    //     )
+    //   }
+    //   return {
+    //     categories: newCategories,
+    //   }
+    // })
   },
   saveAllData: () => {
     //get categories

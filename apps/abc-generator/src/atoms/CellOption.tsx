@@ -1,14 +1,12 @@
+import useQ from '@/hooks/useQ'
 import useSave from '@/hooks/useSave'
 import useAppStore from '@/store/useAppStore'
 import useBlockStore from '@/store/useBlockStore'
-import { Category } from '@/utils/types/Category'
+import { Category, Option } from '@/utils/types/Category'
 import { useEffect, useState } from 'react'
 
 interface Props {
-  option: {
-    name: string
-    countReview: number
-  }
+  option: Option
   onCLick: () => void
   category: Category
 }
@@ -19,6 +17,8 @@ export default function CellOption({ option, onCLick, category }: Props) {
   const setOptionOnBoard = useAppStore(s => s.setOptionOnBoard)
   const { saveCategory } = useSave()
 
+  const { changeDataOption } = useQ()
+
   const categoryName = category.name
 
   const isActive = selectedIn[categoryName] === option.name
@@ -26,8 +26,9 @@ export default function CellOption({ option, onCLick, category }: Props) {
   function handleCLick(e: any) {
     if (e.ctrlKey) {
       if (isActive) setAsSelect(categoryName, false)
-      setOptionOnBoard(categoryName, option.name, false)
-      saveCategory(category.id, category)
+      // setOptionOnBoard(categoryName, option.name, false)
+      changeDataOption(option.id, { isOnBoard: false })
+      // saveCategory(category.id, category)
     } else if (!isActive) {
       if (isActive) setAsSelect(categoryName, false)
       setAsSelect(categoryName, option.name)

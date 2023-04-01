@@ -1,15 +1,21 @@
 import CellOption from '@/atoms/CellOption'
 import useAppStore from '@/store/useAppStore'
-import { Category } from '@/utils/types/Category'
+import { Category, Option } from '@/utils/types/Category'
+import { useQuery } from 'react-query'
 
 export default function ColumnBlocks({ category }: { category: Category }) {
   const changeModalCategoryId = useAppStore(s => s.changeModalCategoryId)
   const changeCountReview = useAppStore(s => s.changeCountReview)
 
+  const { data: options } = useQuery<Option[]>(['options', category.id], () =>
+    fetch(`http://localhost:4000/options?categoryId=${category.id}`).then(res =>
+      res.json()
+    )
+  )
+
   function handleClick(id: any) {
     changeModalCategoryId(id)
   }
-
   return (
     <div key={category.id} className="bg-zinc-800 flex flex-col gap-2 p-1">
       <header className="flex gap-2 self-center">
@@ -21,18 +27,19 @@ export default function ColumnBlocks({ category }: { category: Category }) {
           +
         </button>
       </header>
-      {category.options
-        .filter(op => op.isOnBoard)
-        .map(option => (
-          <CellOption
-            category={category}
-            option={option}
-            key={option.name}
-            onCLick={() => {
-              changeCountReview(category.id, option.name)
-            }}
-          />
-        ))}
+      {options &&
+        options
+          .filter(op => op.isOnBoard)
+          .map(option => (
+            <CellOption
+              category={category}
+              option={option}
+              key={option.name}
+              onCLick={() => {
+                changeCountReview(category.id, option.name)
+              }}
+            />
+          ))}
     </div>
   )
 }

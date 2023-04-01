@@ -14,43 +14,38 @@ async function saveAll(
   newCategories: Category[],
   saveSelectIn: SaveSelectIn = false
 ) {
-  for (let category of newCategories) {
-    try {
-      let options = category.options
-
-      if (saveSelectIn && Object.keys(saveSelectIn).includes(category.name)) {
-        options = category.options.map(option => {
-          const has = Object.values(saveSelectIn).includes(option.name)
-
-          return {
-            ...option,
-            countReview: has ? option.countReview + 1 : option.countReview,
-          }
-        })
-      }
-
-      const newData = {
-        ...category,
-        options,
-      }
-
-      const data = {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newData),
-      }
-
-      const response = await fetch(
-        `http://localhost:4000/categories/${category.id}`,
-        data
-      )
-      const result = await response.json()
-      console.log(result)
-      // await axiosApi.put(`/categories/${category.id}`, newData)
-    } catch (err) {
-      console.error(err)
-    }
-  }
+  // for (let category of newCategories) {
+  //   try {
+  //     let options = category.options
+  //     if (saveSelectIn && Object.keys(saveSelectIn).includes(category.name)) {
+  //       options = category.options.map(option => {
+  //         const has = Object.values(saveSelectIn).includes(option.name)
+  //         return {
+  //           ...option,
+  //           countReview: has ? option.countReview + 1 : option.countReview,
+  //         }
+  //       })
+  //     }
+  //     const newData = {
+  //       ...category,
+  //       options,
+  //     }
+  //     const data = {
+  //       method: 'PUT',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify(newData),
+  //     }
+  //     const response = await fetch(
+  //       `http://localhost:4000/categories/${category.id}`,
+  //       data
+  //     )
+  //     const result = await response.json()
+  //     console.log(result)
+  //     // await axiosApi.put(`/categories/${category.id}`, newData)
+  //   } catch (err) {
+  //     console.error(err)
+  //   }
+  // }
 }
 
 async function saveCategory(id: number, newCategory: Category) {
