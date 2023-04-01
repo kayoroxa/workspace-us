@@ -1,3 +1,4 @@
+import Input from '@/atoms/Input'
 import useQ from '@/hooks/useQ'
 import useSave from '@/hooks/useSave'
 import { Category, Option } from '@/utils/types/Category'
@@ -22,6 +23,7 @@ export default function ModalSelect() {
         res => res.json()
       )
   )
+  const { deleteOptions } = useQ()
 
   const [addOptionsSession, setAddOptionsSession] = useState(false)
 
@@ -32,23 +34,17 @@ export default function ModalSelect() {
   const { changeDataOption } = useQ()
   return (
     <Modal
-      className="bg-zinc-800 w-fit h-fit fixed top-0 left-0 right-0 bottom-0 m-auto flex flex-col justify-center items-center rounded-xl overflow-hidden text-white"
+      className="bg-zinc-800 w-fit h-fit fixed top-0 left-0 right-0 bottom-0 m-auto flex flex-col justify-center items-center rounded-xl overflow-hidden text-white p-10 gap-5"
       isOpen={modalCategoryId !== null}
       onRequestClose={() => {
         changeModalCategoryId(null)
         // saveCategories()
       }}
     >
-      <header>
-        <button
-          onClick={() => setAddOptionsSession(p => !p)}
-          className="text-3xl"
-        >
-          🔃
-        </button>
+      <header className="flex justify-center items-center gap-5 w-full">
+        <Input />
       </header>
-      <main className="w-[40vw] flex flex-col gap-2 p-10">
-        {addOptionsSession && <textarea />}
+      <main className="w-[40vw] flex flex-col gap-2">
         {!addOptionsSession &&
           options &&
           options
@@ -56,7 +52,7 @@ export default function ModalSelect() {
             .map(option => (
               <div
                 key={option.name}
-                className="bg-zinc-700 p-2 hover:bg-zinc-600/70 hover:cursor-pointer"
+                className="bg-zinc-700 p-2 hover:bg-zinc-600/70 hover:cursor-pointer flex justify-between"
                 onClick={() => {
                   changeDataOption(option.id, { isOnBoard: true })
                   // setOptionOnBoard(category.id, option.name)
@@ -64,7 +60,8 @@ export default function ModalSelect() {
                 }}
                 // onClick={() => changeModalCategoryId(category.id, option.name)}
               >
-                {option.name}
+                <span>{option.name}</span>
+                <button onClick={() => deleteOptions(option.id)}>🚮</button>
               </div>
             ))}
       </main>

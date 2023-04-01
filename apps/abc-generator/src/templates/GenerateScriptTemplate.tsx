@@ -3,6 +3,7 @@ import useSentence from '@/hooks/useSentence'
 import ColumnBlocks from '@/organisms/ColumnBlocks'
 import ShowSentenceResult from '@/organisms/showSentenceResult'
 import { Category } from '@/utils/types/Category'
+import { Fragment } from 'react'
 import { useQuery } from 'react-query'
 import ModalSelect from '../organisms/ModalSelect'
 interface IProps {
@@ -50,14 +51,15 @@ export default function GenerateScriptTemplate({ data: categories }: IProps) {
         Save
       </button>
 
-      <ModalSelect categories={categories} />
+      <ModalSelect />
       {sentences && (
-        <div className="flex flex-col gap-4 p-10">
+        <div className="mt-20 text-4xl leading-[50px] w-full text-center">
           {sentences.map(({ sentence, id }) => {
             return (
-              <div key={id}>
-                <p className="text-xl">{sentence}</p>
-              </div>
+              <Fragment key={id}>
+                {sentence}
+                <br />
+              </Fragment>
             )
           })}
         </div>
