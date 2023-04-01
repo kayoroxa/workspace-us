@@ -1,7 +1,9 @@
+import useQ from '@/hooks/useQ'
 import useSave from '@/hooks/useSave'
 import useSentence from '@/hooks/useSentence'
 import ColumnBlocks from '@/organisms/ColumnBlocks'
 import ShowSentenceResult from '@/organisms/showSentenceResult'
+import useBlockStore from '@/store/useBlockStore'
 import { Category } from '@/utils/types/Category'
 import { Fragment } from 'react'
 import { useQuery } from 'react-query'
@@ -12,7 +14,9 @@ interface IProps {
 
 export default function GenerateScriptTemplate({ data: categories }: IProps) {
   const { sentenceWithKey } = useSentence()
+  const { selectedIn } = useBlockStore()
   const { saveSentence, saveCategories } = useSave()
+  const { changeCountOption } = useQ()
 
   const {
     isLoading,
@@ -42,6 +46,8 @@ export default function GenerateScriptTemplate({ data: categories }: IProps) {
           if (sentenceWithKey.length === 0) return
           await saveSentence()
           await saveCategories(true)
+          debugger
+          changeCountOption(Object.values(selectedIn), +1)
           refetch()
           // Object.keys(selectedIn).forEach(key => {
           //   changeCountReview(key, selectedIn[key])

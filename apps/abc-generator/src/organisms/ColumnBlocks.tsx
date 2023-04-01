@@ -8,9 +8,9 @@ export default function ColumnBlocks({ category }: { category: Category }) {
   const changeCountReview = useAppStore(s => s.changeCountReview)
 
   const { data: options } = useQuery<Option[]>(['options', category.id], () =>
-    fetch(`http://localhost:4000/options?categoryId=${category.id}`).then(res =>
-      res.json()
-    )
+    fetch(
+      `http://localhost:4000/options?_sort=countReview&_order=asc&categoryId=${category.id}&isOnBoard=true`
+    ).then(res => res.json())
   )
 
   function handleClick(id: any) {
@@ -28,18 +28,16 @@ export default function ColumnBlocks({ category }: { category: Category }) {
         </button>
       </header>
       {options &&
-        options
-          .filter(op => op.isOnBoard)
-          .map(option => (
-            <CellOption
-              category={category}
-              option={option}
-              key={option.name}
-              onCLick={() => {
-                changeCountReview(category.id, option.name)
-              }}
-            />
-          ))}
+        options.map(option => (
+          <CellOption
+            category={category}
+            option={option}
+            key={option.name}
+            onCLick={() => {
+              changeCountReview(category.id, option.name)
+            }}
+          />
+        ))}
     </div>
   )
 }

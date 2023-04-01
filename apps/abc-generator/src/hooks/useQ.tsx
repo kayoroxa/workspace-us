@@ -32,6 +32,21 @@ export default function useQ() {
   })
 
   return {
+    changeCountOption: async (
+      namesOptions: string[],
+      numberIncremental: number
+    ) => {
+      for (const name of namesOptions) {
+        debugger
+        const optionData = await axiosApi.get(`/options?name=${name}`)
+        const option: Option = optionData.data[0]
+
+        const newData = {
+          countReview: option.countReview + numberIncremental,
+        }
+        changeData.mutate({ id: option.id, newData })
+      }
+    },
     changeDataOption: (id: number, newData: Partial<Option>) => {
       return changeData.mutate({ id, newData })
     },
