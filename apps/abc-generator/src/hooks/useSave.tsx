@@ -41,7 +41,7 @@ async function saveAll(
       }
 
       const response = await fetch(
-        `http://localhost:3001/categories/${category.id}`,
+        `http://localhost:4000/categories/${category.id}`,
         data
       )
       const result = await response.json()
@@ -79,11 +79,11 @@ export default function useSave() {
   const { sentenceWithKey } = useSentence()
 
   return {
-    saveCategories: (saveSelectIn?: boolean) => {
+    saveCategories: async (saveSelectIn?: boolean) => {
       try {
+        addCountReviewAllSelected(Object.values(selectedIn))
         saveAll(categories, saveSelectIn ? selectedIn : false)
         resetSelectedIn()
-        addCountReviewAllSelected(Object.values(selectedIn))
       } catch (error) {
         console.log('error', error)
       }

@@ -16,11 +16,10 @@ export default function ShowSentenceResult() {
             ))}
         </div>
       )}
-      {sentence.length > 0 && (
-        <div className="flex gap-2 justify-center items-center">
-          {sentenceWithKey}
-        </div>
-      )}
+
+      <div className="flex gap-2 justify-center items-center">
+        {sentence.length > 0 ? sentenceWithKey : '..'}
+      </div>
     </div>
   )
 }
