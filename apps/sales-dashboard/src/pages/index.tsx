@@ -12,7 +12,7 @@ export default function Home() {
   )
 
   return (
-    <div className="w-full min-h-screen bg-zinc-800 text-zinc-100 flex justify-center items-start p-10 ">
+    <div className="w-full min-h-screen bg-zinc-800 text-zinc-100 flex flex-col items-center gap-5 p-10 ">
       {eventsBuy &&
         eventsBuy.map(event => (
           <div
@@ -21,7 +21,7 @@ export default function Home() {
           >
             <section>
               <h1>Nome:</h1>
-              <h4>{event.phone}</h4>
+              <h4>{event.buyerName}</h4>
             </section>
             <section>
               <h1>Telefone:</h1>
