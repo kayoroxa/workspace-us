@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { _EventBuy } from '@/utils/types/eventBuy'
 import { query as q } from 'faunadb'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { faunaClient } from '../../services/fauna'
@@ -42,8 +43,13 @@ export default async function handler(
           q.Lambda('Sales', q.Get(q.Var('Sales')))
         )
       )
+      const data: _EventBuy[] = response.data.map(({ data }: any) => data)
 
-      return res.status(200).json(response.data.map(({ data }: any) => data))
+      const dataSorted = data.sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime()
+      })
+
+      return res.status(200).json(dataSorted)
     } catch (error) {
       return res.status(500).json({ event: 'error' })
     }
