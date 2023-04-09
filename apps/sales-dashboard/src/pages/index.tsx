@@ -1,3 +1,4 @@
+import Toggle from '@/components/toggle'
 import { Inter } from 'next/font/google'
 import { useQuery } from 'react-query'
 import Button from '../components/button'
@@ -8,8 +9,21 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const { data: eventsBuy, isLoading } = useQuery<_EventBuy[]>(
     ['events-buy'],
-    () => fetch('/api/events-buy').then(res => res.json())
+    () => fetch('/api/events-buy').then(res => res.json()),
+    {
+      refetchInterval: 3 * 60 * 1000,
+    }
   )
+
+  function convertEvent(event: string) {
+    if (event === 'PURCHASE_APPROVED') return 'Comprou 💹'
+    if (event === 'PURCHASE_COMPLETE') return 'Completo ✅💹'
+    if (event === 'PURCHASE_OUT_OF_SHOPPING_CART')
+      return 'Abandonou Carrinho ❌🛒'
+    if (event === 'PURCHASE_CANCELED') return 'Compra Cancelada ❌💳'
+    if (event === 'PURCHASE_BILLET_PRINTED') return 'pix/boleto ⏱✉'
+    else return event
+  }
 
   return (
     <div className="w-full min-h-screen bg-zinc-800 text-zinc-100 flex flex-col items-center gap-5 p-10 ">
@@ -29,15 +43,32 @@ export default function Home() {
             </section>
             <section>
               <h1>Evento:</h1>
-              <h1>{event.event}</h1>
+              <h1>{convertEvent(event.event)}</h1>
             </section>
             <section>
               <h1>Email:</h1>
               <h1>{event.email}</h1>
             </section>
             <section>
-              <Button event={event} />
+              <h1>Data:</h1>
+
+              {/* //timestamp to brasilian date */}
+              <h2>
+                {new Date(event.date).toLocaleDateString('pt-BR', {
+                  day: '2-digit',
+                  month: 'long',
+                  year: 'numeric',
+                })}
+              </h2>
             </section>
+            <section className="flex justify-center items-center">
+              <Toggle
+                id={event.email}
+                comprou={event.event === 'PURCHASE_APPROVED'}
+              />
+            </section>
+
+            <section>{event.phone && <Button event={event} />}</section>
           </div>
         ))}
     </div>
