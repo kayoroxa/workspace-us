@@ -6,6 +6,12 @@ import { _EventBuy } from '../utils/types/eventBuy'
 
 const inter = Inter({ subsets: ['latin'] })
 
+function diferenceDays(date1: Date, date2: Date) {
+  return Math.round(
+    Math.abs(date1.getTime() - date2.getTime()) / (1000 * 3600 * 24)
+  )
+}
+
 export default function Home() {
   const { data: eventsBuy, isLoading } = useQuery<_EventBuy[]>(
     ['events-buy'],
@@ -48,6 +54,11 @@ export default function Home() {
             <section>
               <h1>Email:</h1>
               <h1>{event.email}</h1>
+            </section>
+            <section>
+              <h1>Dias:</h1>
+              {/* atual date - event.date */}
+              <h2>{diferenceDays(new Date(event.date), new Date())}</h2>
             </section>
             <section>
               <h1>Data:</h1>

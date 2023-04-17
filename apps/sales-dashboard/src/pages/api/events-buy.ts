@@ -36,13 +36,32 @@ export default async function handler(
 
   if (req.method === 'GET') {
     try {
+      const now = new Date().toISOString()
       //get all collation sales sorted by ts
       const response: any = await faunaClient.query(
         q.Map(
-          q.Paginate(q.Match(q.Index('sales'))),
-          q.Lambda('Sales', q.Get(q.Var('Sales')))
+          q.Paginate(q.Documents(q.Collection('sales')), {
+            size: 100, // número máximo de resultados por página
+            before: q.Time(now), // retorna resultados antes desta data/hora
+          }),
+          q.Lambda('X', q.Get(q.Var('X')))
         )
+        // q.Paginate(q.Match(q.Index('sales_by_date_desc')))
+        // q.Map(
+        //   q.Paginate(
+        //     q.Range(
+        //       q.Match(q.Index("get_weekly_list_by_ts")),
+        //       q.TimeSubtract(q.Now(), 14, "days"),
+        //       q.Now()
+        //     )
+        //   ),
+        //   q.Lambda(
+        //     ["ts", "ref"],
+        //     q.Get(q.Var("ref"))
+        //   )
+        // )
       )
+
       const data: _EventBuy[] = response.data.map(({ data }: any) => data)
 
       const dataSorted = data.sort((a, b) => {
