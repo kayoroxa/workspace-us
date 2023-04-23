@@ -17,7 +17,10 @@ export default function ColumnBlocks({ category }: { category: Category }) {
     changeModalCategoryId(id)
   }
   return (
-    <div key={category.id} className="bg-zinc-800 flex flex-col gap-2 p-1">
+    <div
+      key={category.id}
+      className="bg-zinc-800 flex flex-col gap-2 p-1 whitespace-nowrap"
+    >
       <header className="flex gap-2 self-center">
         <h2 className="text-4xl text-center">{category.name}</h2>
         <button
@@ -28,16 +31,18 @@ export default function ColumnBlocks({ category }: { category: Category }) {
         </button>
       </header>
       {options &&
-        options.map(option => (
-          <CellOption
-            category={category}
-            option={option}
-            key={option.name}
-            onCLick={() => {
-              changeCountReview(category.id, option.name)
-            }}
-          />
-        ))}
+        options
+          .filter(o => o.isOnBoard === true)
+          .map(option => (
+            <CellOption
+              category={category}
+              option={option}
+              key={option.name}
+              onCLick={() => {
+                changeCountReview(category.id, option.name)
+              }}
+            />
+          ))}
     </div>
   )
 }

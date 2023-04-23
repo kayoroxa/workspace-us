@@ -1,0 +1,148 @@
+#parte 1
+{Monica} {would like to go}
+{Monica} {would like to go} {with} {my family} {at night}
+{Monica} {would like to go} {with} {you guys} {right now}
+{someone} {goes to the party} {with} {you guys} {at night}
+{i don't know why} {everyone} {goes to the party} {with} {you guys} {at night}
+{someone} {goes to the party} {with} {my family}
+{everyone} {is} {doing that} {right now} {at the restaurant}
+{i don't know why} {Monica} {would like to go} {right now}
+{everyone} {is} {doing that} {at the restaurant}
+{everyone} {is} {watching a movie} {at my house}
+{everyone} {is} {watching a movie} {right now} {at my house} {because i want it}
+{Monica} {is} {watching a movie} {right now} {because I suggested it}
+{someone} {is} {doing that} {close to home}
+{my neighbor} {talks to me} {at the restaurant} {every day}
+{my neighbor} {was} {close to home}
+{my neighbor} {was} {with} {my family} {at the restaurant}
+{Monica} {was} {with} {my family} {at the restaurant} {last night}
+{someone} {talks to me} {every day}
+{my cousin} {talks to me} {every day} {close to home}
+{my cousin} {is} {doing that} {because I suggested it}
+{my cousin} {is} {watching a movie} {because i want it}
+{i don't know why} {every day} {Monica} {goes to the party}
+{last night} {my cousin} {was} {at my house}
+{every day} {my neighbor} {is} {close to home}
+{is} {Monica} {with} {you guys}?
+{was} {my cousin} {with} {you guys} {last night}?
+{someone} {is} {doing that} {right now}
+#parte 2
+{she} {is} {reading a book} {at night}
+{she} {is} {reading a book} {every day}
+{my neighbor} {is} {reading a book} {close to home}
+{she} {is} {with} {my son}
+{she} {talks to me}
+{she} {talks to me} {in the morning}
+{i don't know why} {everyone} {is} {reading a book}
+{i don't know why} {my cousin} {is} {reading a book} {at my house} {right now}
+{someone} {was} {at the restaurant} {last night}
+{my neighbor} {was} {at my house}
+{she} {was} {at my house} {last night} {because I suggested it}
+{everyone} {is} {with} {my son} {at the restaurant}
+{in the morning} {she} {had a great time}
+{my cousin} {had a great time} {with} {my son} {yesterday}
+{my neighbor} {is} {doing that} {because i want it}
+{nobody} {got sick}
+{nobody} {got sick} {when i was there}
+{nobody} {got sick} {when i was there} {at my house}
+{nobody} {had a great time} {yesterday}
+{i don't know why} {nobody} {goes to the party} {today}
+{nobody} {would like to go} {when i was there}
+{in the morning} {nobody} {got sick} {when i was there}
+{today} {someone} {goes to the party} {close to home}
+{everyone} {had a great time} {today}
+#parte 3
+{yesterday} {my cousin} {got sick} {i don't know why}
+{someone} {is} {with} {my son} {today}
+{last night} {she} {had a great time}
+{in the morning} {nobody} {was} {at the restaurant}
+{yesterday} {my neighbor} {got sick} {at my house}
+{Monica} {always} {talks to me}
+{do you know why} {everyone} {is} {always} {at my house}?
+{my neighbor} {would like to go} {today} {with} {my family}
+{my cousin} {never} {talks to me}
+{do you know why} {she} {always} {goes to the party}?
+{nobody} {got sick} {yesterday}
+{Monica} {is} {never} {close to home}
+{is} {someone} {with} {my family} {right now}?
+{in the morning} {nobody} {goes to the party}
+{do you know why} {everyone} {had a great time} {yesterday}?
+{my cousin} {has been} {reading a book}
+{my neighbor} {has been} {reading a book} {every day} {because I suggested it}
+{is} {she} {doing that}?
+{someone} {has been} {asking about} {her}
+{my cousin} {is} {at my house} {asking about} {her}
+{Monica} {is} {with} {her}
+#parte 4
+{nobody} {has been} {asking about} {my son}
+{i don't know why} {you} {are} {at the restaurant} {today}
+{why} {are} {you} {asking about} {her}?
+{why} {are} {you} {always} {reading a book}?
+{are} {you} {doing that} {today}?
+{everyone} {is} {here}
+{you} {are} {here} {because I suggested it}
+{why} {are} {you} {watching a movie} {right now}?
+{you} {are} {never} {close to home}
+{do you know why} {she} {is} {never} {here}?
+{why} {was} {nobody} {at the restaurant} {when i was there}?
+{yesterday} {you} {had a great time} {with} {me}
+{Monica} {has been} {asking about} {me}
+{do you know why} {my neighbor} {has been} {doing that}?
+{last night} {she} {was} {close to home} {with} {him}
+{my cousin} {got sick} {yesterday}
+{nobody} {would like to go} {with} {him}
+{everyone} {was} {reading a book} {when i was there}
+{my neighbor} {always} {talks to me} {here}
+{my family} {always} {goes to the party} {every day}
+{Monica} {was} {asking about} {you guys} {when i was there}
+#IA
+{Why} {did} {you guys} {watch a movie} {at night}?
+{I} {had a great time} {with} {my son} {today}
+{He} {is} {always} {here} {in the morning}
+{Do you know why} {he} {is} {asking about} {me}?
+{Just} {because I want it}, {I} {will} {watch a movie} {at night}
+{My son} {has been} {watching a movie} {in the morning}
+{She} {is} {always} {here} {in the morning}
+{I} {will} {watch a movie} {at night} {because I want it}
+#PARTE 5 #IA2
+{I} {just} {watched a movie} {with} {my family} {at night}
+{He} {will} {never} {watch a movie} {with} {her} {because I suggested it}
+{Why} {are} {you guys} {watching a movie} {here} {at night}?
+{I} {would like to go} {watch a movie} {with} {you guys} {because I want it}
+{Did} {he} {watch a movie} {with} {me} {because I suggested it}?
+{Her} {family} {never} {watch a movie} {at night}
+{He} {just} {watched a movie} {with} {me} {because I suggested it}
+{I} {never} {watched a movie} {with} {her}
+#IA3
+{He} {will} {watch a movie} {when} {I am there}
+{My son} {watched a movie} {last night} {when} {I was there}
+{Do you know why} {he} {has been} {asking about} {her}?
+{He} {never} {watched a movie} {when} {I was there}
+{I} {will} {watch a movie} {because I want it}
+{He} {watched a movie} {last night}
+{He} {has been} {asking about} {her}
+{My son} {watched a movie} {when} {I was there}
+{He} {will} {watch a movie} {when} {I am there}
+#IA4
+{When} {I was there}, {he} {did} {watching a movie}
+{I} {would like to go} {here} {because I suggested it}
+{He} {will} {talk to} {me} {just} {when} {I am there}
+{I don't know why} {he} {did} {watching a movie}
+{I was there} {when} {he} {talked to} {me}
+{He} {will} {watch a movie} {because I want it}
+{Why} {did} {he} {watch a movie} {when} {I was there}?
+#IA5
+{He} {talks to me} {every day} {in the morning}
+{I am there} {just} {because I want it}
+{I had a great time} {when I was there} {yesterday}
+{He} {talked to} {me} {when I was there}
+{I am there} {because I want it} {and} {had a great time} {yesterday}
+{I am there} {just} {to be} {with} {him}
+#PARTE 6 #IA6
+{I had a great time} {today} {talking to} {him}.
+{Do you know why} {I got sick} {today}?
+{I} {always} {talk to} {my family} {when} {I am there}.
+{He} {never} {talked to} {me} {about} {why} {he} {is} {here}
+{I was there} {yesterday} {and} {I} {had a great time} {with} {my family}.
+{He} {never} {talks to} {me} {anymore} {and} {I don't know why}.
+#IA7

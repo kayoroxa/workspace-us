@@ -32,7 +32,7 @@ export default function GenerateScriptTemplate({ data: categories }: IProps) {
   return (
     <div className="bg-zinc-900 min-h-screen text-white">
       <ShowSentenceResult />
-      <main className="flex gap-4 px-5 justify-center ">
+      <main className="flex gap-4 px-5 overflow-x-auto w-full">
         {categories.map(category => (
           <ColumnBlocks category={category} key={category.id} />
         ))}

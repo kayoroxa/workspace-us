@@ -7,13 +7,7 @@ export default function ShowSentenceResult() {
       {/* {sentence.length === 0 && <div>...</div>} */}
       {sentence.length > 0 && (
         <div className="flex gap-2 justify-center items-center">
-          {rawSentence
-            .filter(v => v.length > 0)
-            .map(teachText => (
-              <span className="bg-blue-600/50 p-1" key={teachText}>
-                {teachText}
-              </span>
-            ))}
+          {rawSentence.filter(v => v.length > 0).join(' ')}
         </div>
       )}
 
