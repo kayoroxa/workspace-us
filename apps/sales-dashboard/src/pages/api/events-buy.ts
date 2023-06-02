@@ -21,6 +21,8 @@ export default async function handler(
       phone,
       email,
       date: creation_date,
+      pagamento: eventData.purchase.payment.type,
+      eventData,
     }
 
     try {
