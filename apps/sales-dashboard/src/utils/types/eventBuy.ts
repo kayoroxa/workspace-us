@@ -5,4 +5,5 @@ export type _EventBuy = {
   email: string
   event: string
   date: string
+  pagamento: string
 }

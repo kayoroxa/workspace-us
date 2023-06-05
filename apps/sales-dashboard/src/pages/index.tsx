@@ -21,14 +21,15 @@ export default function Home() {
     }
   )
 
-  function convertEvent(event: string) {
-    if (event === 'PURCHASE_APPROVED') return 'Comprou 💹'
-    if (event === 'PURCHASE_COMPLETE') return 'Completo ✅💹'
-    if (event === 'PURCHASE_OUT_OF_SHOPPING_CART')
+  function convertEvent(event: _EventBuy) {
+    if (event.event === 'PURCHASE_APPROVED') return 'Comprou 💹'
+    if (event.event === 'PURCHASE_COMPLETE') return 'Completo ✅💹'
+    if (event.event === 'PURCHASE_OUT_OF_SHOPPING_CART')
       return 'Abandonou Carrinho ❌🛒'
-    if (event === 'PURCHASE_CANCELED') return 'Compra Cancelada ❌💳'
-    if (event === 'PURCHASE_BILLET_PRINTED') return 'pix/boleto ⏱✉'
-    else return event
+    if (event.event === 'PURCHASE_CANCELED') return 'Compra Cancelada ❌💳'
+    if (event.event === 'PURCHASE_BILLET_PRINTED')
+      return event.pagamento + ' ⏱✉'
+    else return event.event
   }
 
   return (
@@ -49,7 +50,7 @@ export default function Home() {
             </section>
             <section>
               <h1>Evento:</h1>
-              <h1>{convertEvent(event.event)}</h1>
+              <h1>{convertEvent(event)}</h1>
             </section>
             <section>
               <h1>Email:</h1>

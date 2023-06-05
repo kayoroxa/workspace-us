@@ -22,7 +22,7 @@ export default async function handler(
       email,
       date: creation_date,
       pagamento: eventData.purchase.payment.type,
-      eventData,
+      // eventData,
     }
 
     try {
