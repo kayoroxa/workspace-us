@@ -32,7 +32,7 @@ Falando nisso, já conseguiu receber o acesso as aulas do curso??
   }
 
   if (event.event === 'PURCHASE_BILLET_PRINTED') {
-    const isPix = event.pagamento.toLowerCase() === 'pix'
+    const isPix = event.pagamento?.toLowerCase() === 'pix'
     const nome = isPix ? 'pix' : 'boleto'
     message = `
 ${bomDia} ${firstName}, vi que você gerou um ${nome} para se cadastrar no meu curso de inglês 🇺🇸😃📚, 
