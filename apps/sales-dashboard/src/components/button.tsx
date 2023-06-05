@@ -32,12 +32,18 @@ Falando nisso, já conseguiu receber o acesso as aulas do curso??
   }
 
   if (event.event === 'PURCHASE_BILLET_PRINTED') {
+    const isPix = event.pagamento.toLowerCase() === 'pix'
+    const nome = isPix ? 'pix' : 'boleto'
     message = `
-${bomDia} ${firstName}, vi que você gerou um boleto/pix para se cadastrar no meu curso de inglês 🇺🇸😃📚, 
+${bomDia} ${firstName}, vi que você gerou um ${nome} para se cadastrar no meu curso de inglês 🇺🇸😃📚, 
 
 Estou disponível para esclarecer quaisquer dúvidas que possam ter surgido em relação ao processo de pagamento.
 
-Você conseguiu entender como efetuar o pagamento?    
+${
+  isPix
+    ? 'Você conseguiu entender como efetuar o pagamento?'
+    : 'Conseguiu baixar o boleto ou quer que eu te mande ele por aqui?'
+}   
     `
   }
   if (event.event === 'PURCHASE_COMPLETE') {
