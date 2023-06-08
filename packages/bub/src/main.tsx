@@ -1,5 +1,6 @@
 import { RefObject } from 'react'
 import GetRef from './getRef'
+import useFormStore from './store/useForm'
 import useRefStore from './store/useRefStore'
 
 export default function useBub() {
@@ -7,7 +8,7 @@ export default function useBub() {
 
   const action = {
     changeStyle: (nameId: string, newStyle: any) => {
-      const ref = refs.find(([nameRef]) => nameRef === nameId)?.[1]
+      // const ref = refs.find(([nameRef]) => nameRef === nameId)?.[1]
       // if (ref?.current?.style) {
       // for (const prop in newStyle) {
       //   if (ref.current?.style[prop]) {
@@ -73,5 +74,8 @@ export default function useBub() {
     action,
     ref: refs,
     getRef: GetRef,
+    createForm: useFormStore(state => state.setFormData),
+    formProps: useFormStore(state => state.formData),
+    closeForm: useFormStore(state => state.close),
   }
 }

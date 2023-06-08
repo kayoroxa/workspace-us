@@ -15,7 +15,7 @@ export default function Input({ className, id, onClick, type }: Props) {
       type={type}
       className={
         className ||
-        'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+        'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl'
       }
       onClick={onClick}
       ref={id ? getRef(id) : undefined}

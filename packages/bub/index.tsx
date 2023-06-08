@@ -1,4 +1,4 @@
-import './index.css'
+// import './index.css'
 
 import Button from './src/components/button'
 import Group from './src/components/Group'
