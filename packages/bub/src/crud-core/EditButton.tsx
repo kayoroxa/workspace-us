@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import { FaEdit } from 'react-icons/fa'
-import CrudForm, { DataObj } from './CrudForm'
+import useFormStore from '../store/useForm'
+import { DataObj } from '../utils/types/FormData'
 
 interface Props {
   title: string
@@ -9,7 +9,8 @@ interface Props {
 }
 
 export default function EditButton({ title, data, onSubmit }: Props) {
-  const [showForm, setShowForm] = useState<boolean>(false)
+  const setFormData = useFormStore(state => state.setFormData)
+
   return (
     <>
       <FaEdit
@@ -17,17 +18,13 @@ export default function EditButton({ title, data, onSubmit }: Props) {
         className="fill-zinc-200 absolute top-2 right-10 hidden group-hover:block hover:fill-purple-500 hover:cursor-pointer z-10"
         onClick={(e: any) => {
           e.stopPropagation()
-          setShowForm(true)
+          setFormData({
+            data,
+            title,
+            onSubmit,
+          })
         }}
       />
-      {showForm && (
-        <CrudForm
-          title={title}
-          data={data}
-          onSubmit={onSubmit}
-          onRequestClose={() => setShowForm(false)}
-        />
-      )}
     </>
   )
 }

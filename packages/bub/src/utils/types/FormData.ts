@@ -1,6 +1,15 @@
 export type DataObj = Record<
   string,
-  { initialValue?: unknown; type: string; block?: boolean; hide?: boolean }
+  {
+    initialValue?: unknown
+    type: string
+    block?: boolean
+    hide?: boolean
+    options?: {
+      label: string
+      value: number | string
+    }[]
+  }
 >
 
 export interface FormProps {
