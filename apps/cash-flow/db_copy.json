@@ -15,7 +15,8 @@
       "amount": 200,
       "account_id": "1",
       "type": "income",
-      "id": 3
+      "id": 3,
+      "user_id": "1"
     },
     {
       "name": "hamburguer",
@@ -29,14 +30,16 @@
       "amount": 12,
       "account_id": "1",
       "type": "outcome",
-      "id": 5
+      "id": 5,
+      "user_id": "1"
     },
     {
       "name": "venda",
       "amount": 300,
       "account_id": "2",
       "type": "income",
-      "id": 6
+      "id": 6,
+      "user_id": "1"
     },
     {
       "name": "leitão",

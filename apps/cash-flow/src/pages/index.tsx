@@ -107,12 +107,38 @@ export default function Home() {
     }, 0)
   }, [allReceitas, allDespesas])
 
+  const userDespesas = useMemo(() => {
+    if (!allDespesas) return 0
+
+    return allDespesas?.reduce((acc, transaction) => {
+      acc[transaction.user_id] =
+        (acc[transaction.user_id] || 0) + transaction.amount
+
+      return acc
+    }, {} as { [key: number]: number })
+  }, [allDespesas])
+
   return (
     <div className={`${inter.className} `}>
-      <header className="flex gap-4 px-10 py-5 bg-green-700 text-3xl">
-        <h1>Saldo:</h1>
-        <h1>R$ {saldo}</h1>
+      <header className="flex gap-4 px-36 py-5 bg-green-700 justify-between items-center">
+        <div className="text-3xl">
+          <h1>Saldo: R$ {saldo}</h1>
+        </div>
+
+        {userDespesas && (
+          <ul className="flex flex-col items-end">
+            {Object.entries(userDespesas).map(([key, value]) => (
+              <li key={key} className="flex gap-4">
+                <h1>
+                  {allUsers.find(u => u.id === Number(key))?.name || 'Sem nome'}
+                </h1>
+                <h1 className="text-red-200">-R$ {value}</h1>
+              </li>
+            ))}
+          </ul>
+        )}
       </header>
+
       <main className="flex justify-between w-full mt-5">
         <section className="flex flex-col items-center flex-1">
           <CreateButton
