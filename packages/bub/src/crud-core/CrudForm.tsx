@@ -85,13 +85,13 @@ interface YoProps {
 function Yo({ _key, type, options }: YoProps) {
   if (type === 'datalist' && options) {
     return (
-      <div>
+      <div className="flex-1">
         <Field
           name={_key}
           list={_key} // Nome do datalist
           component="input"
           placeholder="Digite um item"
-          className="bg-zinc-600 text-white"
+          className="bg-zinc-600 text-white w-full"
           autocomplete="off"
         />
         <datalist id={_key}>
@@ -105,13 +105,13 @@ function Yo({ _key, type, options }: YoProps) {
     )
   } else {
     return (
-      <div>
+      <div className="flex-1">
         <Field
           name={_key}
           type={type}
           key={_key}
           disable={true}
-          className="bg-zinc-600 text-white"
+          className="bg-zinc-600 text-white w-full"
           autocomplete="off"
         />
       </div>

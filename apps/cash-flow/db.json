@@ -36,7 +36,8 @@
       "amount": 300,
       "account_id": "2",
       "type": "income",
-      "id": 6
+      "id": 6,
+      "user_id": "1"
     },
     {
       "name": "leitão",
@@ -57,5 +58,18 @@
       "name": "hotmart"
     }
   ],
-  "users": []
+  "users": [
+    {
+      "id": 1,
+      "name": "Caio"
+    },
+    {
+      "id": 2,
+      "name": "Rayelly"
+    },
+    {
+      "id": 3,
+      "name": "Mãe"
+    }
+  ]
 }

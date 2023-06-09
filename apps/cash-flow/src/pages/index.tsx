@@ -1,4 +1,9 @@
-import { Transaction, useAccount, useTransactions } from '@/hooks/useCruds'
+import {
+  Transaction,
+  useAccount,
+  useTransactions,
+  useUser,
+} from '@/hooks/useCruds'
 import { CreateButton, DeleteButton, EditButton } from 'bub/crud'
 import { Inter } from 'next/font/google'
 import { useRouter } from 'next/router'
@@ -19,6 +24,8 @@ export function GridTransactions({
 }: TransactionsProps) {
   const deleteTransaction = useTransactions().delete
   const update = useTransactions().update
+  const { data: allUsers } = useUser().get()
+
   const { data: allAccount } = useAccount().get()
 
   return (
@@ -46,6 +53,11 @@ export function GridTransactions({
                 options: allAccount?.map(a => ({ label: a.name, value: a.id })),
                 initialValue: t.account_id,
               },
+              user_id: {
+                type: 'datalist',
+                options: allUsers?.map(a => ({ label: a.name, value: a.id })),
+                initialValue: t.user_id,
+              },
             }}
             onSubmit={(newValue: Partial<Transaction>) => {
               update(t.id, newValue)
@@ -71,6 +83,9 @@ export default function Home() {
   const { data: allDespesas } = useTransactions().get({
     params: { type: 'outcome' },
   })
+
+  const { data: allUsers } = useUser().get()
+
   const { data: allAccount } = useAccount().get()
 
   // const sortedTransactions = allTransactions.sort((a, b) => a.amount - b.amount)
@@ -113,6 +128,11 @@ export default function Home() {
                 type: 'datalist',
                 options: allAccount?.map(a => ({ label: a.name, value: a.id })),
               },
+              user_id: {
+                type: 'datalist',
+                options: allUsers?.map(a => ({ label: a.name, value: a.id })),
+                initialValue: 1,
+              },
             }}
             onSubmit={(e: any) => {
               create({ ...e, type: 'outcome', date: new Date() })
@@ -142,6 +162,11 @@ export default function Home() {
               account_id: {
                 type: 'datalist',
                 options: allAccount?.map(a => ({ label: a.name, value: a.id })),
+              },
+              user_id: {
+                type: 'datalist',
+                options: allUsers?.map(a => ({ label: a.name, value: a.id })),
+                initialValue: 1,
               },
             }}
             onSubmit={(e: any) => {
