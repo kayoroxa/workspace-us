@@ -1,12 +1,12 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 
-import { WrapperCrudForm } from 'bub/crud'
+import { BubWrapper } from 'bub'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <WrapperCrudForm>
+    <BubWrapper>
       <Component {...pageProps} />
-    </WrapperCrudForm>
+    </BubWrapper>
   )
 }

@@ -1,0 +1,25 @@
+{
+  "transactions": [
+    {
+      "name": "venda",
+      "amount": 300,
+      "id": 1
+    },
+    {
+      "name": "salario",
+      "amount": 1200,
+      "id": 2
+    }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "name": "nubank"
+    },
+    {
+      "id": 2,
+      "name": "hotmart"
+    }
+  ],
+  "users": []
+}

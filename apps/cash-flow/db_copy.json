@@ -1,0 +1,21 @@
+{
+  "transactions": [
+    {
+      "name": "feira",
+      "amount": 456,
+      "id": 11,
+      "account_id": 2
+    }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "name": "nubank"
+    },
+    {
+      "id": 2,
+      "name": "hotmart"
+    }
+  ],
+  "users": []
+}
