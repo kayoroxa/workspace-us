@@ -9,6 +9,42 @@
       "name": "salario",
       "amount": 1200,
       "id": 2
+    },
+    {
+      "name": "vendi a bicicleta",
+      "amount": 200,
+      "account_id": "1",
+      "type": "income",
+      "id": 3
+    },
+    {
+      "name": "hamburguer",
+      "amount": 10,
+      "account_id": "1",
+      "type": "outcome",
+      "id": 4
+    },
+    {
+      "name": "mesa",
+      "amount": 12,
+      "account_id": "1",
+      "type": "outcome",
+      "id": 5
+    },
+    {
+      "name": "venda",
+      "amount": 300,
+      "account_id": "2",
+      "type": "income",
+      "id": 6
+    },
+    {
+      "name": "leitão",
+      "amount": 80,
+      "account_id": "1",
+      "type": "outcome",
+      "date": "2023-06-09T04:34:09.901Z",
+      "id": 7
     }
   ],
   "accounts": [

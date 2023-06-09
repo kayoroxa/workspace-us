@@ -1,21 +1,26 @@
-import { Transaction, useTransactions } from '@/hooks/useCruds'
+import { Transaction, useAccount, useTransactions } from '@/hooks/useCruds'
 import { CreateButton, DeleteButton, EditButton } from 'bub/crud'
 import { Inter } from 'next/font/google'
 import { useRouter } from 'next/router'
+import { useMemo } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 interface TransactionsProps {
   allTransactions: Transaction[]
   onClick?: (transaction: Transaction) => void
+  type: 'income' | 'outcome'
 }
 
 export function GridTransactions({
   allTransactions,
   onClick,
+  type,
 }: TransactionsProps) {
   const deleteTransaction = useTransactions().delete
   const update = useTransactions().update
+  const { data: allAccount } = useAccount().get()
+
   return (
     <div className="flex flex-col gap-3 w-fit">
       {allTransactions?.map(t => (
@@ -37,7 +42,8 @@ export function GridTransactions({
                 initialValue: t.amount,
               },
               account_id: {
-                type: 'number',
+                type: 'datalist',
+                options: allAccount?.map(a => ({ label: a.name, value: a.id })),
                 initialValue: t.account_id,
               },
             }}
@@ -47,7 +53,9 @@ export function GridTransactions({
           />
           <div className="">🏛️: {t.account_id}</div>
           <div>{t.name}</div>
-          <div className="">R${t.amount}</div>
+          <div className="">
+            {type === 'outcome' && '-'}R${t.amount}
+          </div>
         </div>
       ))}
     </div>
@@ -57,7 +65,13 @@ export function GridTransactions({
 export default function Home() {
   const create = useTransactions().create
 
-  const { data: allTransactions } = useTransactions().get()
+  const { data: allReceitas } = useTransactions().get({
+    params: { type: 'income' },
+  })
+  const { data: allDespesas } = useTransactions().get({
+    params: { type: 'outcome' },
+  })
+  const { data: allAccount } = useAccount().get()
 
   // const sortedTransactions = allTransactions.sort((a, b) => a.amount - b.amount)
   // const { data: allTransactions } = useTransactions().get({
@@ -67,74 +81,84 @@ export default function Home() {
 
   const route = useRouter()
 
+  const saldo = useMemo(() => {
+    if (!allReceitas || !allDespesas) return 0
+
+    return [...allReceitas, ...allDespesas]?.reduce((acc, transaction) => {
+      if (transaction.type === 'outcome') {
+        return acc - transaction.amount
+      }
+      return acc + transaction.amount
+    }, 0)
+  }, [allReceitas, allDespesas])
+
   return (
-    <div className={`${inter.className} flex justify-between w-full mt-5`}>
-      <section className="flex flex-col items-center flex-1">
-        <CreateButton
-          title="criar nova DESPESA"
-          data={{
-            name: {
-              type: 'string',
-            },
-            amount: {
-              type: 'number',
-            },
-            account_id: {
-              type: 'number',
-            },
-          }}
-          onSubmit={(e: any) => {
-            create(e)
-          }}
-        />
-        {/* {JSON.stringify(allTransactions)} */}
-        <h1>Todas as transações:</h1>
-        <GridTransactions
-          allTransactions={allTransactions}
-          onClick={t => {
-            if (t.account_id) route.push('/account/' + t.account_id)
-          }}
-        />
-      </section>
-      <section className="flex flex-col items-center flex-1">
-        <CreateButton
-          title="criar nova RECEITA"
-          className="bg-green-500 hover:bg-green-600"
-          data={{
-            name: {
-              type: 'string',
-            },
-            amount: {
-              type: 'number',
-            },
-            account_id: {
-              type: 'datalist',
-              options: [
-                {
-                  label: 'Nubank',
-                  value: 1,
-                },
-                {
-                  label: 'Hotmart',
-                  value: 2,
-                },
-              ],
-            },
-          }}
-          onSubmit={(e: any) => {
-            debugger
-            create(e)
-          }}
-        />
-        {/* {JSON.stringify(allTransactions)} */}
-        <h1>Todas as transações:</h1>
-        <GridTransactions
-          allTransactions={allTransactions}
-          onClick={t => {
-            if (t.account_id) route.push('/account/' + t.account_id)
-          }}
-        />
-      </section>
+    <div className={`${inter.className} `}>
+      <header className="flex gap-4 px-10 py-5 bg-green-700 text-3xl">
+        <h1>Saldo:</h1>
+        <h1>R$ {saldo}</h1>
+      </header>
+      <main className="flex justify-between w-full mt-5">
+        <section className="flex flex-col items-center flex-1">
+          <CreateButton
+            title="criar nova DESPESA"
+            data={{
+              name: {
+                type: 'string',
+              },
+              amount: {
+                type: 'number',
+              },
+              account_id: {
+                type: 'datalist',
+                options: allAccount?.map(a => ({ label: a.name, value: a.id })),
+              },
+            }}
+            onSubmit={(e: any) => {
+              create({ ...e, type: 'outcome', date: new Date() })
+            }}
+          />
+          {/* {JSON.stringify(allTransactions)} */}
+          <h1>Todas as transações:</h1>
+          <GridTransactions
+            allTransactions={allDespesas}
+            type="outcome"
+            onClick={t => {
+              if (t.account_id) route.push('/account/' + t.account_id)
+            }}
+          />
+        </section>
+        <section className="flex flex-col items-center flex-1">
+          <CreateButton
+            title="criar nova RECEITA"
+            className="bg-green-500 hover:bg-green-600"
+            data={{
+              name: {
+                type: 'string',
+              },
+              amount: {
+                type: 'number',
+              },
+              account_id: {
+                type: 'datalist',
+                options: allAccount?.map(a => ({ label: a.name, value: a.id })),
+              },
+            }}
+            onSubmit={(e: any) => {
+              create({ ...e, type: 'income', date: new Date() })
+            }}
+          />
+          {/* {JSON.stringify(allTransactions)} */}
+          <h1>Todas as transações:</h1>
+          <GridTransactions
+            allTransactions={allReceitas}
+            type="income"
+            onClick={t => {
+              if (t.account_id) route.push('/account/' + t.account_id)
+            }}
+          />
+        </section>
+      </main>
     </div>
   )
 }
