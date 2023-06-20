@@ -5,6 +5,13 @@ import { queryClient } from '../components/bubWrapper'
 
 const BACK_PORT = process.env.BACK_PORT || '4011'
 
+interface JSON_SERVER {
+  _sort: string
+  _order: string
+  _page: number
+  _limit: number
+}
+
 export default function dictToQuery<T>(options?: Partial<T>) {
   const optionsQuery =
     options &&
@@ -34,7 +41,9 @@ export function myUseQuery<Type extends { id: unknown }>({
   pluralLabel,
   singularLabel,
 }: Props) {
-  function useGet(op: { id?: Type['id']; params?: Partial<Type> } = {}) {
+  function useGet(
+    op: { id?: Type['id']; params?: Partial<Type & JSON_SERVER> } = {}
+  ) {
     const query = dictToQuery<Type>(op.params)
 
     let queryKey: QueryKey = []

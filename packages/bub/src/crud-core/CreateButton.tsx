@@ -4,6 +4,7 @@ import { DataObj } from '../utils/types/FormData'
 
 interface Props {
   title: string
+  buttonTitle?: string | false
   data: DataObj
   onSubmit: (v: any) => void
   className?: string
@@ -14,6 +15,7 @@ export default function CreateButton({
   data,
   onSubmit,
   className = '',
+  buttonTitle,
 }: Props) {
   // const [showForm, setShowForm] = useState<boolean>(false)
   const setFormData = useFormStore(state => state.setFormData)
@@ -33,7 +35,7 @@ export default function CreateButton({
           ' p-2 bg-orange-500 hover:bg-orange-600 rounded-xl flex justify-center items-center gap-3 w-fit'
         }
       >
-        <span>{title}</span>
+        {buttonTitle !== false && <span>{buttonTitle || title}</span>}
         <IoAddCircleSharp size={30} />
       </button>
     </>

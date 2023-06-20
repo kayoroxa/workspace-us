@@ -2,6 +2,22 @@ import { Field, Form, Formik } from 'formik'
 import useFormStore from '../store/useForm'
 import { FormProps } from '../utils/types/FormData'
 
+function isNumeric(str: any) {
+  if (typeof str != 'string') return false // we only process strings!
+
+  // eslint-disable-next-line
+  return (
+    !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+    !isNaN(parseFloat(str))
+  ) // ...and ensure strings of whitespace fail
+}
+
+function format(values: { [x: string]: unknown }) {
+  return Object.fromEntries(
+    Object.entries(values).map(([k, v]) => [k, isNumeric(v) ? Number(v) : v])
+  )
+}
+
 export default function CrudForm({
   title,
   data,
@@ -39,7 +55,7 @@ export default function CrudForm({
           initialValues={Object.fromEntries(
             Object.entries(data).map(d => [d[0], d[1]?.initialValue || ''])
           )}
-          onSubmit={onSubmit}
+          onSubmit={values => onSubmit(format(values))}
         >
           <Form className={`flex gap-5 ${isCol ? 'flex-col' : ''}`}>
             {/* <Field name="name" type="text" /> */}

@@ -11,43 +11,268 @@
       "id": 2
     },
     {
-      "name": "vendi a bicicleta",
-      "amount": 200,
-      "account_id": "1",
-      "type": "income",
-      "id": 3,
-      "user_id": "1"
-    },
-    {
-      "name": "hamburguer",
-      "amount": 10,
-      "account_id": "1",
-      "type": "outcome",
-      "id": 4
-    },
-    {
-      "name": "mesa",
-      "amount": 12,
-      "account_id": "1",
-      "type": "outcome",
-      "id": 5,
-      "user_id": "1"
-    },
-    {
-      "name": "venda",
-      "amount": 300,
-      "account_id": "2",
+      "name": "vendas",
+      "amount": 30000,
+      "account_id": 1,
       "type": "income",
       "id": 6,
-      "user_id": "1"
+      "user_id": 1,
+      "category_id": "",
+      "date": ""
     },
     {
-      "name": "leitão",
-      "amount": 80,
-      "account_id": "1",
+      "name": "hotmart",
+      "amount": 60000,
+      "account_id": "2",
+      "user_id": 1,
+      "type": "income",
+      "date": "2023-06-18T22:35:38.964Z",
+      "id": 12
+    },
+    {
+      "type": "income",
+      "date": "2023-06-19T23:55:27.448Z",
+      "amount": 328,
+      "name": "venda FDF",
+      "id": 13,
+      "account_id": 2,
+      "user_id": "",
+      "category_id": ""
+    },
+    {
+      "type": "income",
+      "date": "2023-06-19T23:55:28.104Z",
+      "amount": 328,
+      "name": "venda FDF",
+      "id": 14,
+      "account_id": 2,
+      "user_id": "",
+      "category_id": ""
+    },
+    {
+      "type": "income",
+      "date": "2023-06-19T23:55:28.864Z",
+      "amount": 328,
+      "name": "venda FDF",
+      "id": 15,
+      "account_id": 2,
+      "user_id": "",
+      "category_id": ""
+    },
+    {
+      "type": "income",
+      "date": "2023-06-19T23:55:29.776Z",
+      "amount": 328,
+      "name": "venda FDF",
+      "id": 16,
+      "account_id": 2,
+      "user_id": "",
+      "category_id": ""
+    },
+    {
+      "type": "income",
+      "date": "2023-06-19T23:55:30.680Z",
+      "amount": 328,
+      "name": "venda FDF",
+      "id": 17,
+      "account_id": 2,
+      "user_id": "",
+      "category_id": ""
+    },
+    {
+      "type": "income",
+      "date": "2023-06-19T23:55:32.184Z",
+      "amount": 221,
+      "name": "venda afiliado FDF",
+      "id": 18,
+      "account_id": 2,
+      "user_id": "",
+      "category_id": ""
+    },
+    {
+      "type": "income",
+      "date": "2023-06-20T01:21:14.408Z",
+      "amount": 221.62,
+      "name": "venda afiliado FDF",
+      "account_id": 2,
+      "id": 22
+    },
+    {
+      "name": "miojo - macacheira ..",
+      "amount": 47.8,
+      "account_id": "",
+      "user_id": 1,
+      "date": "19/06/2023",
       "type": "outcome",
-      "date": "2023-06-09T04:34:09.901Z",
-      "id": 7
+      "id": 23,
+      "category_id": "",
+      "isPaid": false
+    },
+    {
+      "name": "banana - castanha -passa..",
+      "amount": 109.23,
+      "account_id": "",
+      "user_id": "",
+      "date": "16/06/2023",
+      "type": "outcome",
+      "id": 24,
+      "category_id": "",
+      "isPaid": false
+    },
+    {
+      "name": "uber médico cabeça",
+      "amount": 35,
+      "account_id": "",
+      "user_id": "",
+      "date": "19/06/2023",
+      "category_id": "",
+      "type": "outcome",
+      "id": 25,
+      "isPaid": false
+    },
+    {
+      "name": "uber - cinema",
+      "amount": 40,
+      "account_id": "",
+      "user_id": "",
+      "date": "19/06/2023",
+      "category_id": "",
+      "type": "outcome",
+      "id": 26,
+      "isPaid": false
+    },
+    {
+      "name": "lanche cinema",
+      "amount": 18.4,
+      "account_id": "",
+      "user_id": "",
+      "date": "19/06/2023",
+      "category_id": "",
+      "type": "outcome",
+      "id": 27,
+      "isPaid": false
+    },
+    {
+      "name": "queijo etc..",
+      "amount": 126,
+      "account_id": "",
+      "user_id": 1,
+      "date": "19/06/2023",
+      "category_id": 1,
+      "type": "outcome",
+      "id": 28,
+      "isPaid": false
+    },
+    {
+      "name": "uber aninha",
+      "amount": 33,
+      "account_id": "",
+      "user_id": 2,
+      "date": "19/06/2023",
+      "category_id": "",
+      "type": "outcome",
+      "id": 29,
+      "isPaid": false
+    },
+    {
+      "name": "horty-fruit",
+      "amount": 48,
+      "account_id": "",
+      "user_id": 2,
+      "date": "19/06/2023",
+      "category_id": "",
+      "type": "outcome",
+      "id": 30
+    },
+    {
+      "name": "aryane sobrancelha",
+      "amount": 25,
+      "account_id": "",
+      "user_id": 2,
+      "date": "19/06/2023",
+      "category_id": "",
+      "type": "outcome",
+      "id": 31
+    },
+    {
+      "name": "guaraná amazona",
+      "amount": 10,
+      "account_id": 1,
+      "user_id": 1,
+      "date": "2023-06-18",
+      "category_id": 3,
+      "type": "outcome",
+      "id": 32
+    },
+    {
+      "name": "laranja",
+      "amount": 4.48,
+      "account_id": "",
+      "user_id": 2,
+      "date": "19/06/2023",
+      "category_id": 3,
+      "type": "outcome",
+      "id": 33
+    },
+    {
+      "name": "quentinha - lazeirão",
+      "amount": 34,
+      "account_id": "",
+      "user_id": 2,
+      "date": "19/06/2023",
+      "category_id": "",
+      "type": "outcome",
+      "id": 34
+    },
+    {
+      "name": "luz e internet",
+      "amount": 150,
+      "account_id": "",
+      "user_id": "",
+      "date": "19/06/2023",
+      "category_id": "",
+      "type": "outcome",
+      "id": 35
+    },
+    {
+      "name": "ingresso",
+      "amount": 107,
+      "account_id": "",
+      "user_id": "",
+      "date": "19/06/2023",
+      "category_id": "",
+      "type": "outcome",
+      "id": 36
+    },
+    {
+      "name": "fone ouvido",
+      "amount": 227,
+      "account_id": "",
+      "user_id": 1,
+      "date": "19/06/2023",
+      "category_id": "",
+      "type": "outcome",
+      "id": 37
+    },
+    {
+      "name": "dentista",
+      "amount": 800,
+      "account_id": "",
+      "user_id": 1,
+      "date": "20/06/2023",
+      "category_id": "",
+      "type": "outcome",
+      "id": 38
+    },
+    {
+      "name": "feira",
+      "amount": 800,
+      "account_id": "",
+      "user_id": "",
+      "date": "20/06/2023",
+      "category_id": "",
+      "type": "outcome",
+      "id": 39
     }
   ],
   "accounts": [
@@ -72,6 +297,20 @@
     {
       "id": 3,
       "name": "Mãe"
+    }
+  ],
+  "labels": [
+    {
+      "id": 1,
+      "name": "comida"
+    },
+    {
+      "name": "transporte",
+      "id": 2
+    },
+    {
+      "name": "lanche",
+      "id": 3
     }
   ]
 }

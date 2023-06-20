@@ -1,4 +1,5 @@
 const fs = require('fs')
+require('./fixSentences.js')
 
 // const db = require('./db.json')
 const sentencesRaw = fs.readFileSync('./sentences.txt', { encoding: 'utf-8' })
@@ -29,17 +30,16 @@ const blocksSequence = blocks
     }
   })
   .sort((a, b) => a.frequency - b.frequency)
-// .slice(0, 30)
+  .slice(0, 80)
 
 // console.log(blocksSequence)
 console.log(
   blocksSequence
     .map(v => {
-      return v.block
       if (v.frequency === 1) {
         return '-' + v.block
       }
+      return v.block
     })
-    // .join('\n')
-    .join(',')
+    .join('\n')
 )

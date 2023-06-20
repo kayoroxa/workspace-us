@@ -8,11 +8,11 @@ interface appState {
   categories: Category[]
   setCategories: (categories: Category[]) => void
   setOptionOnBoard: (
-    categoryId: number | string,
+    category_id: number | string,
     optionName: string,
     isTrue?: boolean
   ) => void
-  changeCountReview: (categoryId: number | string, optionName: string) => void
+  changeCountReview: (category_id: number | string, optionName: string) => void
   sortOptions: () => void
   saveAllData: () => void
   addCountReviewAllSelected: (selectedOptions: string[]) => void
@@ -47,13 +47,13 @@ const useAppStore = create<appState>()((set, get) => ({
       return { categories: newCategories }
     })
   },
-  changeCountReview: (categoryId, optionName: string) => {
+  changeCountReview: (category_id, optionName: string) => {
     set(store => {
       const newCategories = [...store.categories]
       const category =
-        typeof categoryId === 'string'
-          ? newCategories.find(v => v.name === categoryId)
-          : newCategories.find(v => v.id === categoryId)
+        typeof category_id === 'string'
+          ? newCategories.find(v => v.name === category_id)
+          : newCategories.find(v => v.id === category_id)
       if (!category) return store
       const option = category.options.find(v => v.name === optionName)
       if (!option) return store
@@ -62,14 +62,14 @@ const useAppStore = create<appState>()((set, get) => ({
       return { categories: newCategories }
     })
   },
-  setOptionOnBoard: async (categoryId, optionName, isTrue = true) => {
+  setOptionOnBoard: async (category_id, optionName, isTrue = true) => {
     console.log('remove setOptionOnBoard')
     // set(store => {
     //   const newCategories = [...store.categories]
     //   const categoryIndex =
-    //     typeof categoryId === 'number'
-    //       ? newCategories.findIndex(v => String(v.id) === String(categoryId))
-    //       : newCategories.findIndex(v => String(v.name) === String(categoryId))
+    //     typeof category_id === 'number'
+    //       ? newCategories.findIndex(v => String(v.id) === String(category_id))
+    //       : newCategories.findIndex(v => String(v.name) === String(category_id))
     //   if (categoryIndex === -1) return store
     //   const category = newCategories[categoryIndex]
     //   const optionIndex = category.options.findIndex(

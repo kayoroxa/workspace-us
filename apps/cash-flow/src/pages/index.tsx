@@ -1,6 +1,7 @@
 import {
   Transaction,
   useAccount,
+  useLabels,
   useTransactions,
   useUser,
 } from '@/hooks/useCruds'
@@ -25,6 +26,7 @@ export function GridTransactions({
   const deleteTransaction = useTransactions().delete
   const update = useTransactions().update
   const { data: allUsers } = useUser().get()
+  const { data: allLabels } = useLabels().get()
 
   const { data: allAccount } = useAccount().get()
 
@@ -58,11 +60,22 @@ export function GridTransactions({
                 options: allUsers?.map(a => ({ label: a.name, value: a.id })),
                 initialValue: t.user_id,
               },
+              category_id: {
+                type: 'datalist',
+                options: allLabels?.map(a => ({ label: a.name, value: a.id })),
+              },
+              date: {
+                type: 'date',
+                initialValue: t.date,
+              },
             }}
             onSubmit={(newValue: Partial<Transaction>) => {
               update(t.id, newValue)
             }}
           />
+          <div className="">
+            {t.user_id === 1 ? '🤴🏽' : t.user_id === 2 ? '👩🏽🌹' : ''}
+          </div>
           <div className="">🏛️: {t.account_id}</div>
           <div>{t.name}</div>
           <div className="">
@@ -78,15 +91,16 @@ export default function Home() {
   const create = useTransactions().create
 
   const { data: allReceitas } = useTransactions().get({
-    params: { type: 'income' },
+    params: { type: 'income', _sort: 'id', _order: 'desc' },
   })
   const { data: allDespesas } = useTransactions().get({
-    params: { type: 'outcome' },
+    params: { type: 'outcome', _sort: 'id', _order: 'desc' },
   })
 
   const { data: allUsers } = useUser().get()
 
   const { data: allAccount } = useAccount().get()
+  const { data: allLabels } = useLabels().get()
 
   // const sortedTransactions = allTransactions.sort((a, b) => a.amount - b.amount)
   // const { data: allTransactions } = useTransactions().get({
@@ -96,15 +110,47 @@ export default function Home() {
 
   const route = useRouter()
 
-  const saldo = useMemo(() => {
-    if (!allReceitas || !allDespesas) return 0
-
-    return [...allReceitas, ...allDespesas]?.reduce((acc, transaction) => {
-      if (transaction.type === 'outcome') {
-        return acc - transaction.amount
+  const metrics = useMemo(() => {
+    if (!allReceitas || !allDespesas)
+      return {
+        saldo: 0,
+        today: { receitas: 0, despesas: 0 },
+        unpaid: 0,
       }
-      return acc + transaction.amount
-    }, 0)
+
+    const saldo = [...allReceitas, ...allDespesas]?.reduce(
+      (acc, transaction) => {
+        if (transaction.type === 'outcome') {
+          return acc - transaction.amount
+        }
+        return acc + transaction.amount
+      },
+      0
+    )
+
+    const todayReceitas = allReceitas
+      .filter(t => new Date(t.date).getDate() === new Date().getDate())
+      .reduce((acc, transaction) => acc + transaction.amount, 0)
+
+    const todayDespesas = allDespesas
+      .filter(t => new Date(t.date).getDate() === new Date().getDate())
+      .reduce((acc, transaction) => acc + transaction.amount, 0)
+
+    const allUnPaid = allDespesas
+      .filter(t => t.isPaid === false)
+      .reduce((acc, transaction) => acc + transaction.amount, 0)
+
+    const totalDespesas = allDespesas.reduce(
+      (acc, transaction) => acc + transaction.amount,
+      0
+    )
+
+    return {
+      saldo,
+      today: { receitas: todayReceitas, despesas: todayDespesas },
+      unpaid: allUnPaid,
+      totalDespesas,
+    }
   }, [allReceitas, allDespesas])
 
   const userDespesas = useMemo(() => {
@@ -121,8 +167,55 @@ export default function Home() {
   return (
     <div className={`${inter.className} `}>
       <header className="flex gap-4 px-36 py-5 bg-green-700 justify-between items-center">
-        <div className="text-3xl">
-          <h1>Saldo: R$ {saldo}</h1>
+        <div>
+          <h1 className="text-3xl">
+            Saldo:{' '}
+            {metrics.saldo.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            })}
+          </h1>
+          <h1 className="text-xl">
+            ➕{' '}
+            {metrics.today?.receitas.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            })}
+          </h1>
+          {metrics.today?.despesas > 0 && (
+            <h1 className="text-red-200 text-xl">
+              ➖{' '}
+              {metrics.today?.despesas.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              })}
+            </h1>
+          )}
+        </div>
+
+        <div>
+          <h1 className="text-3xl">
+            Despesas:{' '}
+            <span className="text-red-200">
+              {metrics.totalDespesas
+                ? metrics.totalDespesas.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })
+                : 0}
+            </span>
+          </h1>
+
+          <h3 className="text-xl">
+            fatura:{' '}
+            <span className="text-red-200">
+              {metrics.unpaid > 0 &&
+                metrics.unpaid.toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
+            </span>
+          </h3>
         </div>
 
         {userDespesas && (
@@ -140,7 +233,7 @@ export default function Home() {
       </header>
 
       <main className="flex justify-between w-full mt-5">
-        <section className="flex flex-col items-center flex-1">
+        <section className="flex flex-col items-center flex-1  gap-4">
           <CreateButton
             title="criar nova DESPESA"
             data={{
@@ -159,9 +252,21 @@ export default function Home() {
                 options: allUsers?.map(a => ({ label: a.name, value: a.id })),
                 initialValue: 1,
               },
+              date: {
+                type: 'date',
+                initialValue: new Date(),
+              },
+              category_id: {
+                type: 'datalist',
+                options: allLabels?.map(a => ({ label: a.name, value: a.id })),
+              },
             }}
             onSubmit={(e: any) => {
-              create({ ...e, type: 'outcome', date: new Date() })
+              create({
+                ...e,
+                type: 'outcome',
+                date: new Date().toLocaleDateString('pt-BR'),
+              })
             }}
           />
           {/* {JSON.stringify(allTransactions)} */}
@@ -174,31 +279,72 @@ export default function Home() {
             }}
           />
         </section>
-        <section className="flex flex-col items-center flex-1">
-          <CreateButton
-            title="criar nova RECEITA"
-            className="bg-green-500 hover:bg-green-600"
-            data={{
-              name: {
-                type: 'string',
-              },
-              amount: {
-                type: 'number',
-              },
-              account_id: {
-                type: 'datalist',
-                options: allAccount?.map(a => ({ label: a.name, value: a.id })),
-              },
-              user_id: {
-                type: 'datalist',
-                options: allUsers?.map(a => ({ label: a.name, value: a.id })),
-                initialValue: 1,
-              },
-            }}
-            onSubmit={(e: any) => {
-              create({ ...e, type: 'income', date: new Date() })
-            }}
-          />
+        <section className="flex flex-col items-center flex-1 gap-4">
+          <div className="flex gap-4">
+            <CreateButton
+              title="criar nova RECEITA"
+              className="bg-green-500 hover:bg-green-600"
+              data={{
+                name: {
+                  type: 'string',
+                },
+                amount: {
+                  type: 'number',
+                },
+                account_id: {
+                  type: 'datalist',
+                  options: allAccount?.map(a => ({
+                    label: a.name,
+                    value: a.id,
+                  })),
+                },
+                user_id: {
+                  type: 'datalist',
+                  options: allUsers?.map(a => ({ label: a.name, value: a.id })),
+                  initialValue: 1,
+                },
+                date: {
+                  type: 'date',
+                  initialValue: new Date(),
+                },
+              }}
+              onSubmit={(e: any) => {
+                create({
+                  ...e,
+                  type: 'income',
+                  date: new Date().toLocaleDateString('pt-BR'),
+                })
+              }}
+            />
+            <button
+              className="bg-green-600  p-2 rounded-md"
+              onClick={() => {
+                create({
+                  type: 'income',
+                  date: new Date().toLocaleDateString('pt-BR'),
+                  amount: 328.51,
+                  name: 'venda FDF',
+                  account_id: 2,
+                })
+              }}
+            >
+              venda
+            </button>
+            <button
+              className="bg-green-700 p-2 rounded-md"
+              onClick={() => {
+                create({
+                  type: 'income',
+                  date: new Date().toLocaleDateString('pt-BR'),
+                  amount: 221.62,
+                  name: 'venda afiliado FDF',
+                  account_id: 2,
+                })
+              }}
+            >
+              venda afiliado
+            </button>
+          </div>
           {/* {JSON.stringify(allTransactions)} */}
           <h1>Todas as transações:</h1>
           <GridTransactions

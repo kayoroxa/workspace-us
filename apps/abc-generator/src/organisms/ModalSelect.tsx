@@ -19,9 +19,9 @@ export default function ModalSelect() {
   const { data: options } = useQuery<Option[]>(
     ['options', modalCategoryId],
     () =>
-      fetch(`http://localhost:4000/options?categoryId=${modalCategoryId}`).then(
-        res => res.json()
-      )
+      fetch(
+        `http://localhost:4000/options?category_id=${modalCategoryId}`
+      ).then(res => res.json())
   )
   const { deleteOptions } = useQ()
 

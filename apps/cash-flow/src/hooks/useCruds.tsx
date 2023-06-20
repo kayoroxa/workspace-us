@@ -15,11 +15,41 @@ export interface Transaction {
   type: 'income' | 'outcome'
   account_id: Account['id']
   order: number
+  isPaid?: boolean
 }
 
 export interface Account {
   id: number
   name: string
+}
+
+export interface Label {
+  id: number
+  name: string
+}
+
+const data = {
+  name: {
+    type: 'string',
+    initialValue: '',
+  },
+  amount: {
+    type: 'number',
+    initialValue: 0,
+  },
+  account_id: {
+    type: 'datalist',
+    options: [],
+    initialValue: 0,
+  },
+  user_id: {
+    type: 'datalist',
+    options: [],
+    initialValue: 0,
+  },
+  category_id: {
+    type: 'datalist',
+  },
 }
 
 export const useUser = () =>
@@ -38,4 +68,10 @@ export const useTransactions = () =>
   createUseCrud<Transaction>({
     singularLabel: 'transaction',
     pluralLabel: 'transactions',
+  })
+
+export const useLabels = () =>
+  createUseCrud<Label>({
+    singularLabel: 'label',
+    pluralLabel: 'labels',
   })

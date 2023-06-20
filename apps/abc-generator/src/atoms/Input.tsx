@@ -13,9 +13,9 @@ export default function Input() {
   const { data: options } = useQuery<Option[]>(
     ['options', , modalCategoryId],
     () =>
-      fetch(`http://localhost:4000/options?categoryId=${modalCategoryId}`).then(
-        res => res.json()
-      )
+      fetch(
+        `http://localhost:4000/options?category_id=${modalCategoryId}`
+      ).then(res => res.json())
   )
 
   function handleSubmit(e: any) {
@@ -30,7 +30,7 @@ export default function Input() {
       })
     const datas = names.map(name => ({
       name,
-      categoryId: modalCategoryId,
+      category_id: modalCategoryId,
       isOnBoard: false,
       countReview: 0,
     }))

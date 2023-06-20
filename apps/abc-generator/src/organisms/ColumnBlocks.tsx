@@ -9,7 +9,7 @@ export default function ColumnBlocks({ category }: { category: Category }) {
 
   const { data: options } = useQuery<Option[]>(['options', category.id], () =>
     fetch(
-      `http://localhost:4000/options?_sort=countReview&_order=asc&categoryId=${category.id}&isOnBoard=true`
+      `http://localhost:4000/options?_sort=countReview&_order=asc&category_id=${category.id}&isOnBoard=true`
     ).then(res => res.json())
   )
 

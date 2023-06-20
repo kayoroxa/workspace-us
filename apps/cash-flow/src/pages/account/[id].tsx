@@ -18,11 +18,11 @@ export default function AccountPage() {
   let account = accounts?.[0] || accounts
 
   const { data: allReceitas } = useTransactions().get({
-    params: { account_id: id, type: 'income' },
+    params: { account_id: id, type: 'income', _sort: 'id', _order: 'desc' },
   })
 
   const { data: allDespesas } = useTransactions().get({
-    params: { account_id: id, type: 'outcome' },
+    params: { account_id: id, type: 'outcome', _sort: 'id', _order: 'desc' },
   })
 
   if (isLoading) return <div className="animate-pulse">Carregando...</div>
