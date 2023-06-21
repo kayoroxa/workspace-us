@@ -339,12 +339,12 @@
 #ia14
 {i need to} {talk} {to} {someone who} {can} {help me}
 {our} {next} {appointment} {is} {now}
-{i don't have} {the time} {to} {spend} {discussing} {this} {now}
+{i don't have} {time} {to} {spend} {discussing} {this} {now}
 {we discussed} {something} {important} {last time} {we} {talked}
 {i'm sorry} {but} {i} {can't} {go} {to} {the} {appointment} {this time}
 {when i talked to} {him} {he} {said} {he} {was} {feeling} {better}
 {i need to} {book} {an appointment} {for} {our} {next} {talk}
-{i don't have} {the time} {to} {spend} {with} {myself} {right now}
+{i don't have} {time} {to} {spend} {with} {myself} {right now}
 {i miss} {talking} {to} {my friend} {about} {all of this}
 {i} {want to} {spend more time} {in bed} {reading a book}
 {when i talked to} {him} {he} {said} {he} {had} {to} {go}
@@ -360,7 +360,7 @@
 {i need to} {talk} {to} {him} {right after} {i} {read} {this} {book}
 {i} {realized} {how much} {i miss} {our} {conversations} {about} {the} {future}
 {we had a great time} {last time} {discussing} {our} {plans} {for} {the} {future}
-{i don't have} {the time} {to} {spend on} {something} {that} {is} {not} {important}
+{i don't have} {time} {to} {spend on} {something} {that} {is} {not} {important}
 {we had a great time} {together} {and} {i} {hope} {we} {can} {continue} {that}
 {i was also} {talking about} {you} {and} {how much} {i miss} {you}
 {all of a sudden} {i} {realized} {how much} {i} {want to} {be} {with} {you}
@@ -373,7 +373,7 @@
 {i} {hope} {to} {have} {conversations} {with} {him} {about} {this}
 {i feel like} {i'm} {missing} {something} {in my life}
 {tomorrow} {i'm} {going to} {spend time} {with} {my family}
-{i don't have} {the time} {to} {spend on} {this} {right now}
+{i don't have} {time} {to} {spend on} {this} {right now}
 {i want to} {go} {to} {a} {place} {where} {i} {can} {read books}
 {the time} {spent} {with} {you} {was} {great} {i miss} {it}
 {let's} {continue} {the} {conversation} {we had} {earlier} {about} {the} {plans}
@@ -393,3 +393,68 @@
 {let's} {talk about} {our} {plans} {in order to} {spend more time} {together}
 {i feel like} {i'm} {missing} {something} {in my life}
 {i} {hope} {to} {find} {it}
+{i} {spent} {some time} {reading books} {yesterday}
+{i} {talked} {to} {myself} {about} {where} {to} {go} {home}
+{i} {hope} {to} {spend more time} {with} {my family} {in the future}
+{i had a great time} {talking to} {him} {about} {our} {plans} {for} {tomorrow}
+{i feel like} {i'm} {missing} {something} {important} {in my life}
+{i don't have} {the same} {feeling} {about} {this} {place} {anymore}
+{i'm sorry} {but} {i} {can't} {help} {you} {with} {that}
+{i} {spent} {the} {day} {at} {home} {just} {relaxing} {and} {reading a book}
+{i} {realized} {i need} {to} {be} {honest} {with} {myself}
+{let's} {talk about} {our} {plans} {for} {the} {future}
+{i} {spent} {some time} {reading books} {in the future}
+{i had} {to} {go} {to} {a} {place} {right after} {our} {conversations}
+{i feel like} {i need} {to} {relax} {after} {a long day}
+{i had a great time} {with} {my friends} {but} {now} {i miss} {them}
+{someone who} {can} {understand} {me} {is} {my best friend}
+{i} {hope} {to be} {there} {when} {you} {need} {someone} {to} {talk to}
+{later} {i} {realized} {how much time} {i had}
+{my best friend} {is} {always} {there} {for} {me} {when} {i need} {someone} {to} {talk to}
+{i} {got more} {books} {to} {read}
+{i} {have} {got more} {books} {to} {read} {before going to} {bed}
+{we} {need} {to} {spend more time} {together}
+{i} {spent more time} {talking about} {my} {plans} {for} {the} {future}
+{she} {goes to} {home} {to} {get more} {books}
+{we had a great time} {talking about} {our} {plans}
+{i} {got more} {motivated} {to} {read} {after} {our} {conversation}
+{how much time} {do} {we} {have} {to} {spend on} {this}?
+{in the future} {i want to} {spend more time} {with} {my} {books}
+{he} {said} {he} {had a great time} {reading} {that} {book}
+{he} {said} {he} {had a great time} {discussing} {the} {book} {with} {me}
+{i} {spent} {some time} {reading a book} {yesterday}
+{how much time} {did} {you} {spend on} {reading books} {last week}?
+{i feel like} {i'm} {missing} {something} {in my life} {when} {i} {don't} {read}
+{i need} {to} {leave} {now} {but} {let's} {continue} {our} {conversation} {later}
+{the time} {we} {spent} {together} {yesterday} {was} {great}
+{i} {got more} {motivated} {to} {read books} {after} {our} {conversation} {last week}
+{i need to} {spend more time} {with} {my family}
+{i} {got more} {books} {to} {read} {in the future}
+{i don't have much time} {to} {read} {before going to} {bed}
+{i don't have much time} {to} {spend on} {this}?
+{i don't have much time} {to} {spend on} {conversations} {right now}
+{i don't have much time} {to} {spend on} {something} {that} {is} {not} {important}
+{how much time} {did} {you} {spend} {reading books} {last week}?
+{i} {got more} {motivated} {about} {the} {future}
+{i} {got more} {excited} {about} {the} {future} {after} {talking} {to} {you}
+{i} {had a great time} {when} {we talked about} {our} {plans} {for} {the} {future}
+{we talked about} {how much time} {we} {want to} {spend on} {reading}
+{i} {got more} {books} {to} {read} {in the future}
+{i} {want to} {spend more time} {reading} {tonight}
+{how much time} {do} {you} {usually} {spend on} {reading books}?
+{my best friend} {got more} {motivated} {after} {i} {talked} {to} {him}
+{my best friend} {got more} {motivated} {to} {read books} {after} {i} {talked} {to} {him}
+{i} {had a great time} {reading books} {last week}
+{i don't have} {time} {to} {read} {all the} {books} {i} {want to}
+{i} {spent more time} {reading books} {after} {i} {realized} {how much} {i} {enjoy} {it}
+{i had} {to} {cancel} {my} {appointment} {to} {spend more time} {with} {my} {books}
+{i} {enjoy} {reading books} {to} {spend time} {with} {myself}
+{my best friend} {and} {i} {talked about} {our} {plans} {for} {the} {next week}
+{i need} {to} {find} {some time} {to} {read a book} {and} {relax}
+{i feel like} {i'm} {missing} {something} {important} {in my life}
+{i} {had a great time} {talking} {to} {you} {last night}
+{all of a sudden} {i} {started} {feeling sick} {and} {had} {to} {leave} {early}
+{usually} {i} {spend} {my} {day} {reading books} {to} {relax}
+{usually} {i} {feel} {motivated} {when} {i} {spend time} {with} {my family}
+{i} {started} {a} {new} {book} {yesterday}
+{i} {started} {a} {new} {book} {yesterday} {and} {i'm} {excited} {to} {spend more time} {reading} {it}
