@@ -1,14 +1,7 @@
+import { GridTransactions } from '@/components/GridTransactions'
 import { useAccount, useTransactions } from '@/hooks/useCruds'
 import { useRouter } from 'next/router'
-import { GridTransactions } from '..'
-;[
-  {
-    name: 'restaurante',
-    amount: 6.5,
-    id: 9,
-    account_id: 2,
-  },
-]
+
 export default function AccountPage() {
   //get params router
   const route = useRouter()
