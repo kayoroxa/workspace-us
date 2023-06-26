@@ -21,3 +21,7 @@ export default function myDate(str: any) {
   }
   // return moment(str).toDate()
 }
+
+export function getTodayDate() {
+  return new Date().toLocaleDateString('pt-BR')
+}

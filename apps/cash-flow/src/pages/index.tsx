@@ -5,6 +5,7 @@ import {
   useTransactions,
   useUser,
 } from '@/hooks/useCruds'
+import myDate, { getTodayDate } from '@/utils/myDate'
 import { CreateButton } from 'bub/crud'
 import { Inter } from 'next/font/google'
 import { useRouter } from 'next/router'
@@ -15,12 +16,17 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const create = useTransactions().create
 
-  const { data: allReceitas } = useTransactions().get({
-    params: { type: 'income', _sort: 'id', _order: 'desc' },
-  })
-  const { data: allDespesas } = useTransactions().get({
-    params: { type: 'outcome', _sort: 'id', _order: 'desc' },
-  })
+  const allReceitas = useTransactions()
+    .get({
+      params: { type: 'income', _sort: 'id', _order: 'desc' },
+    })
+    .data?.sort((a, b) => myDate(b.date).getTime() - myDate(a.date).getTime())
+
+  const allDespesas = useTransactions()
+    .get({
+      params: { type: 'outcome', _sort: 'id', _order: 'desc' },
+    })
+    .data?.sort((a, b) => myDate(b.date).getTime() - myDate(a.date).getTime())
 
   const { data: allUsers } = useUser().get()
 
@@ -54,11 +60,11 @@ export default function Home() {
     )
 
     const todayReceitas = allReceitas
-      .filter(t => new Date(t.date).getDate() === new Date().getDate())
+      .filter(t => myDate(t.date).getDate() === new Date().getDate())
       .reduce((acc, transaction) => acc + transaction.amount, 0)
 
     const todayDespesas = allDespesas
-      .filter(t => new Date(t.date).getDate() === new Date().getDate())
+      .filter(t => myDate(t.date).getDate() === new Date().getDate())
       .reduce((acc, transaction) => acc + transaction.amount, 0)
 
     const allUnPaid = allDespesas
@@ -90,7 +96,7 @@ export default function Home() {
   }, [allDespesas])
 
   return (
-    <div className={`${inter.className} `}>
+    <div className={`${inter.className}  pb-12`}>
       <header className="flex gap-4 px-36 py-5 bg-green-700 justify-between items-center">
         <div>
           <h1 className="text-3xl">
@@ -190,7 +196,7 @@ export default function Home() {
               create({
                 ...e,
                 type: 'outcome',
-                date: new Date().toLocaleDateString('pt-BR'),
+                date: getTodayDate(),
               })
             }}
           />
@@ -237,7 +243,7 @@ export default function Home() {
                 create({
                   ...e,
                   type: 'income',
-                  date: new Date().toLocaleDateString('pt-BR'),
+                  date: getTodayDate(),
                 })
               }}
             />
@@ -246,7 +252,7 @@ export default function Home() {
               onClick={() => {
                 create({
                   type: 'income',
-                  date: new Date().toLocaleDateString('pt-BR'),
+                  date: getTodayDate(),
                   amount: 328.51,
                   name: 'venda FDF',
                   account_id: 2,
@@ -260,7 +266,7 @@ export default function Home() {
               onClick={() => {
                 create({
                   type: 'income',
-                  date: new Date().toLocaleDateString('pt-BR'),
+                  date: getTodayDate(),
                   amount: 221.62,
                   name: 'venda afiliado FDF',
                   account_id: 2,

@@ -11,7 +11,7 @@ import {
 import { DeleteButton, EditButton } from 'bub/crud'
 
 interface TransactionsProps {
-  allTransactions: Transaction[]
+  allTransactions?: Transaction[]
   onClick?: (transaction: Transaction) => void
   type: 'income' | 'outcome'
 }
@@ -30,7 +30,7 @@ export function GridTransactions({
 
   return (
     <div className="flex flex-col gap-3 w-fit">
-      {allTransactions?.map(t => (
+      {allTransactions?.slice(0, 10)?.map(t => (
         <div
           key={t.id}
           className="flex gap-4 py-4 pl-3 pr-20 relative group bg-zinc-700 flex-1 hover:cursor-pointer"
@@ -79,7 +79,9 @@ export function GridTransactions({
           <div className="">
             {type === 'outcome' && '-'}R${t.amount}
           </div>
-          <div className="">📆{myDate(t.date).getMonth()}</div>
+          <div className="">
+            📆{myDate(t.date).getDate()}/{myDate(t.date).getMonth()}
+          </div>
         </div>
       ))}
     </div>
