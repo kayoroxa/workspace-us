@@ -161,7 +161,9 @@
 {do you know why} {she} {never} {talks to me} {anymore}?
 {i} {miss} {them} {because} {we had} {a great time} {together}
 {all of a sudden}, {i got sick} {while} {watching a movie}
-{my family} {was also} {feeling sick} {when} {i was there}
+{my family} {was also} {talking to} {her} {when} {i was there}
+#parte 7 ---------------
+{i} {go to} {the restaurant} {tonight}
 {i} {would like to} {go to} {the restaurant} {with} {you guys} {tonight}
 {i} {had} {a great time} {talking to} {him}, {but} {i got sick} {right after}
 {i got sick} {after} {talking to} {someone who} {was also} {feeling sick}
@@ -214,6 +216,7 @@
 {i} {would like to} {go to} {the restaurant} {tonight} {because} {it's} {close to home}.
 {i had to} {leave} {the party} {early} {because} {i had} {an important} {appointment} {right after}.
 {we had a great time} {together} {at my house} {and} {i} {got more} {information} {about} {the topic}.
+#parte 10
 {we} {talked about} {the topic} {that} {was also} {important} {to me}.
 {we had a great time} {together} {at} {the event} {and} {we} {talked about} {the topic} {that} {was also} {important} {to me}.
 #ia11
@@ -350,6 +353,7 @@
 {when i talked to} {him} {he} {said} {he} {had} {to} {go}
 {can} {we} {talk} {later}? {i have} {something} {important} {to} {do}
 {let's} {get more} {information} {before}
+#parte 02/06
 {before} {we} {go} {let's} {talk about} {our} {plans} {for} {tomorrow}
 {we} {spent} {the} {day} {talking} {and} {it} {was} {great}
 {without} {you} {i feel like} {something} {is} {missing}
@@ -361,8 +365,20 @@
 {i} {realized} {how much} {i miss} {our} {conversations} {about} {the} {future}
 {we had a great time} {last time} {discussing} {our} {plans} {for} {the} {future}
 {i don't have} {time} {to} {spend on} {something} {that} {is} {not} {important}
-********
-{we had a great time} {together} {and} {i} {hope} {we} {can} {continue} {that}
+#insert 
+{i don't have} {the time} {to} {read a book} {anymore}
+{i don't have} {the same} {feeling} {for} {him} {anymore}
+{i} {had a great time} {earlier} {but} {not} {anymore}
+{i don't have} {the same} {plans} {for} {the} {future} {anymore}
+{i don't know} {who} {he} {is} {anymore}
+{i} {talked} {to} {him} {yesterday} {but} {i don't want} {to} {talk} {to} {him} {anymore}
+{i had} {to spend time} {with} {my family} {but} {i don't want} {to} {do} {that} {anymore}
+{i} {had a great time} {but} {i don't want} {to} {continue} {reading} {the same} {books} {anymore}
+{we had a great time} {together} {but} {now} {i don't want} {to} {be} {with} {you} {anymore}
+{we} {were} {discussing} {our} {future} {but} {i don't want} {the same} {plans} {anymore}
+{i'm sorry} {but} {i} {can't} {continue} {this} {conversation} {anymore}
+#end insert
+{we had a great time} {together} {and} {i} {hope} {we} {can} {continue}
 {i was also} {talking about} {you} {and} {how much} {i miss} {you}
 {all of a sudden} {i} {realized} {how much} {i} {want to} {be} {with} {you}
 {i feel like} {something} {is} {missing} {in my life} {and} {i need to} {find} {it}
@@ -437,8 +453,22 @@
 {i don't have much time} {to} {spend on} {this}?
 {i don't have much time} {to} {spend on} {conversations} {right now}
 {i don't have much time} {to} {spend on} {something} {that} {is} {not} {important}
-{i} {got more} {motivated} {about} {the} {future}
-{i} {got more} {excited} {about} {the} {future} {after} {talking} {to} {you}
+
+# parte 02/10
+{i miss} {reading books}
+{i miss} {our} {conversations}
+{i miss} {spending time} {with} {my family}
+{i miss} {the} {feeling}
+{i had to} {spend more time} {at} {work} {and} {i miss} {having} {free time} {for} {myself}
+{i miss} {the} {conversations} {we had}
+{i miss} {the} {place} {where} {i} {talked to} {him}
+{i miss} {the} {conversations} {i had} {with} {myself} {last week}
+{i} {spent more time} {reading books} {to} {understand} {all of this}
+{there} {is} {a} {need} {for} {me} {to} {spend time} {reading} {to} {feel} {motivated}
+{i had to} {talk about} {it} {so} {i} {talked to} {myself} {for a while}
+{i miss} {the} {conversations} {i have} {with} {myself}
+{i} {realized} {how much} {i miss} {reading books}
+{i miss} {having} {honest} {conversations} {with} {someone who} {can} {understand} {me}
 {i} {had a great time} {when} {we talked about} {our} {plans} {for} {the} {future}
 {i} {got more} {books} {to} {read} {in the future}
 {i} {want to} {spend more time} {reading} {tonight}
@@ -483,3 +513,4 @@
 {can} {you} spare {some time} {to} {help me} {with} {this} task?
 {i'm} going {to} {the} library {to} {read a book}
 {when} {i have} free {time} {i} {usually} {go} {for} {a} walk or {spend} {it} {with} {my family}
+

@@ -3,8 +3,12 @@ require('./fixSentences.js')
 
 // const db = require('./db.json')
 const sentencesRaw = fs.readFileSync('./sentences.txt', { encoding: 'utf-8' })
-const sentences = sentencesRaw
-  .split('\r\n')
+
+const sentencesSlipped = sentencesRaw.split('\r\n')
+const ignoreAhead = sentencesSlipped.findIndex(s => s.includes('***'))
+
+const sentences = sentencesSlipped
+  .slice(0, ignoreAhead > 0 ? ignoreAhead : sentencesSlipped.length)
   .filter(line => !line.startsWith('#'))
 
 // const blocks = db.options
@@ -30,7 +34,7 @@ const blocksSequence = blocks
     }
   })
   .sort((a, b) => a.frequency - b.frequency)
-  .slice(0, 80)
+  .slice(0, 300)
 
 // console.log(blocksSequence)
 console.log(

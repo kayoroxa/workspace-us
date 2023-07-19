@@ -35,7 +35,13 @@ function fixSentencesBlocosFaltantes(sentences, blocos) {
 
 // const db = require('./db.json')
 const sentencesRaw = fs.readFileSync('./sentences.txt', { encoding: 'utf-8' })
-const sentences = sentencesRaw.split('\r\n')
+
+const sentencesOld = sentencesRaw.split('\r\n')
+const indexCut = sentencesOld.findIndex(s => s.includes('**'))
+const sentences = sentencesOld.slice(
+  0,
+  indexCut > 0 ? indexCut : sentencesOld.length
+)
 
 // const blocks = db.options
 //   .filter(v => v.isOnBoard === true)
@@ -52,4 +58,10 @@ const blocks = [
 
 const sentencesFixed = fixSentencesBlocosFaltantes(sentences, blocks)
 
-fs.writeFileSync('./sentences.txt', sentencesFixed.join('\r\n'))
+fs.writeFileSync(
+  './sentences.txt',
+  [
+    ...sentencesFixed,
+    ...sentencesOld.slice(indexCut, sentencesOld.length),
+  ].join('\r\n')
+)
