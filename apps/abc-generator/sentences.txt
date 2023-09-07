@@ -432,6 +432,7 @@
 {someone who} {can} {understand} {me} {is} {my best friend}
 {i} {hope} {to be} {there} {when} {you} {need} {someone} {to} {talk to}
 {my best friend} {is} {always} {there} {for} {me} {when} {i need} {someone} {to} {talk to}
+## dialogo :)
 {i} {got more} {books} {to} {read}
 {i} {have} {got more} {books} {to} {read} {before going to} {bed}
 {we} {need} {to} {spend more time} {together}
@@ -470,6 +471,71 @@
 {i} {realized} {how much} {i miss} {reading books}
 {i miss} {having} {honest} {conversations} {with} {someone who} {can} {understand} {me}
 {i} {had a great time} {when} {we talked about} {our} {plans} {for} {the} {future}
+
+#parte 03/text1
+{last week} {i had} {a great time} {with} {my best friend}
+{we} {spent more time} {together} {than usual}
+{and} {talked about} {our} {plans} {for} {the} {future}
+{we discussed} {how much} {we} {miss} {spending time} {reading books}
+{it's important to} {me} {to} {have} {my best friend} {close to home}
+{so} {we} {can} {continue} {having} {these} {conversations}
+
+###pergunta 
+{what about} {watching a movie} {at my house} {tonight}?
+{what about} {talking to} {monica} {about} {it}?
+{what about} {reading a book} {for a while}?
+{what about} {going to} {the party} {tomorrow}?
+{what about} {talking to} {my best friend}?
+{what about} {watching a movie} {tonight}?
+{what about} {discussing} {an important} {topic}?
+{what about} {having} {a great time} {with} {my friends}?
+{what about} {asking about} {an appointment}?
+{what about} {going to} {bed} {early}?
+{what about} {watching a movie} {at my house}?
+{what about} {talking to} {my neighbor}?
+{what about} {spending time} {with} {my son} {today}?
+{what about} {talking to} {me} {every day}?
+{what about} {watching a movie} {at} {the party}?
+{what about} {talking about} {an important} {topic}?
+{what about} {spending time} {at} {home}?
+{what about} {talking to} {monica}?
+{what about} {spending time} {at} {the restaurant}?
+{what about} {talking to} {him}?
+
+{are you sure} {he} {got sick} {after} {talking to} {you}?
+{are you sure} {you} {want to} {spend time} {with} {me} {now}?
+{are you sure} {you} {will} {talk to} {my best friend} {tomorrow}?
+{are you sure} {you} {want to} {spend more time} {talking about} {it}?
+{are you sure} {you} {had a great time} {reading a book} {yesterday}?
+{are you sure} {you} {are} {looking forward} {to} {going to} {the party} {because i suggested it}?
+{are you sure} {my neighbor} {always} {talks to} {him} {every day}?
+{are you sure} {she} {was} {talking to} {him} {about} {it} {yesterday}?
+{are you sure} {you} {can} {find} {some time} {to} {read a book}?
+{are you sure} {you} {can't} {get more} {information} {about} {it}?
+{are you sure} {we} {will} {talk about} {it} {later}?
+{are you sure} {my cousin} {talks to} {me} {about} {it} {yesterday}?
+{are you sure} {you} {never} {watched a movie} {at} {home}?
+{are you sure} {everyone} {is} {watching a movie} {at} {the party}?
+{are you sure} {you} {can} {continue} {the} {conversation} {with} {them}?
+{are you sure} {monica} {talked to} {her} {about} {it}?
+{are you sure} {it's important to} {talk about} {the} {future}?
+{are you sure} {he} {was} {talking to} {someone} {about} {it} {earlier}?
+{are you sure} {she} {can't} {help me} {with} {my} {plans}?
+
+{how many times} {do} {they} {go to} {the restaurant}?
+{how many times} {do} {you} {want to} {go to} {the party}?
+{how many times} {will} {she} {ask} {about} {the same} {information}?
+{how many times} {will} {they} {watch a movie} {at my house}?
+{how many times} {do} {we} {need} {to} {talk about} {the same} {topic}?
+{how many times} {do} {they} {go to} {bed} {early} {after} {a long day}?
+{how many times} {will} {they} {go to} {the party}?
+{how many times} {do} {we} {need} {to} {talk}?
+{how many times} {did} {you} {go to} {bed} {early} {last week}?
+{how many times} {did} {they} {talk about} {the same} {topic}?
+{how many times} {will} {they} {spend time} {together} {in the future}?
+{how many times} {do} {you} {need} {to} {talk to} {her} {about} {it}?
+
+****
 {i} {got more} {books} {to} {read} {in the future}
 {i} {want to} {spend more time} {reading} {tonight}
 {my best friend} {got more} {motivated} {after} {i} {talked} {to} {him}
@@ -513,4 +579,5 @@
 {can} {you} spare {some time} {to} {help me} {with} {this} task?
 {i'm} going {to} {the} library {to} {read a book}
 {when} {i have} free {time} {i} {usually} {go} {for} {a} walk or {spend} {it} {with} {my family}
+
 
