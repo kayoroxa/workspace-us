@@ -1,8 +1,11 @@
 const fs = require('fs')
 require('./fixSentences.js')
+const pathJoin = require('path').join
 
-// const db = require('./db.json')
-const sentencesRaw = fs.readFileSync('./sentences.txt', { encoding: 'utf-8' })
+// const file = './frances-sentences.txt'
+const pathFile = pathJoin(__dirname, './sentences.txt')
+
+const sentencesRaw = fs.readFileSync(pathFile, { encoding: 'utf-8' })
 
 const sentencesSlipped = sentencesRaw.split('\r\n')
 const ignoreAhead = sentencesSlipped.findIndex(s => s.includes('***'))

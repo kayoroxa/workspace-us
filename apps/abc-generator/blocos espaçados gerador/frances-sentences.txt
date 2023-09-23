@@ -522,6 +522,74 @@
 {are you sure} {he} {was} {talking to} {someone} {about} {it} {earlier}?
 {are you sure} {she} {can't} {help me} {with} {my} {plans}?
 
+
+
+{how was} {your} {last week}?
+{how was} {the} {conversation}?
+{how was} {the event} {last night}?
+{how was} {your} {day} {with} {my family}?
+{how was} {your} {day} {with} {my best friend}?
+{how was} {your} {day} {before going to} {bed}?
+{how was} {the topic} {we discussed} {earlier}?
+{how was} {your} {day} {thinking} {about} {it}?
+{how was} {your} {day} {after} {you} {got sick}?
+{how was} {your} {conversation} {with} {monica}?
+{how was} {your} {time} {spent} {reading a book}?
+{how was} {the party} {at my house} {last night}?
+{how was} {your} {reading} {time} {spent} {in bed}?
+{how was} {your} {time} {spent} {relaxing} {in bed}?
+{how was} {your} {conversation} {with} {my neighbor}?
+{how was} {my family} {when} {you} {talked to} {them}?
+{how was} {your} {time} {spent} {at} {home} {relaxing}?
+{how was} {the} {conversation} {we had} {about} {books}?
+{how was} {your} {feeling} {after} {talking to} {my son}?
+{how was} {your} {day} {at} {work} {better} {than usual}?
+{how was} {the} {appointment} {you} {had} {with} {monica}?
+{how was} {your} {day} {at} {the restaurant} {last night}?
+{how was} {your} {day} {at} {the party} {with} {my friends}?
+{how was} {the} {conversation} {we had} {about} {the event}?
+{how was} {the topic} {we} {were} {talking about} {earlier}?
+{how was} {your} {day} {at} {the} {important} {appointment}?
+{how was} {your} {day} {after} {we discussed} {future} {plans}?
+{how was} {the} {book} {you} {were} {reading} {in the morning}?
+{how was} {your} {conversation} {with} {someone who} {got sick}?
+{how was} {the} {conversation} {we had} {about} {future} {plans}?
+{how was} {the} {important} {topic} {we} {were} {discussing} {earlier}?
+{how was} {your} {time} {spent} {talking to} {my friend} {at my house}?
+{how was} {your} {conversation} {with} {my son} {about} {the} {future}?
+{how was} {the} {conversation} {we had} {at} {the restaurant} {tonight}?
+{how was} {your} {feeling} {after} {watching a movie} {at} {my} {place}?
+{how was} {your} {conversation} {with} {monica} {about} {the party} {plans}?
+
+
+{have you ever} {read books} {in bed}?
+{have you ever} {been to} {the restaurant}?
+{have you ever} {talked about} {the} {future}?
+{have you ever} {spent time} {relaxing} {in bed}?
+{have you ever} {had} {a long day} {at} {the event}?
+{have you ever} {spent more time} {relaxing} {in bed}?
+{have you ever} {spent} {all of this} {time} {thinking}?
+{have you ever} {had} {a great time} {watching a movie}?
+{have you ever} {been to} {the restaurant} {with} {them}?
+{have you ever} {had a great time} {with} {your} {family}?
+{have you ever} {had} {a great time} {at} {the restaurant}?
+{have you ever} {watched a movie} {early} {in the morning}?
+{have you ever} {been to} {a} {party} {right after} {work}?
+{have you ever} {realized} {how much} {you} {miss} {someone}?
+{have you ever} {talked to} {your} {friend} {about} {the} {future}?
+{have you ever} {talked to} {your} {friend} {about} {your} {plans}?
+{have you ever} {had} {a great time} {discussing} {the same} {topic}?
+{have you ever} {been to} {a} {party} {that} {nobody} {talked about}?
+{have you ever} {spent time} {talking about} {something} {important}?
+{have you ever} {talked to} {someone} {about} {the topic} {at night}?
+{have you ever} {talked about} {an important} {appointment} {tomorrow}?
+{have you ever} {had} {a great time} {with} {your} {family} {at} {home}?
+{have you ever} {had} {a} {conversation} {with} {monica} {about} {the} {day}?
+
+
+****
+
+
 {how many times} {do} {they} {go to} {the restaurant}?
 {how many times} {do} {you} {want to} {go to} {the party}?
 {how many times} {will} {she} {ask} {about} {the same} {information}?
@@ -535,7 +603,7 @@
 {how many times} {will} {they} {spend time} {together} {in the future}?
 {how many times} {do} {you} {need} {to} {talk to} {her} {about} {it}?
 
-****
+
 {i} {got more} {books} {to} {read} {in the future}
 {i} {want to} {spend more time} {reading} {tonight}
 {my best friend} {got more} {motivated} {after} {i} {talked} {to} {him}

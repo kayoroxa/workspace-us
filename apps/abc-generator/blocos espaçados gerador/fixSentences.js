@@ -1,5 +1,7 @@
 const fs = require('fs')
+const pathJoin = require('path').join
 
+const pathFile = pathJoin(__dirname, './sentences.txt')
 function fixSentencesBlocosFaltantes(sentences, blocos) {
   const blocosOrderedBySize = blocos.sort((a, b) => {
     const currentIs = a.endsWith('to}')
@@ -16,7 +18,7 @@ function fixSentencesBlocosFaltantes(sentences, blocos) {
 
     blocosOrderedBySize.forEach(blocoWithKeys => {
       const bloco = blocoWithKeys.replace(/[{}]/g, '')
-      sentence = sentence.replace(/[.,!:]/g, '')
+      sentence = sentence.replace(/[.,!:"]/g, '')
 
       const regex = new RegExp(`{[^{}]*}|\\b${bloco}\\b`, 'gi')
       sentence = sentence.replace(regex, match => {
@@ -34,7 +36,9 @@ function fixSentencesBlocosFaltantes(sentences, blocos) {
 }
 
 // const db = require('./db.json')
-const sentencesRaw = fs.readFileSync('./sentences.txt', { encoding: 'utf-8' })
+const sentencesRaw = fs.readFileSync(pathFile, {
+  encoding: 'utf-8',
+})
 
 const sentencesOld = sentencesRaw.split('\r\n')
 const indexCut = sentencesOld.findIndex(s => s.includes('**'))
@@ -59,9 +63,8 @@ const blocks = [
 const sentencesFixed = fixSentencesBlocosFaltantes(sentences, blocks)
 
 fs.writeFileSync(
-  './sentences.txt',
-  [
-    ...sentencesFixed,
-    ...sentencesOld.slice(indexCut, sentencesOld.length),
-  ].join('\r\n')
+  pathFile,
+  [...sentencesFixed, ...sentencesOld.slice(indexCut, sentencesOld.length)]
+    .join('\r\n')
+    .replace(/\"/g, '')
 )
