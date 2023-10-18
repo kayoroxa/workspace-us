@@ -28,6 +28,9 @@ Parabéns por sua iniciativa de querer ter o inglês como segunda lingua 🇧�
 Qualquer duvida que você tiver no curso pode me chamar por aqui.
 
 Falando nisso, já conseguiu receber o acesso as aulas do curso??          
+
+Você pode ficar entrando no curso por esse link: 
+https://formula-da-fluencia.club.hotmart.com
     `
   }
 
@@ -59,11 +62,11 @@ Falando nisso, já conseguiu receber o acesso as aulas do curso??
   }
 
   if (event.event === 'PURCHASE_CANCELED') {
-    message = 'Você não conseguiu comprar!'
+    message = `${bomDia} ${firstName} vi que você tentou comprar o meu curso de inglês, mas não conseguiu`
   }
 
   if (event.event === 'PURCHASE_PROTEST') {
-    message = 'Por que você pediu reembolso?'
+    message = `${bomDia} ${firstName} vi que você pediu reembolso 😕, o que aconteceu?`
   }
 
   const number = event?.phone?.length === 11 ? '55' + event.phone : event.phone

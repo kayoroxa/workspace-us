@@ -27,6 +27,7 @@ export default function Home() {
     if (event.event === 'PURCHASE_OUT_OF_SHOPPING_CART')
       return 'Abandonou Carrinho ❌🛒'
     if (event.event === 'PURCHASE_CANCELED') return 'Compra Cancelada ❌💳'
+    if (event.event === 'PURCHASE_PROTEST') return 'Reembolso 😡'
     if (event.event === 'PURCHASE_BILLET_PRINTED')
       return event.pagamento + ' ⏱✉'
     else return event.event
