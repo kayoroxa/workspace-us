@@ -2,6 +2,7 @@ import { _EventBuy } from '@/utils/types/eventBuy'
 
 export default function Button({ event }: { event: _EventBuy }) {
   let message = ''
+  let message2 = ''
 
   const firstNameRaw = event.buyerName.split(' ')[0].toLowerCase()
   const firstName = firstNameRaw.charAt(0).toUpperCase() + firstNameRaw.slice(1)
@@ -20,7 +21,7 @@ export default function Button({ event }: { event: _EventBuy }) {
   }
 
   if (event.event === 'PURCHASE_APPROVED') {
-    message = `
+    message2 = `
 ${bomDia} ${firstName} 😃😃 vi que você entrou pro meu curso de inglês.
 
 Parabéns por sua iniciativa de querer ter o inglês como segunda lingua 🇧🇷🇺🇸👏🏽🚀
@@ -28,6 +29,16 @@ Parabéns por sua iniciativa de querer ter o inglês como segunda lingua 🇧�
 Qualquer duvida que você tiver no curso pode me chamar por aqui.
 
 Falando nisso, já conseguiu receber o acesso as aulas do curso??          
+
+Você pode ficar entrando no curso por esse link: 
+https://formula-da-fluencia.club.hotmart.com
+    `
+  }
+  if (event.event === 'PURCHASE_APPROVED') {
+    message = `
+${bomDia} ${firstName} 😃😃 Parabéns por sua iniciativa de querer ter o inglês como segunda lingua 🇧🇷🇺🇸👏🏽🚀
+
+Qualquer duvida que você tiver no curso pode me chamar por aqui.        
 
 Você pode ficar entrando no curso por esse link: 
 https://formula-da-fluencia.club.hotmart.com
@@ -72,17 +83,33 @@ Falando nisso, já conseguiu receber o acesso as aulas do curso??
   const number = event?.phone?.length === 11 ? '55' + event.phone : event.phone
 
   return (
-    <button className="bg-green-600 px-4 py-3 shadow-lg hover:bg-green-700">
-      <a
-        href={`https://web.whatsapp.com/send/?phone=${number}&text=${encodeURI(
-          message.trim()
-        )}`}
-        target="_blank"
-        rel="noreferrer"
-        // rel="noopener noreferrer"
-      >
-        Whatsapp
-      </a>
-    </button>
+    <div className="flex gap-3">
+      <button className="bg-green-600 px-4 py-3 shadow-lg hover:bg-green-700">
+        <a
+          href={`https://web.whatsapp.com/send/?phone=${number}&text=${encodeURI(
+            message.trim()
+          )}`}
+          target="_blank"
+          rel="noreferrer"
+          // rel="noopener noreferrer"
+        >
+          Whatsapp
+        </a>
+      </button>
+      {event.event === 'PURCHASE_APPROVED' && (
+        <button className="bg-green-600 opacity-40 px-4 py-3 shadow-lg hover:bg-green-700">
+          <a
+            href={`https://web.whatsapp.com/send/?phone=${number}&text=${encodeURI(
+              message2.trim()
+            )}`}
+            target="_blank"
+            rel="noreferrer"
+            // rel="noopener noreferrer"
+          >
+            Whatsapp2
+          </a>
+        </button>
+      )}
+    </div>
   )
 }
