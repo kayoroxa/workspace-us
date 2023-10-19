@@ -80,7 +80,10 @@ Falando nisso, já conseguiu receber o acesso as aulas do curso??
     message = `${bomDia} ${firstName} vi que você pediu reembolso 😕, o que aconteceu?`
   }
 
-  const number = event?.phone?.length === 11 ? '55' + event.phone : event.phone
+  const number =
+    event?.phone?.length === 11 && event?.phone.toString()[2] === '9'
+      ? '55' + event.phone
+      : event.phone
 
   return (
     <div className="flex gap-3">
