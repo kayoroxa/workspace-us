@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <div className="w-full min-h-screen bg-zinc-800 text-zinc-100 flex flex-col items-center gap-5 p-10 ">
       {eventsBuy &&
-        eventsBuy.map(event => (
+        eventsBuy?.map(event => (
           <div
             key={event.date}
             className="flex gap-10 bg-zinc-700 p-4 w-fit rounded-lg"
