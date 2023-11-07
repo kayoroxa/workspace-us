@@ -6,4 +6,5 @@ export type _EventBuy = {
   event: string
   date: string
   pagamento: string
+  historic?: string
 }
