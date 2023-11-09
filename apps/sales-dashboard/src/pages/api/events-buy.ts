@@ -72,7 +72,7 @@ export default async function handler(
 
       return res.status(200).json(dataSorted)
     } catch (error) {
-      return res.status(500).json({ event: 'error' })
+      return res.status(500).json({ event: error })
     }
   }
 }
