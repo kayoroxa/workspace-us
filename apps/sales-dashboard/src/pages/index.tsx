@@ -17,7 +17,7 @@ export default function Home() {
     ['events-buy'],
     () => fetch('/api/events-buy').then(res => res.json()),
     {
-      refetchInterval: 3 * 60 * 1000,
+      refetchInterval: 10 * 60 * 1000,
     }
   )
 
