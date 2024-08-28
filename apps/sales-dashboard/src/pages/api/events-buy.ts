@@ -32,7 +32,13 @@ export default async function handler(
 
       return res.status(201).json({ data: sale })
     } catch (error) {
-      return res.status(500).json({ event: 'error' })
+      if (error instanceof Error) {
+        return res
+          .status(500)
+          .json({ event: 'error', name: error.name, message: error.message })
+      } else {
+        return res.status(500).json({ event: 'unknown_error' })
+      }
     }
   }
 
@@ -72,7 +78,13 @@ export default async function handler(
 
       return res.status(200).json(dataSorted)
     } catch (error) {
-      return res.status(500).json({ event: error })
+      if (error instanceof Error) {
+        return res
+          .status(500)
+          .json({ event: 'error', name: error.name, message: error.message })
+      } else {
+        return res.status(500).json({ event: 'unknown_error' })
+      }
     }
   }
 }
