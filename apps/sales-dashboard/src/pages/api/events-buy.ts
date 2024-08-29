@@ -12,16 +12,16 @@ export default async function handler(
     const { event, data: eventData, creation_date } = req.body
 
     const productName = eventData.product.name
-    const { name: buyerName, checkout_phone: phone, email } = eventData.buyer
+    const { name: buyerName, email } = eventData.buyer
 
     const data = {
       event,
       productName,
       buyerName,
-      phone,
+      phone: eventData.buyer.phone || eventData.buyer.checkout_phone,
       email,
       date: creation_date,
-      pagamento: eventData.purchase.payment.type,
+      pagamento: eventData?.purchase?.payment?.type,
       // eventData,
     }
 
@@ -70,7 +70,10 @@ export default async function handler(
         // )
       )
 
-      const data: _EventBuy[] = response.data.map(({ data }: any) => data)
+      const data = response.data.map(({ ref, data }: any) => ({
+        id: ref.id,
+        ...data,
+      })) as _EventBuy[]
 
       const dataSorted = data.sort((a, b) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime()

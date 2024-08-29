@@ -80,6 +80,14 @@ Falando nisso, já conseguiu receber o acesso as aulas do curso??
     message = `${bomDia} ${firstName} vi que você pediu reembolso 😕, o que aconteceu?`
   }
 
+  if (event.event === 'PURCHASE_OUT_OF_SHOPPING_CART') {
+    message = `
+${bomDia} ${firstName} 😊 vi que você estava interessado no meu curso de inglês, mas notei que a compra não foi concluída.
+
+Precisa de mais informações sobre o curso? Estou aqui para te ajudar!
+    `
+  }
+
   const number =
     event?.phone?.length === 11 && event?.phone.toString()[2] === '9'
       ? '55' + event.phone

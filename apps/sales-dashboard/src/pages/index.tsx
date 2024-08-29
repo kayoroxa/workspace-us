@@ -114,10 +114,7 @@ export default function Home() {
             </section>
 
             <section className="flex justify-center items-center">
-              <Toggle
-                id={event.email}
-                comprou={event.event === 'PURCHASE_APPROVED'}
-              />
+              <Toggle id={event.email} />
             </section>
 
             <section>{event.phone && <Button event={event} />}</section>
