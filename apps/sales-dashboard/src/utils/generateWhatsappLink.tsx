@@ -74,6 +74,19 @@ Precisa de mais informações sobre o curso? Estou aqui para te ajudar!
     `
   }
 
+  if (event.event === 'PURCHASE_EXPIRED') {
+    message = `
+${bomDia} ${firstName} 😊, quem fala é Caio. Vi que o prazo para finalizar a compra do curso de inglês expirou.
+
+Mas não se preocupe! Se você ainda está interessado, posso te ajudar.
+
+Você prefere que eu:
+1. Reative a sua oferta?
+2. Envie mais detalhes sobre o curso?
+3. Ou está com alguma outra dúvida?
+    `
+  }
+
   // Montar número de telefone corretamente
   const number =
     event?.phone?.length === 11 && event?.phone.toString()[2] === '9'
