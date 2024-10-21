@@ -1,4 +1,5 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+// Importando a função generateWhatsappLink
+import { generateWhatsappLink } from '@/utils/generateWhatsappLink' // Importe a função para gerar o link
 import { _EventBuy } from '@/utils/types/eventBuy'
 import { query as q } from 'faunadb'
 import type { NextApiRequest, NextApiResponse } from 'next'
@@ -22,15 +23,17 @@ export default async function handler(
       email,
       date: creation_date,
       pagamento: eventData?.purchase?.payment?.type,
-      // eventData,
-    }
+    } as _EventBuy
 
     try {
       const sale = await faunaClient.query(
         q.Create(q.Collection('sales'), { data })
       )
 
-      return res.status(201).json({ data: sale })
+      // Gere o link do WhatsApp usando a função generateWhatsappLink
+      const whatsappLink = generateWhatsappLink(data)
+
+      return res.status(201).json({ data: sale, whatsappLink })
     } catch (error) {
       if (error instanceof Error) {
         return res
@@ -45,7 +48,7 @@ export default async function handler(
   if (req.method === 'GET') {
     try {
       const now = new Date().toISOString()
-      //get all collation sales sorted by ts
+      // get all sales sorted by timestamp
       const response: any = await faunaClient.query(
         q.Map(
           q.Paginate(q.Documents(q.Collection('sales')), {
@@ -54,26 +57,18 @@ export default async function handler(
           }),
           q.Lambda('X', q.Get(q.Var('X')))
         )
-        // q.Paginate(q.Match(q.Index('sales_by_date_desc')))
-        // q.Map(
-        //   q.Paginate(
-        //     q.Range(
-        //       q.Match(q.Index("get_weekly_list_by_ts")),
-        //       q.TimeSubtract(q.Now(), 14, "days"),
-        //       q.Now()
-        //     )
-        //   ),
-        //   q.Lambda(
-        //     ["ts", "ref"],
-        //     q.Get(q.Var("ref"))
-        //   )
-        // )
       )
 
-      const data = response.data.map(({ ref, data }: any) => ({
-        id: ref.id,
-        ...data,
-      })) as _EventBuy[]
+      const data = response.data.map(({ ref, data }: any) => {
+        // Crie o link do WhatsApp ou defina como null
+        const whatsappLink = data.phone ? generateWhatsappLink(data) : null
+
+        return {
+          id: ref.id,
+          ...data,
+          whatsappLink,
+        }
+      }) as _EventBuy[]
 
       const dataSorted = data.sort((a, b) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime()
