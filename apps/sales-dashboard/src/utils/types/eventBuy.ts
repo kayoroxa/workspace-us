@@ -10,4 +10,5 @@ export type _EventBuy = {
   pagamento?: string
   historic?: string
   reviewed?: boolean
+  refusal_reason?: string
 }

@@ -23,7 +23,10 @@ export default async function handler(
       email: eventData.buyer.email,
       date: creation_date,
       pagamento: eventData.purchase?.payment?.type,
+      refusal_reason: eventData.purchase?.payment?.refusal_reason || null,
     }
+
+    // "refusal_reason": "Transaction refused",
 
     try {
       const result = await salesCollection.insertOne(data)

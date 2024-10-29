@@ -60,6 +60,30 @@ Qualquer dúvida que você tiver no curso pode me chamar por aqui.
 
   if (event.event === 'PURCHASE_CANCELED') {
     message = `${bomDia} ${firstName}, vi que você tentou comprar o meu curso de inglês, mas não conseguiu.`
+    if (event.refusal_reason === 'Transaction refused') {
+      message =
+        message +
+        `
+
+Verifiquei aqui, acontece que a outra forma de pagamento está indisponível no momento. 
+
+Então por favor *utilize esta* plataforma para realizar o pagamento: bit.ly/pagamento-formula-da-fluencia
+
+Assim que efetuar o pagamento, avise-me aqui no WhatsApp para que eu te adicionar ao curso. 🤝🙂
+      `
+    }
+    if (event.refusal_reason?.includes('Saldo insuficiente')) {
+      message =
+        message +
+        `
+
+Verifiquei aqui, e infelizmente o pagamento não foi concluído devido a saldo insuficiente.
+
+Mas não se preocupe! É possível realizar a compra mesmo sem ter o limite total no cartão, desde que você tenha limite suficiente para pelo menos uma parcela. Ou seja, se o valor de cada parcela estiver dentro do seu limite, a transação será aprovada normalmente.
+
+Gostaria de tentar dessa forma? 🤝🙂
+      `
+    }
   }
 
   if (event.event === 'PURCHASE_PROTEST') {
