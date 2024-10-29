@@ -1,87 +1,92 @@
-// Importando a função generateWhatsappLink
-import { generateWhatsappLink } from '@/utils/generateWhatsappLink' // Importe a função para gerar o link
+// src/pages/api/events-buy.ts
+import clientPromise from '@/services/mongodb'
+import { generateWhatsappLink } from '@/utils/generateWhatsappLink'
 import { _EventBuy } from '@/utils/types/eventBuy'
-import { query as q } from 'faunadb'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { faunaClient } from '../../services/fauna'
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
+  const client = await clientPromise
+  const db = client.db('inovasy')
+  const salesCollection = db.collection<_EventBuy>('sales') // Tipagem explícita da coleção como _EventBuy
+
   if (req.method === 'POST') {
     const { event, data: eventData, creation_date } = req.body
 
-    const productName = eventData.product.name
-    const { name: buyerName, email } = eventData.buyer
-
-    const data = {
+    const data: Omit<_EventBuy, 'id'> = {
       event,
-      productName,
-      buyerName,
+      productName: eventData.product.name,
+      buyerName: eventData.buyer.name,
       phone: eventData.buyer.phone || eventData.buyer.checkout_phone,
-      email,
+      email: eventData.buyer.email,
       date: creation_date,
-      pagamento: eventData?.purchase?.payment?.type,
-    } as _EventBuy
+      pagamento: eventData.purchase?.payment?.type,
+    }
 
     try {
-      const sale = await faunaClient.query(
-        q.Create(q.Collection('sales'), { data })
-      )
-
-      // Gere o link do WhatsApp usando a função generateWhatsappLink
+      const result = await salesCollection.insertOne(data)
       const whatsappLink = generateWhatsappLink(data)
 
-      return res.status(201).json({ data: sale, whatsappLink })
-    } catch (error) {
+      return res.status(201).json({
+        data: { ...data, id: result.insertedId.toString() },
+        whatsappLink,
+      })
+    } catch (error: unknown) {
       if (error instanceof Error) {
-        return res
-          .status(500)
-          .json({ event: 'error', name: error.name, message: error.message })
+        return res.status(500).json({
+          event: 'error',
+          name: error.name,
+          message: error.message,
+        })
       } else {
-        return res.status(500).json({ event: 'unknown_error' })
+        return res.status(500).json({
+          event: 'unknown_error',
+          message: 'An unexpected error occurred.',
+        })
       }
     }
   }
 
   if (req.method === 'GET') {
     try {
-      const now = new Date().toISOString()
-      // get all sales sorted by timestamp
-      const response: any = await faunaClient.query(
-        q.Map(
-          q.Paginate(q.Documents(q.Collection('sales')), {
-            size: 100, // número máximo de resultados por página
-            before: q.Time(now), // retorna resultados antes desta data/hora
-          }),
-          q.Lambda('X', q.Get(q.Var('X')))
-        )
-      )
-
-      const data = response.data.map(({ ref, data }: any) => {
-        // Crie o link do WhatsApp ou defina como null
-        const whatsappLink = data.phone ? generateWhatsappLink(data) : null
+      const sales = await salesCollection
+        .find()
+        .sort({ date: -1 })
+        .limit(100)
+        .toArray()
+      const data: _EventBuy[] = sales.map(sale => {
+        const whatsappLink = sale.phone ? generateWhatsappLink(sale) : null
 
         return {
-          id: ref.id,
-          ...data,
+          id: sale._id.toString(),
+          productName: sale.productName,
+          buyerName: sale.buyerName,
+          phone: sale.phone,
+          email: sale.email,
+          event: sale.event,
+          date: sale.date,
+          pagamento: sale.pagamento,
+          historic: sale.historic,
+          reviewed: sale.reviewed,
           whatsappLink,
-        }
-      }) as _EventBuy[]
-
-      const dataSorted = data.sort((a, b) => {
-        return new Date(b.date).getTime() - new Date(a.date).getTime()
+        } as _EventBuy
       })
 
-      return res.status(200).json(dataSorted)
-    } catch (error) {
+      return res.status(200).json(data)
+    } catch (error: unknown) {
       if (error instanceof Error) {
-        return res
-          .status(500)
-          .json({ event: 'error', name: error.name, message: error.message })
+        return res.status(500).json({
+          event: 'error',
+          name: error.name,
+          message: error.message,
+        })
       } else {
-        return res.status(500).json({ event: 'unknown_error' })
+        return res.status(500).json({
+          event: 'unknown_error',
+          message: 'An unexpected error occurred.',
+        })
       }
     }
   }

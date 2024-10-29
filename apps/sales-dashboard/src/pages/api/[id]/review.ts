@@ -1,45 +1,55 @@
-import { query as q } from 'faunadb'
+import clientPromise from '@/services/mongodb'
+import { ObjectId } from 'mongodb'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { faunaClient } from '../../../services/fauna'
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
   if (req.method === 'PATCH') {
-    const { email } = req.query
+    const { id } = req.query
     const { reviewed } = req.body
 
-    if (typeof email !== 'string' || typeof reviewed !== 'boolean') {
+    // Verifica se `id` é uma string e se `reviewed` é um booleano
+    if (typeof id !== 'string' || typeof reviewed !== 'boolean') {
       return res.status(400).json({
         event: 'invalid_data',
-        message: 'Invalid email or reviewed value',
+        message: 'Invalid id or reviewed value',
       })
     }
 
     try {
-      // Encontrar o documento pelo email
-      const document: any = await faunaClient.query(
-        q.Get(q.Match(q.Index('sales_by_email'), email))
+      const client = await clientPromise
+      const db = client.db('inovasy')
+      const salesCollection = db.collection('sales')
+
+      // Converte `id` para ObjectId e atualiza o campo `reviewed`
+      const result = await salesCollection.findOneAndUpdate(
+        { _id: new ObjectId(id) },
+        { $set: { reviewed } },
+        { returnDocument: 'after' }
       )
 
-      // Atualizar o documento encontrado
-      const updatedSale = await faunaClient.query(
-        q.Update(document.ref, {
-          data: {
-            reviewed,
-          },
+      // Verifica se o documento foi encontrado e atualizado
+      if (!result || !result.value) {
+        return res.status(404).json({
+          event: 'not_found',
+          message: 'Document not found',
         })
-      )
+      }
 
-      return res.status(200).json({ data: updatedSale })
+      return res.status(200).json({ data: result.value })
     } catch (error) {
       if (error instanceof Error) {
-        return res
-          .status(500)
-          .json({ event: 'error', name: error.name, message: error.message })
+        return res.status(500).json({
+          event: 'error',
+          name: error.name,
+          message: error.message,
+        })
       } else {
-        return res.status(500).json({ event: 'unknown_error' })
+        return res.status(500).json({
+          event: 'unknown_error',
+        })
       }
     }
   } else {

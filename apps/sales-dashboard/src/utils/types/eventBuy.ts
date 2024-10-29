@@ -1,5 +1,6 @@
+// src/utils/types/eventBuy.ts
 export type _EventBuy = {
-  id: string
+  id?: string
   productName: string
   buyerName: string
   phone: string
@@ -8,5 +9,5 @@ export type _EventBuy = {
   date: string
   pagamento?: string
   historic?: string
-  reviewed?: boolean // Adicione o campo reviewed aqui
+  reviewed?: boolean
 }
