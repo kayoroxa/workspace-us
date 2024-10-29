@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "WhatsApp Button Injection",
+  "version": "1.0",
+  "description": "Injeta um botão no WhatsApp Web automaticamente.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "webRequest",
+    "https://inovasy-sells-dashboard.netlify.app/*"
+  ],
+  "host_permissions": ["https://web.whatsapp.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "icons": {
+    "128": "icon128.png"
+  }
+}

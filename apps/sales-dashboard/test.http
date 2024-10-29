@@ -1,0 +1,27 @@
+POST http://localhost:3000/api/events-buy  HTTP/1.1 {
+  "id": "fd09995b-e390-415a-b5c4-791d3bd1c24a",
+  "creation_date": 1724867621296,
+  "event": "PURCHASE_OUT_OF_SHOPPING_CART",
+  "version": "2.0.0",
+  "data": {
+    "affiliate": true,
+    "product": {
+      "id": 1384358,
+      "name": "fórmula da fluência"
+    },
+    "buyer_ip": null,
+    "buyer": {
+      "name": "Silvia Marques de Sousa Simas",
+      "email": "smsmarques@gmail.com",
+      "phone": "5521989274401"
+    },
+    "offer": {
+      "code": "c74kxq7h"
+    },
+    "checkout_country": {
+      "name": "Brasil",
+      "iso": "BR"
+    }
+  },
+  "hottok": "LyrCGh1NMXFe2xgtBOaVGEJJDFD8nB5162764"
+}

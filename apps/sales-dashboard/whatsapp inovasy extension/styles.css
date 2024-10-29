@@ -1,0 +1,62 @@
+/* Estilos para o botão "Carregar Botões" */
+#submitButton {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #25d366;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Estilos para o container dos botões */
+#buttonContainer {
+  position: fixed;
+  top: 100px;
+  right: 10px;
+  background-color: #fff;
+  padding: 10px;
+  border: 2px solid #25d366;
+  border-radius: 5px;
+  z-index: 1000;
+  overflow-y: auto;
+  height: 50vh;
+  scroll-behavior: smooth;
+}
+
+/* Estilos para cada botão */
+.whatsapp-button {
+  display: block;
+  margin: 10px 0;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  width: 200px;
+}
+
+/* Botão já clicado - fundo verde */
+.clicked {
+  background-color: #25d366;
+  color: #fff !important;
+}
+
+/* Botão não clicado - fundo branco com borda verde */
+.not-clicked {
+  background-color: #fff;
+  color: #25d366 !important;
+  border: 2px solid #25d366;
+}
+
+/* Cursor bloqueado ao passar o mouse sobre botões já clicados */
+.clicked:hover {
+  cursor: not-allowed;
+}
+
+button:hover,
+a:hover {
+  text-decoration: underline;
+}
