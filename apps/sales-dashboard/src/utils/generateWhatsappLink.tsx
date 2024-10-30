@@ -10,11 +10,17 @@ export function generateWhatsappLink(event: _EventBuy): string {
 
   // Obter a saudação baseada no horário
   let bomDia = ''
-  const timeNow = new Date().getHours()
+  const timeNow = new Date().toLocaleString('pt-BR', {
+    timeZone: 'America/Sao_Paulo',
+    hour: 'numeric',
+    hour12: false,
+  })
 
-  if (timeNow >= 6 && timeNow < 12) {
+  const hourNow = parseInt(timeNow)
+
+  if (hourNow >= 6 && hourNow < 12) {
     bomDia = 'Bom dia'
-  } else if (timeNow >= 12 && timeNow < 18) {
+  } else if (hourNow >= 12 && hourNow < 18) {
     bomDia = 'Boa tarde'
   } else {
     bomDia = 'Boa noite'
