@@ -115,7 +115,7 @@ Mas não se preocupe! Se você ainda está interessado, posso te ajudar.
 Você prefere que eu:
 1. Reative a sua oferta?
 2. Envie mais detalhes sobre o curso?
-3. Ou está com alguma outra dúvida?
+3. Quer que eu te mande *depoimentos*?
     `
   }
 
