@@ -102,7 +102,7 @@ ${bomDia} ${firstName} 😊 Vi que você estava interessado no meu curso de ingl
 
 Precisa de mais informações sobre o curso? Estou aqui para te ajudar!
 
-Quer que eu te mande alguns depoimentos dos alunos??
+*Quer que eu te mande alguns depoimentos dos alunos??*
     `
   }
 
