@@ -1,26 +1,97 @@
 POST http://localhost:3000/api/events-buy  HTTP/1.1 {
-  "id": "fd09995b-e390-415a-b5c4-791d3bd1c24a",
-  "creation_date": 1724867621296,
-  "event": "PURCHASE_OUT_OF_SHOPPING_CART",
+  "id": "b0c34b8d-21db-48c3-bdd4-b4358bd9c18a",
+  "creation_date": 1731418023027,
+  "event": "PURCHASE_APPROVED",
   "version": "2.0.0",
   "data": {
-    "affiliate": true,
     "product": {
       "id": 1384358,
-      "name": "fórmula da fluência"
+      "ucode": "0f5a5f12-8a15-4102-b752-e19bbb9335d5",
+      "name": "fórmula da fluência",
+      "has_co_production": false
     },
-    "buyer_ip": null,
+    "affiliates": [
+      {
+        "affiliate_code": "",
+        "name": ""
+      }
+    ],
     "buyer": {
-      "name": "Silvia Marques de Sousa Simas",
-      "email": "smsmarques@gmail.com",
-      "phone": "5521989274401"
+      "email": "caio@hotmail.com",
+      "name": "caio Costa ",
+      "checkout_phone": "98988708296",
+      "address": {
+        "city": "São Luís",
+        "country": "Brasil",
+        "country_iso": "BR",
+        "state": "MA",
+        "neighborhood": "Parque Shalon",
+        "zipcode": "65072810",
+        "address": "Rua H-15",
+        "number": "102 ",
+        "complement": "Creta "
+      },
+      "document": "04604077320"
     },
-    "offer": {
-      "code": "c74kxq7h"
+    "producer": {
+      "name": "INOVASY ACADEMY INFOPRODUTOS LTDA"
     },
-    "checkout_country": {
-      "name": "Brasil",
-      "iso": "BR"
+    "commissions": [
+      {
+        "value": 5.42,
+        "source": "MARKETPLACE",
+        "currency_value": "BRL"
+      },
+      {
+        "value": 39.19,
+        "source": "PRODUCER",
+        "currency_value": "BRL"
+      }
+    ],
+    "purchase": {
+      "approved_date": 1731417928000,
+      "full_price": {
+        "value": 44.61,
+        "currency_value": "BRL"
+      },
+      "price": {
+        "value": 44.61,
+        "currency_value": "BRL"
+      },
+      "checkout_country": {
+        "name": "Brasil",
+        "iso": "BR"
+      },
+      "order_bump": {
+        "is_order_bump": false
+      },
+      "origin": {
+        "src": "pb-81-d_alf_497_sec-534_bt-2"
+      },
+      "original_offer_price": {
+        "value": 44.61,
+        "currency_value": "BRL"
+      },
+      "order_date": 1731417925000,
+      "status": "APPROVED",
+      "transaction": "HP3643845950",
+      "payment": {
+        "installments_number": 12,
+        "type": "CREDIT_CARD"
+      },
+      "offer": {
+        "code": "c74kxq7h"
+      },
+      "invoice_by": "HOTMART",
+      "subscription_anticipation_purchase": false,
+      "date_next_charge": 1734004800000,
+      "recurrence_number": 7
+    },
+    "subscription": {
+      "status": "ACTIVE",
+      "subscriber": {
+        "code": "WL5Z8OCS"
+      }
     }
   },
   "hottok": "LyrCGh1NMXFe2xgtBOaVGEJJDFD8nB5162764"

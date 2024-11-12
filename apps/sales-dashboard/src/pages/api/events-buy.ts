@@ -24,6 +24,7 @@ export default async function handler(
       date: creation_date,
       pagamento: eventData.purchase?.payment?.type,
       refusal_reason: eventData.purchase?.payment?.refusal_reason || null,
+      recurrence_number: eventData.purchase?.recurrence_number,
     }
 
     // "refusal_reason": "Transaction refused",
@@ -55,7 +56,12 @@ export default async function handler(
   if (req.method === 'GET') {
     try {
       const sales = await salesCollection
-        .find()
+        .find({
+          $or: [
+            { recurrence_number: { $eq: 1 } },
+            { recurrence_number: { $exists: false } },
+          ],
+        })
         .sort({ date: -1 })
         .limit(100)
         .toArray()
@@ -74,6 +80,7 @@ export default async function handler(
           historic: sale.historic,
           reviewed: sale.reviewed,
           whatsappLink,
+          recurrence_number: sale.recurrence_number || null,
         } as _EventBuy
       })
 
