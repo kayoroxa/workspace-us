@@ -57,10 +57,7 @@ export default async function handler(
     try {
       const sales = await salesCollection
         .find({
-          $or: [
-            { recurrence_number: { $eq: 1 } },
-            { recurrence_number: { $exists: false } },
-          ],
+          recurrence_number: { $in: [1, null] },
         })
         .sort({ date: -1 })
         .limit(100)
