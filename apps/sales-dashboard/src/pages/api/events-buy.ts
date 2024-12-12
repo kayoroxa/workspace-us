@@ -57,7 +57,10 @@ export default async function handler(
     try {
       const sales = await salesCollection
         .find({
-          recurrence_number: { $in: [1, null] },
+          $or: [
+            { event: 'PURCHASE_DELAYED' }, // Ignora recurrence_number quando for PURCHASE_DELAYED
+            { recurrence_number: { $in: [1, null] } }, // Aplica filtro em outros casos, só pega as primeiras parcelas.
+          ],
         })
         .sort({ date: -1 })
         .limit(100)

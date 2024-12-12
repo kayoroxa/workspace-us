@@ -33,6 +33,7 @@ export default function Home() {
     if (event.event === 'PURCHASE_PROTEST') return 'Reembolso 😡'
     if (event.event === 'PURCHASE_BILLET_PRINTED')
       return event.pagamento + ' ⏱✉'
+    if (event.event === 'PURCHASE_DELAYED') return 'Atrasado ⌛'
     else return event.event
   }
 
