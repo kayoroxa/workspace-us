@@ -66,7 +66,7 @@ ${
     if (isLast) {
       message = `${bomDia}, ${firstName}, sua *ultima* parcela, não foi possível ser debitada 😕, só falta essa parcela 🎉`
     } else if (faltando && faltando <= 3) {
-      message = `${bomDia}, ${firstName}, sua ${currentParcela}ª parcela, não foi possível ser debitada 😕, só faltam ${faltando} parcelas 🎉`
+      message = `${bomDia}, ${firstName}, não foi possível ser debitada 😕, só faltam ${faltando} parcelas 🎉`
     } else if (currentParcela && currentParcela <= 7) {
       message = `${bomDia}, ${firstName}, sua ${currentParcela}ª parcela, não foi possível ser debitada 😕`
     } else {
