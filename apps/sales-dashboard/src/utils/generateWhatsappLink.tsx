@@ -57,35 +57,27 @@ ${
   if (event.event === 'PURCHASE_DELAYED') {
     const lastParcela = event.installments_number
     const currentParcela = event.recurrence_number
+
     const faltando =
       lastParcela && currentParcela ? lastParcela - currentParcela + 1 : false
-    const mensagemFaltando =
-      faltando && faltando < 3
-        ? `Está faltando apenas ${faltando} parcela${
-            faltando === 1 ? '' : 's'
-          } 🎉`
-        : ''
 
     const isLast = lastParcela === currentParcela || currentParcela === 12
 
+    if (isLast) {
+      message = `${bomDia}, ${firstName}, sua *ultima* parcela, não foi possível ser debitada 😕, só falta essa parcela 🎉`
+    } else if (faltando && faltando <= 3) {
+      message = `${bomDia}, ${firstName}, sua ${currentParcela}ª parcela, não foi possível ser debitada 😕, só faltam ${faltando} parcelas 🎉`
+    } else if (currentParcela && currentParcela <= 7) {
+      message = `${bomDia}, ${firstName}, sua ${currentParcela}ª parcela, não foi possível ser debitada 😕`
+    } else {
+      message = `${bomDia}, ${firstName}, sua parcela, não foi possível ser debitada 😕`
+    }
+
     message = `
-${bomDia}, ${firstName}, sua ${
-      isLast ? '*última*' : event.recurrence_number + 'ª'
-    } parcela, não foi possível ser debitada 😕 
-    
-Confere se está tudo certo com o seu cartão para você poder continuar com o acesso ao curso. ${mensagemFaltando}
+
+Confere se está tudo certo com o seu cartão para você poder continuar com o acesso ao curso.
 
 Por esse link você consegue acompanhar suas parcelas: https://consumer.hotmart.com/purchase
-    `
-  }
-
-  if (event.event === 'PURCHASE_COMPLETE') {
-    message = `
-${bomDia} ${firstName} 😃😃 Vi que você entrou para o meu curso de inglês.
-
-Parabéns por sua iniciativa de querer ter o inglês como segunda língua 🇧🇷🇺🇸👏🏽🚀
-
-Qualquer dúvida que você tiver no curso pode me chamar por aqui.
     `
   }
 
