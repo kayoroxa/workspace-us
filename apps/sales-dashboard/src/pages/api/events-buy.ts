@@ -25,6 +25,8 @@ export default async function handler(
       pagamento: eventData.purchase?.payment?.type,
       refusal_reason: eventData.purchase?.payment?.refusal_reason || null,
       recurrence_number: eventData.purchase?.recurrence_number,
+      installments_number:
+        eventData.purchase?.payment?.installments_number || null,
     }
 
     // "refusal_reason": "Transaction refused",
@@ -80,6 +82,7 @@ export default async function handler(
           historic: sale.historic,
           reviewed: sale.reviewed,
           whatsappLink,
+          installments_number: sale.installments_number || null,
           recurrence_number: sale.recurrence_number || null,
         } as _EventBuy
       })

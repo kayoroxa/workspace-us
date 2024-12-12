@@ -55,9 +55,14 @@ ${
   }
 
   if (event.event === 'PURCHASE_DELAYED') {
+    const lastParcela = event.installments_number
+    const currentParcela = event.recurrence_number
+
+    const isLast = lastParcela === currentParcela || currentParcela === 12
+
     message = `
 ${bomDia}, ${firstName}, sua ${
-      event.recurrence_number === 12 ? 'ultima' : event.recurrence_number + 'ª'
+      isLast ? 'ultima' : event.recurrence_number + 'ª'
     } parcela, não foi possível ser debitada 😕 
     
 Confere se está tudo certo com o seu cartão para você poder continuar com o acesso ao curso.

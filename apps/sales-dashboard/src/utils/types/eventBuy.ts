@@ -12,4 +12,5 @@ export type _EventBuy = {
   reviewed?: boolean
   refusal_reason?: string
   recurrence_number?: number | null
+  installments_number: number | null
 }
