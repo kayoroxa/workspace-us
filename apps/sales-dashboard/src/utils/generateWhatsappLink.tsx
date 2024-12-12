@@ -57,15 +57,23 @@ ${
   if (event.event === 'PURCHASE_DELAYED') {
     const lastParcela = event.installments_number
     const currentParcela = event.recurrence_number
+    const faltando =
+      lastParcela && currentParcela ? lastParcela - currentParcela + 1 : false
+    const mensagemFaltando =
+      faltando && faltando < 3
+        ? `Está faltando apenas ${faltando} parcela${
+            faltando === 1 ? '' : 's'
+          } 🎉`
+        : ''
 
     const isLast = lastParcela === currentParcela || currentParcela === 12
 
     message = `
 ${bomDia}, ${firstName}, sua ${
-      isLast ? 'ultima' : event.recurrence_number + 'ª'
+      isLast ? '*última*' : event.recurrence_number + 'ª'
     } parcela, não foi possível ser debitada 😕 
     
-Confere se está tudo certo com o seu cartão para você poder continuar com o acesso ao curso.
+Confere se está tudo certo com o seu cartão para você poder continuar com o acesso ao curso. ${mensagemFaltando}
 
 Por esse link você consegue acompanhar suas parcelas: https://consumer.hotmart.com/purchase
     `
