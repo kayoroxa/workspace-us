@@ -73,7 +73,7 @@ ${
       message = `${bomDia}, ${firstName}, sua parcela, não foi possível ser debitada 😕`
     }
 
-    message = `
+    message += `
 
 Confere se está tudo certo com o seu cartão para você poder continuar com o acesso ao curso.
 
