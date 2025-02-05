@@ -3,6 +3,11 @@ import clientPromise from '@/services/mongodb'
 import { generateWhatsappLink } from '@/utils/generateWhatsappLink'
 import { _EventBuy } from '@/utils/types/eventBuy'
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { PostHog } from 'posthog-node'
+
+const posthog = new PostHog('phc_KPVLO4Ylczu9Zf75JjFVZ2JzAe8opg5BfLDNq7lQFb3', {
+  host: 'https://us.i.posthog.com',
+})
 
 export default async function handler(
   req: NextApiRequest,
@@ -36,6 +41,36 @@ export default async function handler(
     try {
       const result = await salesCollection.insertOne(data)
       const whatsappLink = generateWhatsappLink(data)
+
+      if (data.ref) {
+        posthog.capture({
+          distinctId: data.ref, // Usando ref como distinct_id
+          event: event, // Nome do evento
+          properties: {
+            productName: data.productName,
+            buyerName: data.buyerName,
+            phone: data.phone,
+            email: data.email,
+            paymentMethod: data.pagamento,
+            refusalReason: data.refusal_reason,
+            recurrenceNumber: data.recurrence_number,
+            installmentsNumber: data.installments_number,
+            src: data.src,
+            ref: data.ref,
+            date: data.date,
+          },
+        })
+
+        // 🔹 Identificar usuário no PostHog
+        posthog.identify({
+          distinctId: data.ref,
+          properties: {
+            email: data.email,
+            name: data.buyerName,
+            phone: data.phone,
+          },
+        })
+      }
 
       return res.status(201).json({
         data: { ...data, id: result.insertedId.toString() },
