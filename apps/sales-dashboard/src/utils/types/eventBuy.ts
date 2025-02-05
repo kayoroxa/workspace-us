@@ -13,4 +13,6 @@ export type _EventBuy = {
   refusal_reason?: string
   recurrence_number?: number | null
   installments_number: number | null
+  src?: string
+  ref?: string
 }
