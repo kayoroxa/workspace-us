@@ -36,7 +36,10 @@ export default async function handler(
         eventData.purchase?.origin?.src ??
         eventData.purchase?.origin?.sck ??
         null,
-      ref: eventData.purchase?.origin?.ref || null,
+      distinctId:
+        eventData.purchase?.origin?.ref ??
+        eventData.purchase?.origin?.utm_content ??
+        null,
     }
 
     // "refusal_reason": "Transaction refused",
@@ -45,9 +48,9 @@ export default async function handler(
       const result = await salesCollection.insertOne(data)
       const whatsappLink = generateWhatsappLink(data)
 
-      if (data.ref) {
+      if (data.distinctId) {
         posthog.capture({
-          distinctId: data.ref, // Usando ref como distinct_id
+          distinctId: data.distinctId, // Usando ref como distinct_id
           event: event, // Nome do evento
           properties: {
             productName: data.productName,
@@ -59,14 +62,14 @@ export default async function handler(
             recurrenceNumber: data.recurrence_number,
             installmentsNumber: data.installments_number,
             src: data.src,
-            ref: data.ref,
+            distinctId: data.distinctId,
             date: data.date,
           },
         })
 
         // 🔹 Identificar usuário no PostHog
         posthog.identify({
-          distinctId: data.ref,
+          distinctId: data.distinctId,
           properties: {
             email: data.email,
             name: data.buyerName,
@@ -125,7 +128,8 @@ export default async function handler(
           installments_number: sale.installments_number || null,
           recurrence_number: sale.recurrence_number || null,
           src: sale.src === undefined ? undefined : sale.src, // 🔹 Adicionado src
-          ref: sale.ref === undefined ? undefined : sale.ref, // 🔹 Adicionado ref
+          distinctId:
+            sale.distinctId === undefined ? undefined : sale.distinctId, // 🔹 Adicionado ref
         } as _EventBuy
       })
 
