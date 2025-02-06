@@ -33,10 +33,10 @@ export default async function handler(
       installments_number:
         eventData.purchase?.payment?.installments_number || null,
       src:
-        eventData.purchase?.origin?.src ||
-        eventData.purchase?.origin?.sck ||
-        null, // 🔹 Adicionado src
-      ref: eventData.purchase?.origin?.ref || null, // 🔹 Adicionado ref
+        eventData.purchase?.origin?.src ??
+        eventData.purchase?.origin?.sck ??
+        null,
+      ref: eventData.purchase?.origin?.ref || null,
     }
 
     // "refusal_reason": "Transaction refused",
