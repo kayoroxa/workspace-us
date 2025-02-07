@@ -33,13 +33,12 @@ export default async function handler(
       installments_number:
         eventData.purchase?.payment?.installments_number || null,
       src:
-        eventData.purchase?.origin?.src ??
-        eventData.purchase?.origin?.sck ??
+        eventData.purchase?.origin?.sck?.replace(/id=[\w-]+/, '') ??
+        eventData.purchase?.origin?.src?.replace(/id=[\w-]+/, '') ??
         null,
-      distinctId:
-        eventData.purchase?.origin?.ref ??
-        eventData.purchase?.origin?.utm_content ??
-        null,
+      distinctId: eventData.purchase?.origin?.sck
+        ? (eventData.purchase?.origin?.sck.match(/id=([\w-]+)/) || [])[1]
+        : null,
     }
 
     // "refusal_reason": "Transaction refused",
