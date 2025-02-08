@@ -7,6 +7,7 @@ import { PostHog } from 'posthog-node'
 
 const posthog = new PostHog('phc_KPVLO4Ylczu9Zf75JjFVZ2JzAe8opg5BfLDNq7lQFb3', {
   host: 'https://us.i.posthog.com',
+  flushAt: 2,
 })
 
 export default async function handler(
@@ -48,13 +49,25 @@ export default async function handler(
       const whatsappLink = generateWhatsappLink(data)
 
       if (data.distinctId) {
+        // 🔹 Identificar usuário no PostHog
+        posthog.identify({
+          distinctId: data.distinctId,
+          properties: {
+            email: data.email,
+            name: data.buyerName,
+            phone: data.phone,
+          },
+        })
+
+        const timestamp =
+          eventData.purchase?.approved_date &&
+          Number(eventData.purchase?.approved_date) !== 0
+            ? new Date(Number(eventData.purchase.approved_date))
+            : new Date()
+
         posthog.capture({
           distinctId: data.distinctId, // Usando ref como distinct_id
-          // timestamp:
-          //   eventData.purchase?.approved_date &&
-          //   Number(eventData.purchase?.approved_date) !== 0
-          //     ? new Date(Number(eventData.purchase.approved_date))
-          //     : new Date(),
+          timestamp,
           event: event, // Nome do evento
           properties: {
             productName: data.productName,
@@ -68,16 +81,6 @@ export default async function handler(
             src: data.src,
             distinctId: data.distinctId,
             date: data.date,
-          },
-        })
-
-        // 🔹 Identificar usuário no PostHog
-        posthog.identify({
-          distinctId: data.distinctId,
-          properties: {
-            email: data.email,
-            name: data.buyerName,
-            phone: data.phone,
           },
         })
       }
