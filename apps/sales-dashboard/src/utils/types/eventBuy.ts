@@ -14,5 +14,5 @@ export type _EventBuy = {
   recurrence_number?: number | null
   installments_number: number | null
   src?: string
-  ref?: string
+  distinctId?: string
 }
