@@ -50,11 +50,11 @@ export default async function handler(
       if (data.distinctId) {
         posthog.capture({
           distinctId: data.distinctId, // Usando ref como distinct_id
-          timestamp:
-            eventData.purchase?.approved_date &&
-            Number(eventData.purchase?.approved_date) !== 0
-              ? new Date(Number(eventData.purchase.approved_date))
-              : new Date(),
+          // timestamp:
+          //   eventData.purchase?.approved_date &&
+          //   Number(eventData.purchase?.approved_date) !== 0
+          //     ? new Date(Number(eventData.purchase.approved_date))
+          //     : new Date(),
           event: event, // Nome do evento
           properties: {
             productName: data.productName,
