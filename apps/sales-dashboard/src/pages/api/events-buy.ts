@@ -7,7 +7,7 @@ import { PostHog } from 'posthog-node'
 
 const posthog = new PostHog('phc_KPVLO4Ylczu9Zf75JjFVZ2JzAe8opg5BfLDNq7lQFb3', {
   host: 'https://us.i.posthog.com',
-  flushAt: 2,
+  flushAt: 1,
 })
 
 export default async function handler(
@@ -40,6 +40,9 @@ export default async function handler(
       distinctId: eventData.purchase?.origin?.sck
         ? (eventData.purchase?.origin?.sck.match(/id=([\w-]+)/) || [])[1]
         : null,
+      // sessionId: eventData.purchase?.origin?.sck
+      //   ? (eventData.purchase?.origin?.sck.match(/si=([\w-]+)/) || [])[1]
+      //   : null,
     }
 
     // "refusal_reason": "Transaction refused",
