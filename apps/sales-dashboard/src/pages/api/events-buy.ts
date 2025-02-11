@@ -7,7 +7,7 @@ import { PostHog } from 'posthog-node'
 
 const posthog = new PostHog('phc_KPVLO4Ylczu9Zf75JjFVZ2JzAe8opg5BfLDNq7lQFb3', {
   host: 'https://us.i.posthog.com',
-  flushAt: 1,
+  flushAt: 2,
 })
 
 export default async function handler(
@@ -40,6 +40,7 @@ export default async function handler(
       distinctId: eventData.purchase?.origin?.sck
         ? (eventData.purchase?.origin?.sck.match(/id=([\w-]+)/) || [])[1]
         : null,
+      approved_date: eventData.purchase?.approved_date,
       // sessionId: eventData.purchase?.origin?.sck
       //   ? (eventData.purchase?.origin?.sck.match(/si=([\w-]+)/) || [])[1]
       //   : null,
@@ -50,6 +51,9 @@ export default async function handler(
     try {
       const result = await salesCollection.insertOne(data)
       const whatsappLink = generateWhatsappLink(data)
+
+      let madeAPostHogRequest = false
+      let captureData
 
       if (data.distinctId) {
         // 🔹 Identificar usuário no PostHog
@@ -68,7 +72,7 @@ export default async function handler(
             ? new Date(Number(eventData.purchase.approved_date))
             : new Date()
 
-        posthog.capture({
+        const captureData = {
           distinctId: data.distinctId, // Usando ref como distinct_id
           timestamp,
           event: event, // Nome do evento
@@ -85,12 +89,18 @@ export default async function handler(
             distinctId: data.distinctId,
             date: data.date,
           },
-        })
+        }
+
+        posthog.capture(captureData)
+
+        madeAPostHogRequest = true
       }
 
       return res.status(201).json({
         data: { ...data, id: result.insertedId.toString() },
         whatsappLink,
+        madeAPostHogRequest,
+        captureData,
       })
     } catch (error: unknown) {
       if (error instanceof Error) {

@@ -15,4 +15,6 @@ export type _EventBuy = {
   installments_number: number | null
   src?: string
   distinctId?: string
+  sessionId?: string
+  approved_date?: number
 }
