@@ -53,7 +53,8 @@ export default async function handler(
       const whatsappLink = generateWhatsappLink(data)
 
       let madeAPostHogRequest = false
-      let captureData
+      let captureData: any = null
+      let posthogStatus = 'not_sent'
 
       if (data.distinctId) {
         // 🔹 Identificar usuário no PostHog
@@ -94,7 +95,13 @@ export default async function handler(
         posthog.capture(captureData)
 
         madeAPostHogRequest = true
-        await posthog.flush()
+        try {
+          await posthog.flush()
+          posthogStatus = 'success'
+        } catch (flushError) {
+          // Se ocorrer erro no flush, você pode registrar ou tratar de outra forma
+          posthogStatus = 'flush_error'
+        }
       }
 
       return res.status(201).json({
@@ -102,6 +109,7 @@ export default async function handler(
         whatsappLink,
         madeAPostHogRequest,
         captureData,
+        posthogStatus,
       })
     } catch (error: unknown) {
       if (error instanceof Error) {
