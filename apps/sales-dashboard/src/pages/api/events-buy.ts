@@ -72,7 +72,7 @@ export default async function handler(
             ? new Date(Number(eventData.purchase.approved_date))
             : new Date()
 
-        const captureData = {
+        captureData = {
           distinctId: data.distinctId, // Usando ref como distinct_id
           timestamp,
           event: event, // Nome do evento
@@ -94,6 +94,7 @@ export default async function handler(
         posthog.capture(captureData)
 
         madeAPostHogRequest = true
+        await posthog.flush()
       }
 
       return res.status(201).json({
