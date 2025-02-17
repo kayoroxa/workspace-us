@@ -7,7 +7,7 @@ import { PostHog } from 'posthog-node'
 
 const posthog = new PostHog('phc_KPVLO4Ylczu9Zf75JjFVZ2JzAe8opg5BfLDNq7lQFb3', {
   host: 'https://us.i.posthog.com',
-  flushAt: 2,
+  flushAt: 1,
 })
 
 export default async function handler(
@@ -29,10 +29,10 @@ export default async function handler(
       email: eventData.buyer.email,
       date: creation_date,
       pagamento: eventData.purchase?.payment?.type,
-      refusal_reason: eventData.purchase?.payment?.refusal_reason || null,
+      refusal_reason: eventData.purchase?.payment?.refusal_reason || undefined,
       recurrence_number: eventData.purchase?.recurrence_number,
       installments_number:
-        eventData.purchase?.payment?.installments_number || null,
+        eventData.purchase?.payment?.installments_number || undefined,
       src:
         eventData.purchase?.origin?.sck?.replace(/id=[\w-]+/, '') ??
         eventData.purchase?.origin?.src?.replace(/id=[\w-]+/, '') ??
@@ -49,24 +49,14 @@ export default async function handler(
     // "refusal_reason": "Transaction refused",
 
     try {
-      const result = await salesCollection.insertOne(data)
+      // const result = await salesCollection.insertOne(data)
       const whatsappLink = generateWhatsappLink(data)
 
       let madeAPostHogRequest = false
       let captureData: any = null
       let posthogStatus = 'not_sent'
 
-      if (data.distinctId) {
-        // 🔹 Identificar usuário no PostHog
-        posthog.identify({
-          distinctId: data.distinctId,
-          properties: {
-            email: data.email,
-            name: data.buyerName,
-            phone: data.phone,
-          },
-        })
-
+      if (data.distinctId && data.distinctId !== 'undefined') {
         const timestamp =
           eventData.purchase?.approved_date &&
           Number(eventData.purchase?.approved_date) !== 0
@@ -94,9 +84,20 @@ export default async function handler(
 
         posthog.capture(captureData)
 
+        // posthog.identify({
+        //   distinctId: data.distinctId,
+        //   properties: {
+        //     email: data.email,
+        //     name: data.buyerName,
+        //     phone: data.phone,
+        //   },
+        // })
+
         madeAPostHogRequest = true
         try {
-          await posthog.flush()
+          await new Promise(resolve => setTimeout(resolve, 1000))
+          const resultPost = await posthog.flush()
+          console.log('result', resultPost)
           posthogStatus = 'success'
         } catch (flushError) {
           // Se ocorrer erro no flush, você pode registrar ou tratar de outra forma
@@ -105,7 +106,7 @@ export default async function handler(
       }
 
       return res.status(201).json({
-        data: { ...data, id: result.insertedId.toString() },
+        // data: { ...data, id: result.insertedId.toString() },
         whatsappLink,
         madeAPostHogRequest,
         captureData,
