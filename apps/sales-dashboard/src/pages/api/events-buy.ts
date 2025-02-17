@@ -54,7 +54,7 @@ export default async function handler(
 
       let madeAPostHogRequest = false
       let captureData: any = null
-      let posthogStatus = 'not_sent'
+      let resultPost: any = null
 
       if (data.distinctId && data.distinctId !== 'undefined') {
         const timestamp =
@@ -84,24 +84,22 @@ export default async function handler(
 
         posthog.capture(captureData)
 
-        // posthog.identify({
-        //   distinctId: data.distinctId,
-        //   properties: {
-        //     email: data.email,
-        //     name: data.buyerName,
-        //     phone: data.phone,
-        //   },
-        // })
+        posthog.identify({
+          distinctId: data.distinctId,
+          properties: {
+            email: data.email,
+            name: data.buyerName,
+            phone: data.phone,
+          },
+        })
 
         madeAPostHogRequest = true
         try {
           await new Promise(resolve => setTimeout(resolve, 1000))
-          const resultPost = await posthog.flush()
+          resultPost = await posthog.flush()
           console.log('result', resultPost)
-          posthogStatus = 'success'
         } catch (flushError) {
           // Se ocorrer erro no flush, você pode registrar ou tratar de outra forma
-          posthogStatus = 'flush_error'
         }
       }
 
@@ -109,8 +107,7 @@ export default async function handler(
         // data: { ...data, id: result.insertedId.toString() },
         whatsappLink,
         madeAPostHogRequest,
-        captureData,
-        posthogStatus,
+        resultPost,
       })
     } catch (error: unknown) {
       if (error instanceof Error) {
