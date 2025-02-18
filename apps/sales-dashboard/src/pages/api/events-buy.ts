@@ -49,7 +49,7 @@ export default async function handler(
     // "refusal_reason": "Transaction refused",
 
     try {
-      // const result = await salesCollection.insertOne(data)
+      const result = await salesCollection.insertOne(data)
       const whatsappLink = generateWhatsappLink(data)
 
       let madeAPostHogRequest = false
@@ -104,7 +104,7 @@ export default async function handler(
       }
 
       return res.status(201).json({
-        // data: { ...data, id: result.insertedId.toString() },
+        data: { ...data, id: result.insertedId.toString() },
         whatsappLink,
         madeAPostHogRequest,
         resultPost,
