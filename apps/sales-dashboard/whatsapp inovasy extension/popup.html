@@ -4,9 +4,19 @@
     <title>WhatsApp API Fetch</title>
     <style>
       body {
-        width: 200px;
+        width: 300px;
         padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
       }
+
+      .button-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+
       button {
         padding: 10px;
         background-color: #25d366;
@@ -14,12 +24,20 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        width: 100%;
+        width: 48%; /* Ajuste para os dois botões ficarem lado a lado */
+      }
+
+      /* Estilo para o botão "Enviar Vídeo" */
+      #send-video {
+        background-color: #ff6666; /* Cor de fundo diferente para o botão "Enviar Vídeo" */
       }
     </style>
   </head>
   <body>
-    <button id="fetch-data">Injetar Botões</button>
+    <div class="button-container">
+      <button id="fetch-data">Injetar Botões</button>
+      <button id="send-video">Enviar Vídeo</button>
+    </div>
     <script src="popup.js"></script>
   </body>
 </html>

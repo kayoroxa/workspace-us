@@ -6,7 +6,8 @@ var buttonContainer = null
 function injectLoadButton() {
   var submitButton = document.createElement('button')
   submitButton.id = 'submitButton' // Define o ID para aplicar o estilo do CSS
-  submitButton.innerText = 'Carregar Botões'
+  const textButton = 'Carregar Sells'
+  submitButton.innerText = textButton
 
   // Adiciona o botão ao corpo da página do WhatsApp Web
   document.body.appendChild(submitButton)
@@ -39,7 +40,7 @@ function injectLoadButton() {
       // Fechar botões e esconder o container
       if (buttonContainer) {
         buttonContainer.remove()
-        submitButton.innerText = 'Carregar Botões'
+        submitButton.innerText = textButton
         submitButton.style.backgroundColor = '#25D366' // Verde WhatsApp
         buttonsVisible = false
       }
@@ -123,3 +124,72 @@ function getButtonLabel(link) {
 
 // Injetar o botão "Carregar Botões" quando o WhatsApp Web carregar
 injectLoadButton()
+
+async function sendVideoToWhatsApp() {
+  // Caminho do vídeo local na extensão
+  const videoUrl = chrome.runtime.getURL('assets/video.mp4')
+
+  try {
+    // Carregar o vídeo como Blob
+    const response = await fetch(videoUrl)
+    if (!response.ok) throw new Error('Erro ao carregar o vídeo')
+
+    const blob = await response.blob()
+    const file = new File([blob], 'video.mp4', { type: 'video/mp4' })
+
+    // Encontrar o input de arquivos
+    const inputFile = document.querySelector('input[type="file"]')
+    if (!inputFile) {
+      console.error('Campo de upload de arquivos não encontrado!')
+      return
+    }
+
+    // Alterar o atributo 'accept' para aceitar apenas vídeos temporariamente
+    const originalAccept = inputFile.getAttribute('accept') || ''
+    inputFile.setAttribute('accept', 'video/*')
+
+    // Adicionar o arquivo ao input usando DataTransfer
+    const dataTransfer = new DataTransfer()
+    dataTransfer.items.add(file)
+
+    // Atribuir o arquivo ao input.files
+    Object.defineProperty(inputFile, 'files', {
+      value: dataTransfer.files,
+      writable: false,
+    })
+
+    // Disparar o evento 'change' para o WhatsApp processar o upload
+    const changeEvent = new Event('change', { bubbles: true })
+    inputFile.dispatchEvent(changeEvent)
+
+    console.log('Vídeo carregado com sucesso!')
+
+    // Restaurar o atributo 'accept' original
+    inputFile.setAttribute('accept', originalAccept)
+  } catch (error) {
+    console.error('Erro ao enviar o vídeo:', error)
+  }
+}
+
+// Função para adicionar um botão para enviar o vídeo
+function addUploadButton() {
+  const button = document.createElement('button')
+  button.innerText = 'Enviar Vídeo'
+  button.style.position = 'fixed'
+  button.style.top = '20px'
+  button.style.left = '20px'
+  button.style.backgroundColor = '#4CAF50'
+  button.style.color = 'white'
+  button.style.padding = '10px'
+  button.style.border = 'none'
+  button.style.borderRadius = '5px'
+  button.style.cursor = 'pointer'
+  button.style.zIndex = 1000
+
+  button.onclick = sendVideoToWhatsApp // Chama a função de envio de vídeo
+
+  document.body.appendChild(button) // Adiciona o botão à página
+}
+
+// Adiciona o botão ao carregar a página
+addUploadButton()
