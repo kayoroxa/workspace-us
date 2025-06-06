@@ -53,7 +53,6 @@ export default async function handler(
       const whatsappLink = generateWhatsappLink(data)
 
       let madeAPostHogRequest = false
-      let captureData: any = null
       let resultPost: any = null
 
       if (data.distinctId && data.distinctId !== 'undefined') {
@@ -63,10 +62,24 @@ export default async function handler(
             ? new Date(Number(eventData.purchase.approved_date))
             : new Date()
 
-        captureData = {
-          distinctId: data.distinctId, // Usando ref como distinct_id
-          timestamp,
-          event: event, // Nome do evento
+        posthog.alias({
+          distinctId: data.email,
+          alias: data.distinctId,
+        })
+
+        posthog.identify({
+          distinctId: data.email,
+          properties: {
+            email: data.email,
+            name: data.buyerName,
+            phone: data.phone,
+          },
+        })
+
+        posthog.capture({
+          distinctId: data.email,
+          event: event,
+          timestamp: timestamp,
           properties: {
             productName: data.productName,
             buyerName: data.buyerName,
@@ -77,19 +90,8 @@ export default async function handler(
             recurrenceNumber: data.recurrence_number,
             installmentsNumber: data.installments_number,
             src: data.src,
-            distinctId: data.distinctId,
+            distinctId: data.distinctId, // ainda pode mandar isso como dado auxiliar
             date: data.date,
-          },
-        }
-
-        posthog.capture(captureData)
-
-        posthog.identify({
-          distinctId: data.distinctId,
-          properties: {
-            email: data.email,
-            name: data.buyerName,
-            phone: data.phone,
           },
         })
 
