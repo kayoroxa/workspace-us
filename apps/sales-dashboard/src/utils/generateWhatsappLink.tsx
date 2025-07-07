@@ -34,7 +34,7 @@ ${bomDia} ${firstName} 😃😃 Parabéns por sua iniciativa de querer ter o ing
 Qualquer dúvida que você tiver no curso pode me chamar por aqui.
 
 Você pode acessar o curso por este link: 
-https://formula-da-fluencia.club.hotmart.com
+https://formuladafluencia.vercel.app/alunos
     `
   }
 
