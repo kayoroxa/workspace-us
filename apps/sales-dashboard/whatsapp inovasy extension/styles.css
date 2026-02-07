@@ -60,3 +60,171 @@ button:hover,
 a:hover {
   text-decoration: underline;
 }
+
+/* === Inovasy: status de resposta no header do chat === */
+#inovasy-reply-chip.inovasy-reply-chip {
+  margin-left: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  z-index: 9999;
+  align-self: center;
+}
+
+#inovasy-reply-chip.inovasy-reply-chip:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+#inovasy-reply-chip.inovasy-pending {
+  background: rgba(239, 68, 68, 0.16);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.45);
+}
+
+#inovasy-reply-chip.inovasy-responded {
+  background: rgba(34, 197, 94, 0.16);
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.45);
+}
+
+/* === Inovasy: botao no header global + overlay de pendencias === */
+#inovasy-pending-global-btn.inovasy-pending-global-btn {
+  margin-left: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(37, 211, 102, 0.14);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#inovasy-pending-global-btn .inovasy-pending-badge {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(239, 68, 68, 0.95);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+#inovasy-pending-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+}
+
+#inovasy-pending-overlay.open {
+  display: block;
+}
+
+#inovasy-pending-overlay .inovasy-pending-modal {
+  position: absolute;
+  top: 80px;
+  right: 18px;
+  width: 380px;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 110px);
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(17, 24, 39, 0.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  color: rgba(255, 255, 255, 0.92);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
+
+#inovasy-pending-overlay .inovasy-pending-top {
+  padding: 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+#inovasy-pending-overlay .inovasy-pending-title {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+#inovasy-pending-overlay .inovasy-pending-sub {
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+}
+
+#inovasy-pending-overlay .inovasy-pending-actions {
+  display: inline-flex;
+  gap: 8px;
+}
+
+#inovasy-pending-overlay .inovasy-pending-btn {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 7px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+#inovasy-pending-overlay .inovasy-pending-btn.secondary {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+#inovasy-pending-overlay .inovasy-pending-btn.small {
+  padding: 6px 9px;
+  font-size: 12px;
+}
+
+#inovasy-pending-overlay .inovasy-pending-list {
+  padding: 10px;
+  overflow: auto;
+  max-height: calc(100vh - 190px);
+}
+
+#inovasy-pending-overlay .inovasy-pending-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.22);
+  margin-bottom: 8px;
+}
+
+#inovasy-pending-overlay .inovasy-pending-who {
+  font-weight: 800;
+  cursor: pointer;
+}
+
+#inovasy-pending-overlay .inovasy-pending-tags {
+  margin-top: 3px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 12px;
+}
+
+#inovasy-pending-overlay .inovasy-pending-empty {
+  padding: 14px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+}

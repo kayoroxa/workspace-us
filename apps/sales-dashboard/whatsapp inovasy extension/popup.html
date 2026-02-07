@@ -1,37 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
-    <title>WhatsApp API Fetch</title>
-    <style>
-      body {
-        width: 300px;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .button-container {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-      }
-
-      button {
-        padding: 10px;
-        background-color: #25d366;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 48%; /* Ajuste para os dois botões ficarem lado a lado */
-      }
-    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Conversas pendentes</title>
+    <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <div class="button-container">
-      <button id="fetch-data">Injetar Botões</button>
-    </div>
+    <header class="top">
+      <div>
+        <div class="title">Conversas pendentes</div>
+        <div class="sub" id="status">WhatsApp Web: verificando...</div>
+      </div>
+      <button class="btn secondary" id="open-dashboard" type="button">
+        Dashboard
+      </button>
+    </header>
+
+    <section class="card">
+      <div class="row">
+        <label class="label" for="phone">Numero</label>
+        <input id="phone" class="input" placeholder="Ex: +55 11 97438-6086" />
+      </div>
+      <div class="row">
+        <label class="label" for="tags">Tags (separe por virgula)</label>
+        <input id="tags" class="input" placeholder="ex: financeiro, entrega" />
+      </div>
+      <div class="actions">
+        <button class="btn" id="add" type="button">Adicionar</button>
+        <button class="btn secondary" id="capture" type="button">
+          Capturar chat aberto
+        </button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row inline">
+        <input
+          id="search"
+          class="input"
+          placeholder="Buscar por numero ou tag"
+        />
+        <button class="btn secondary" id="refresh" type="button">
+          Atualizar
+        </button>
+      </div>
+      <div class="list" id="list"></div>
+      <div class="empty" id="empty">Nenhuma conversa salva ainda.</div>
+    </section>
+
+    <section class="card">
+      <div class="row inline">
+        <input id="new-tag" class="input" placeholder="Criar tag" />
+        <button class="btn secondary" id="add-tag" type="button">
+          Adicionar tag
+        </button>
+      </div>
+      <div class="tags" id="tags-bank"></div>
+    </section>
+
     <script src="popup.js"></script>
   </body>
 </html>

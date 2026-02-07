@@ -3,13 +3,14 @@
   "name": "Inovasy Helper for WhatsApp Web",
   "version": "1.0.2",
   "description": "Ferramentas Inovasy no WhatsApp Web. Nao afiliado ao WhatsApp/Meta.",
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "storage", "activeTab", "scripting"],
   "host_permissions": [
     "https://web.whatsapp.com/*",
     "https://inovasy-sells-dashboard.netlify.app/*"
   ],
   "action": {
-    "default_title": "Inovasy Sells"
+    "default_title": "Inovasy Sells",
+    "default_popup": "popup.html"
   },
   "background": {
     "service_worker": "background.js"

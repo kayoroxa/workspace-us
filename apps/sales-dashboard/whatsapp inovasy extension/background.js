@@ -42,8 +42,22 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
         url.searchParams.set("phone", cleanPhone);
         if (text) url.searchParams.set("text", text);
 
+        // Prefer reusing an existing WhatsApp Web tab.
+        const existingTabs = await chrome.tabs.query({
+          url: "https://web.whatsapp.com/*",
+        });
+
+        const existing = existingTabs && existingTabs[0];
+        if (existing?.id) {
+          await chrome.tabs.update(existing.id, {
+            url: url.toString(),
+            active: true,
+          });
+          return { ok: true, tabId: existing.id, reused: true };
+        }
+
         const tab = await chrome.tabs.create({ url: url.toString() });
-        return { ok: true, tabId: tab.id };
+        return { ok: true, tabId: tab.id, reused: false };
       }
 
       default:
