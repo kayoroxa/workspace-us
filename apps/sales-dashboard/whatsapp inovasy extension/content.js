@@ -204,7 +204,20 @@ function injectButtons(data) {
         a.href = link;
         a.innerText = getButtonLabel(link);
 
-        if (localStorage.getItem(link)) {
+        var isReviewedOnDb = event && event.reviewed === true;
+        var isReviewedCached =
+          event &&
+          event.id &&
+          localStorage.getItem("inovasy_reviewed_" + event.id);
+        var isClickedLocal = localStorage.getItem(link);
+
+        // If the DB says it's reviewed, keep UI consistent across sessions.
+        if (isReviewedOnDb && !isClickedLocal) {
+          localStorage.setItem(link, "true");
+          isClickedLocal = "true";
+        }
+
+        if (isClickedLocal || isReviewedOnDb || isReviewedCached) {
           a.classList.add("whatsapp-button", "clicked");
           a.onmouseover = function () {
             a.style.cursor = "not-allowed";
