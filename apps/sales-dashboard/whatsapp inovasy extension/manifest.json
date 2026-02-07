@@ -1,21 +1,29 @@
 {
   "manifest_version": 3,
   "name": "Inovasy Helper for WhatsApp Web",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Ferramentas Inovasy no WhatsApp Web. Nao afiliado ao WhatsApp/Meta.",
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["tabs"],
   "host_permissions": [
     "https://web.whatsapp.com/*",
     "https://inovasy-sells-dashboard.netlify.app/*"
   ],
   "action": {
-    "default_popup": "popup.html"
+    "default_title": "Inovasy Sells"
+  },
+  "background": {
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
       "matches": ["https://web.whatsapp.com/*"],
       "js": ["content.js"],
       "css": ["styles.css"]
+    },
+    {
+      "matches": ["https://inovasy-sells-dashboard.netlify.app/*"],
+      "js": ["netlify-bridge.js"],
+      "run_at": "document_start"
     }
   ],
   "icons": {

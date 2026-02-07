@@ -40,6 +40,8 @@ function markSaleAsReviewedOnDb(saleId) {
 
 // === BOTÃO PARA ABRIR CHAT VIA E-MAIL (USANDO window.prompt) ===
 function injectChatByEmailButton() {
+  if (document.getElementById("chatEmailButton")) return;
+
   var chatButton = document.createElement("button");
   chatButton.id = "chatEmailButton";
   chatButton.innerText = "Abrir Chat por E-mail";
@@ -128,6 +130,8 @@ function openChat(phone) {
 
 // === BOTÃO PARA CARREGAR SELLS (sem alteração) ===
 function injectLoadButton() {
+  if (document.getElementById("submitButton")) return;
+
   var submitButton = document.createElement("button");
   submitButton.id = "submitButton";
   const textButton = "Carregar Sells";
