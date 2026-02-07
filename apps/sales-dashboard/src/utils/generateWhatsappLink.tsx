@@ -115,11 +115,11 @@ Gostaria de tentar dessa forma? 🤝🙂
 
   if (event.event === 'PURCHASE_OUT_OF_SHOPPING_CART') {
     message = `
-${bomDia} ${firstName} 😊 Vi que você estava interessado no meu curso de inglês, mas a compra não foi concluída.
+${bomDia} ${firstName}, aqui quem fala é Caio o professor do curso, do canal Primo Bilíngue. 🦜
 
-Precisa de mais informações sobre o curso? Estou aqui para te ajudar!
+Vi que você estava interessado no meu curso de inglês, mas a compra não foi concluída.
 
-*Quer que eu te mande alguns depoimentos dos alunos??*
+*Qual seu nível atual no inglês?**
     `
   }
 

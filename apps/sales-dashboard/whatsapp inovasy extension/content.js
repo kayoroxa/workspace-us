@@ -31,10 +31,10 @@ function markSaleAsReviewedOnDb(saleId) {
         localStorage.setItem(storageKey, "true");
       })
       .catch(function (err) {
-        console.error("Erro ao atualizar reviewed no DB:", err);
+        console.error("Erro ao atualizar reviewed no DB");
       });
   } catch (err) {
-    console.error("Erro inesperado ao marcar reviewed no DB:", err);
+    console.error("Erro inesperado ao marcar reviewed no DB");
   }
 }
 
@@ -74,7 +74,6 @@ function fetchChatByEmail(email) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log("Resposta da API:", data);
       if (data.phone) {
         openChat(data.phone);
       } else {
@@ -82,27 +81,22 @@ function fetchChatByEmail(email) {
       }
     })
     .catch((error) => {
-      console.error("Erro ao buscar telefone:", error);
+      console.error("Erro ao buscar telefone");
       alert("Erro ao buscar telefone.");
     });
 }
 
 // === ABRIR O CHAT SEM RECARREGAR A PÁGINA, SIMULANDO O CLICK DE UM LINK ===
 function openChat(phone) {
-  console.log("Função openChat chamada com phone:", phone);
-
   // Aplica a lógica para adicionar o código do país, se necessário
   const number =
     phone.length === 11 && phone.toString()[2] === "9" ? "55" + phone : phone;
-  console.log("Número após verificação de código do país:", number);
 
   // Remove quaisquer caracteres não numéricos
   var cleanPhone = number.replace(/\D/g, "");
-  console.log("Número limpo:", cleanPhone);
 
   // Monta a URL, incluindo o parâmetro text com um valor padrão ("Olá")
   var link = `https://web.whatsapp.com/send/?phone=${cleanPhone}&text=Olá`;
-  console.log("Link gerado:", link);
 
   // Cria um elemento de link temporário para simular o clique
   var tempAnchor = document.createElement("a");
@@ -167,7 +161,7 @@ function injectLoadButton() {
           submitButton.style.cursor = "pointer";
           buttonsVisible = true;
         })
-        .catch((error) => console.error("Erro ao buscar dados da API:", error))
+        .catch(() => console.error("Erro ao buscar dados da API"))
         .finally(() => {
           submitButton.disabled = false;
         });
@@ -273,62 +267,3 @@ function getButtonLabel(link) {
 // Injetar os dois botões na página
 injectChatByEmailButton();
 injectLoadButton();
-
-// === OPCIONAL: BOTÃO DE ENVIAR VÍDEO ===
-async function sendVideoToWhatsApp() {
-  const videoUrl = chrome.runtime.getURL("assets/video.mp4");
-
-  try {
-    const response = await fetch(videoUrl);
-    if (!response.ok) throw new Error("Erro ao carregar o vídeo");
-
-    const blob = await response.blob();
-    const file = new File([blob], "video.mp4", { type: "video/mp4" });
-
-    const inputFile = document.querySelector('input[type="file"]');
-    if (!inputFile) {
-      console.error("Campo de upload de arquivos não encontrado!");
-      return;
-    }
-
-    const originalAccept = inputFile.getAttribute("accept") || "";
-    inputFile.setAttribute("accept", "video/*");
-
-    const dataTransfer = new DataTransfer();
-    dataTransfer.items.add(file);
-
-    Object.defineProperty(inputFile, "files", {
-      value: dataTransfer.files,
-      writable: false,
-    });
-
-    const changeEvent = new Event("change", { bubbles: true });
-    inputFile.dispatchEvent(changeEvent);
-
-    console.log("Vídeo carregado com sucesso!");
-
-    inputFile.setAttribute("accept", originalAccept);
-  } catch (error) {
-    console.error("Erro ao enviar o vídeo:", error);
-  }
-}
-
-function addUploadButton() {
-  const button = document.createElement("button");
-  button.innerText = "Enviar Vídeo";
-  button.style.position = "fixed";
-  button.style.top = "20px";
-  button.style.left = "20px";
-  button.style.backgroundColor = "#4CAF50";
-  button.style.color = "white";
-  button.style.padding = "10px";
-  button.style.border = "none";
-  button.style.borderRadius = "5px";
-  button.style.cursor = "pointer";
-  button.style.zIndex = 1000;
-
-  button.onclick = sendVideoToWhatsApp;
-  document.body.appendChild(button);
-}
-
-addUploadButton();

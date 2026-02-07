@@ -1,0 +1,64 @@
+-[] botão de enviar videos:
+
+// === OPCIONAL: BOTÃO DE ENVIAR VÍDEO ===
+async function sendVideoToWhatsApp() {
+  const videoUrl = chrome.runtime.getURL("assets/video.mp4");
+
+  try {
+    const response = await fetch(videoUrl);
+    if (!response.ok) throw new Error("Erro ao carregar o vídeo");
+
+    const blob = await response.blob();
+    const file = new File([blob], "video.mp4", { type: "video/mp4" });
+
+    const inputFile = document.querySelector('input[type="file"]');
+    if (!inputFile) {
+      console.error("Campo de upload de arquivos não encontrado!");
+      return;
+    }
+
+    const originalAccept = inputFile.getAttribute("accept") || "";
+    inputFile.setAttribute("accept", "video/*");
+
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+
+    Object.defineProperty(inputFile, "files", {
+      value: dataTransfer.files,
+      writable: false,
+    });
+
+    const changeEvent = new Event("change", { bubbles: true });
+    inputFile.dispatchEvent(changeEvent);
+
+    console.log("Vídeo carregado com sucesso!");
+
+    inputFile.setAttribute("accept", originalAccept);
+  } catch (error) {
+    console.error("Erro ao enviar o vídeo:", error);
+  }
+}
+
+function addUploadButton() {
+  const button = document.createElement("button");
+  button.innerText = "Enviar Vídeo";
+  button.style.position = "fixed";
+  button.style.top = "20px";
+  button.style.left = "20px";
+  button.style.backgroundColor = "#4CAF50";
+  button.style.color = "white";
+  button.style.padding = "10px";
+  button.style.border = "none";
+  button.style.borderRadius = "5px";
+  button.style.cursor = "pointer";
+  button.style.zIndex = 1000;
+
+  button.onclick = sendVideoToWhatsApp;
+  document.body.appendChild(button);
+}
+
+addUploadButton();
+
+
+
+-[] botão de enviar audios 

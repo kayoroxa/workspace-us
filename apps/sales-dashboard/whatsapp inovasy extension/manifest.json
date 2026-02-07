@@ -1,15 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "WhatsApp Button Injection",
-  "version": "1.0",
-  "description": "Injeta um botão no WhatsApp Web automaticamente.",
-  "permissions": [
-    "activeTab",
-    "scripting",
-    "webRequest",
+  "name": "Inovasy Helper for WhatsApp Web",
+  "version": "1.0.1",
+  "description": "Ferramentas Inovasy no WhatsApp Web. Nao afiliado ao WhatsApp/Meta.",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": [
+    "https://web.whatsapp.com/*",
     "https://inovasy-sells-dashboard.netlify.app/*"
   ],
-  "host_permissions": ["https://web.whatsapp.com/*"],
+  "action": {
+    "default_popup": "popup.html"
+  },
   "content_scripts": [
     {
       "matches": ["https://web.whatsapp.com/*"],
