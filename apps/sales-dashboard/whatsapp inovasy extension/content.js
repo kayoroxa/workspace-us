@@ -16,6 +16,9 @@ function markSaleAsReviewedOnDb(saleId) {
         headers: {
           "Content-Type": "application/json",
         },
+        mode: "cors",
+        credentials: "omit",
+        keepalive: true,
         body: JSON.stringify({ reviewed: true }),
       }
     )

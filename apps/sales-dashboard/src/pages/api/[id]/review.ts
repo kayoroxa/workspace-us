@@ -30,11 +30,15 @@ export default async function handler(
     try {
       const client = await clientPromise;
       const db = client.db("inovasy");
-      const salesCollection = db.collection("sales");
+      const salesCollection = db.collection<any>("sales");
 
-      // Converte `id` para ObjectId e atualiza o campo `reviewed`
+      // Update by ObjectId or string `_id` (some datasets may store `_id` as string)
+      const idFilters = ObjectId.isValid(id)
+        ? [{ _id: new ObjectId(id) }, { _id: id }]
+        : [{ _id: id }];
+
       const result = await salesCollection.findOneAndUpdate(
-        { _id: new ObjectId(id) },
+        { $or: idFilters },
         { $set: { reviewed } },
         { returnDocument: "after" }
       );
