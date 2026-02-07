@@ -1,9 +1,5 @@
 const API_ORIGIN = "https://inovasy-sells-dashboard.netlify.app";
 
-const STORAGE_KEYS = {
-  tags: "inovasy_tags_v1",
-};
-
 function normalizePhone(input) {
   const digits = String(input || "").replace(/\D/g, "");
   if (!digits) return "";
@@ -34,15 +30,6 @@ async function getActiveTab() {
   return tabs && tabs[0];
 }
 
-async function loadTags() {
-  const res = await chrome.storage.local.get([STORAGE_KEYS.tags]);
-  return res[STORAGE_KEYS.tags] || [];
-}
-
-async function saveTags(tags) {
-  await chrome.storage.local.set({ [STORAGE_KEYS.tags]: tags });
-}
-
 async function listConversations(limit = 500) {
   const res = await apiFetch(
     `/api/wa/conversations?limit=${encodeURIComponent(String(limit))}`,
@@ -50,7 +37,7 @@ async function listConversations(limit = 500) {
   );
   const json = await res.json().catch(() => null);
   if (!res.ok || !json || json.ok !== true) {
-    throw new Error((json && json.error) || "Falha ao buscar conversas");
+    throw new Error((json && json.error) || "DB offline / rota nao publicada");
   }
   return Array.isArray(json.data) ? json.data : [];
 }
@@ -69,7 +56,7 @@ async function upsertConversation({ phone, display, tags }) {
   });
   const json = await res.json().catch(() => null);
   if (!res.ok || !json || json.ok !== true) {
-    throw new Error((json && json.error) || "Falha ao salvar");
+    throw new Error((json && json.error) || "Falha ao salvar no DB");
   }
 }
 
@@ -86,7 +73,15 @@ async function patchConversation(phone, patch) {
   );
   const json = await res.json().catch(() => null);
   if (!res.ok || !json || json.ok !== true) {
-    throw new Error((json && json.error) || "Falha ao atualizar");
+    throw new Error((json && json.error) || "Falha ao atualizar no DB");
+  }
+
+  // Let the WhatsApp tab update the header chip immediately (no polling).
+  if (typeof patch?.responded === "boolean") {
+    chrome.runtime.sendMessage({
+      method: "notifyWaConversationUpdated",
+      params: { phone: digits, responded: patch.responded },
+    });
   }
 }
 
@@ -112,20 +107,6 @@ function byUpdatedDesc(a, b) {
   const aT = new Date(a.lastUpdatedAt || a.lastOpenedAt || 0).getTime();
   const bT = new Date(b.lastUpdatedAt || b.lastOpenedAt || 0).getTime();
   return bT - aT;
-}
-
-function renderTagsBank(tags) {
-  const root = el("tags-bank");
-  root.innerHTML = "";
-  tags
-    .slice()
-    .sort((a, b) => a.localeCompare(b))
-    .forEach((t) => {
-      const node = document.createElement("div");
-      node.className = "tag";
-      node.textContent = t;
-      root.appendChild(node);
-    });
 }
 
 function renderList(items, q) {
@@ -169,10 +150,15 @@ function renderList(items, q) {
       label.textContent = cb.checked ? "Respondido" : "Pendente";
       try {
         await patchConversation(c.phone, { responded: cb.checked });
+
+        statusPill.className = `pill ${cb.checked ? "good" : "bad"}`;
+        statusPill.textContent = cb.checked ? "Concluido" : "Nao concluido";
       } catch (e) {
         // Revert UI on failure.
         cb.checked = !cb.checked;
         label.textContent = cb.checked ? "Respondido" : "Pendente";
+        statusPill.className = `pill ${cb.checked ? "good" : "bad"}`;
+        statusPill.textContent = cb.checked ? "Concluido" : "Nao concluido";
         alert(String(e?.message || e));
       }
     });
@@ -251,9 +237,6 @@ async function captureFromOpenChat() {
 let _lastItems = [];
 
 async function refresh() {
-  const tags = await loadTags();
-  renderTagsBank(tags);
-
   const items = await listConversations(500);
   _lastItems = items;
   renderList(items, el("search").value);
@@ -292,16 +275,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   el("search").addEventListener("input", () => {
     renderList(_lastItems, el("search").value);
-  });
-
-  el("add-tag").addEventListener("click", async () => {
-    const raw = el("new-tag").value.trim();
-    if (!raw) return;
-    const tags = await loadTags();
-    const next = Array.from(new Set([...tags, raw]));
-    await saveTags(next);
-    el("new-tag").value = "";
-    renderTagsBank(next);
   });
 
   el("open-dashboard").addEventListener("click", () => {

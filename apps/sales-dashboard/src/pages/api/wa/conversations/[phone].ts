@@ -36,56 +36,68 @@ export default async function handler(
   if (!phone)
     return res.status(400).json({ ok: false, error: "phone invalido" });
 
-  const client = await clientPromise;
-  const db = client.db("inovasy");
-  const col = db.collection<WaConversationDoc>("wa_conversations");
+  try {
+    const client = await clientPromise;
+    const db = client.db("inovasy");
+    const col = db.collection<WaConversationDoc>("wa_conversations");
 
-  if (req.method === "GET") {
-    const doc = await col.findOne({ phone });
-    if (!doc) return res.status(404).json({ ok: false, error: "not_found" });
-    return res.status(200).json({ ok: true, data: doc });
-  }
-
-  if (req.method === "PATCH") {
-    const now = new Date();
-
-    const update: any = {
-      lastUpdatedAt: now,
-    };
-
-    if (typeof req.body?.display === "string") {
-      update.display = req.body.display.trim();
+    if (req.method === "GET") {
+      const doc = await col.findOne({ phone });
+      if (!doc) return res.status(404).json({ ok: false, error: "not_found" });
+      return res.status(200).json({ ok: true, data: doc });
     }
 
-    if (Array.isArray(req.body?.tags)) {
-      update.tags = req.body.tags
-        .map((t: any) => String(t).trim())
-        .filter(Boolean)
-        .slice(0, 20);
-    }
+    if (req.method === "PATCH") {
+      const now = new Date();
 
-    if (typeof req.body?.responded === "boolean") {
-      update.responded = req.body.responded;
-      update.lastRespondedAt = req.body.responded ? now : null;
-    }
+      const update: any = {
+        lastUpdatedAt: now,
+      };
 
-    await col.updateOne(
-      { phone },
-      {
-        $setOnInsert: {
-          phone,
-          createdAt: now,
-          lastOpenedAt: null,
-          responded: false,
-          lastRespondedAt: null,
+      if (typeof req.body?.display === "string") {
+        update.display = req.body.display.trim();
+      }
+
+      if (Array.isArray(req.body?.tags)) {
+        update.tags = req.body.tags
+          .map((t: any) => String(t).trim())
+          .filter(Boolean)
+          .slice(0, 20);
+      }
+
+      if (typeof req.body?.responded === "boolean") {
+        update.responded = req.body.responded;
+        update.lastRespondedAt = req.body.responded ? now : null;
+      }
+
+      const setOnInsert: any = {
+        phone,
+        createdAt: now,
+        lastOpenedAt: null,
+      };
+
+      // Avoid operator conflicts on upsert when caller sets responded.
+      if (typeof req.body?.responded !== "boolean") {
+        setOnInsert.responded = false;
+        setOnInsert.lastRespondedAt = null;
+      }
+
+      await col.updateOne(
+        { phone },
+        {
+          $setOnInsert: setOnInsert,
+          $set: update,
         },
-        $set: update,
-      },
-      { upsert: true }
-    );
+        { upsert: true }
+      );
 
-    return res.status(200).json({ ok: true });
+      return res.status(200).json({ ok: true });
+    }
+
+    return res.status(405).json({ ok: false, error: "method_not_allowed" });
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ ok: false, error: String((err as any)?.message || err) });
   }
-
-  return res.status(405).json({ ok: false, error: "method_not_allowed" });
 }

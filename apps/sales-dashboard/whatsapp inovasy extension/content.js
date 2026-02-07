@@ -97,35 +97,21 @@ function openChat(phone) {
   // Remove quaisquer caracteres não numéricos
   var cleanPhone = number.replace(/\D/g, "");
 
-  // Monta a URL, incluindo o parâmetro text com um valor padrão ("Olá")
-  var link = `https://web.whatsapp.com/send/?phone=${cleanPhone}&text=Olá`;
+  // Monta a URL sem texto pre-preenchido (evita qualquer automacao de mensagem)
+  var link = `https://web.whatsapp.com/send/?phone=${cleanPhone}`;
 
-  // Cria um elemento de link temporário para simular o clique
-  var tempAnchor = document.createElement("a");
-  tempAnchor.href = link;
-  tempAnchor.onclick = function (e) {
-    e.preventDefault(); // previne a navegação padrão
-    window.history.pushState(null, null, link);
-    window.dispatchEvent(new Event("popstate"));
+  // Navegacao direta (evita simular clique / focar input)
+  try {
+    window.location.href = link;
+  } catch (e) {
+    // noop
+  }
+
+  try {
     localStorage.setItem(link, true);
-    setTimeout(function () {
-      var messageInput = document.querySelector(
-        '._ak1r [contenteditable="true"]'
-      );
-      if (messageInput) {
-        messageInput.focus();
-      }
-    }, 1000);
-  };
-
-  // Adiciona o elemento temporário ao DOM para que o clique funcione
-  document.body.appendChild(tempAnchor);
-  // Simula o clique no elemento temporário
-  tempAnchor.click();
-  // Remove o elemento temporário após o clique
-  setTimeout(function () {
-    tempAnchor.remove();
-  }, 100);
+  } catch (e2) {
+    // noop
+  }
 }
 
 // === BOTÃO PARA CARREGAR SELLS (sem alteração) ===
@@ -232,8 +218,9 @@ function injectButtons(data) {
 
         a.onclick = function (e) {
           e.preventDefault();
-          window.history.pushState(null, null, link);
-          window.dispatchEvent(new Event("popstate"));
+          try {
+            window.location.href = link;
+          } catch (e2) {}
           localStorage.setItem(link, true);
 
           // Marca no DB que esse lead já foi "lido/atendido" (reviewed)
@@ -241,14 +228,6 @@ function injectButtons(data) {
           markSaleAsReviewedOnDb(event.id);
 
           a.remove();
-          setTimeout(function () {
-            var messageInput = document.querySelector(
-              '._ak1r [contenteditable="true"]'
-            );
-            if (messageInput) {
-              messageInput.focus();
-            }
-          }, 1000);
         };
 
         buttonContainer.appendChild(a);
@@ -276,14 +255,10 @@ injectLoadButton();
 // Conversas pendentes (responder)
 // ===============================
 (function () {
-  if (typeof chrome === "undefined" || !chrome.storage?.local) return;
+  if (typeof chrome === "undefined" || !chrome.runtime?.id) return;
 
   var API_ORIGIN = "https://inovasy-sells-dashboard.netlify.app";
   var API_BASE = API_ORIGIN + "/api/wa/conversations";
-
-  var STORAGE_KEYS = {
-    conversations: "inovasy_conversations_v1",
-  };
 
   var currentChatId = null;
   var currentChatDisplay = null;
@@ -291,20 +266,64 @@ injectLoadButton();
   var chipEl = null;
   var debounceTimer = null;
 
+  var currentResponded = false;
+
   var globalBtnEl = null;
   var globalOverlayEl = null;
   var globalOverlayListEl = null;
   var globalOverlayCountEl = null;
 
-  var lastDbSyncAt = 0;
+  var apiCircuit = {
+    disabledUntil: 0,
+    failCount: 0,
+    lastErrorAt: 0,
+  };
+
+  var lastPostByPhone = {};
 
   function now() {
     return Date.now();
   }
 
-  function apiFetch(path, init) {
+  function apiIsDisabled() {
+    return Date.now() < apiCircuit.disabledUntil;
+  }
+
+  function apiNoteSuccess() {
+    apiCircuit.failCount = 0;
+    apiCircuit.disabledUntil = 0;
+  }
+
+  function apiNoteFailure(statusOrCode) {
+    apiCircuit.failCount = Math.min(10, (apiCircuit.failCount || 0) + 1);
+    apiCircuit.lastErrorAt = Date.now();
+
+    var status = Number(statusOrCode || 0);
+
+    // Default backoff: 1m, 2m, 4m, 8m, ... (cap 30m)
+    var ms = Math.min(
+      30 * 60 * 1000,
+      60 * 1000 * Math.pow(2, apiCircuit.failCount - 1)
+    );
+
+    // If endpoint doesn't exist (deploy not updated), cool down longer.
+    if (status === 404) ms = 60 * 60 * 1000;
+
+    // Rate-limit / forbidden: be extra cautious.
+    if (status === 429 || status === 403) ms = 60 * 60 * 1000;
+
+    apiCircuit.disabledUntil = Date.now() + ms;
+  }
+
+  async function apiFetch(path, init) {
+    if (apiIsDisabled()) {
+      var err = new Error("api_disabled");
+      err.code = "api_disabled";
+      throw err;
+    }
+
     try {
-      return fetch(API_ORIGIN + path, {
+      var res = await fetch(API_ORIGIN + path, {
         method: (init && init.method) || "GET",
         headers: Object.assign(
           { "Content-Type": "application/json" },
@@ -315,8 +334,17 @@ injectLoadButton();
         credentials: "omit",
         keepalive: true,
       });
+
+      if (!res.ok) {
+        apiNoteFailure(res.status);
+      } else {
+        apiNoteSuccess();
+      }
+
+      return res;
     } catch (e) {
-      return Promise.reject(e);
+      apiNoteFailure(0);
+      throw e;
     }
   }
 
@@ -327,11 +355,8 @@ injectLoadButton();
       "https://web.whatsapp.com/send/?phone=" + encodeURIComponent(clean);
 
     try {
-      window.history.pushState(null, null, link);
-      window.dispatchEvent(new Event("popstate"));
-    } catch (e) {
       window.location.href = link;
-    }
+    } catch (e) {}
   }
 
   function normalizePhoneFromText(text) {
@@ -449,6 +474,7 @@ injectLoadButton();
   function renderChip(responded) {
     if (!chipEl || !chipEl.isConnected) return;
     chipEl.disabled = false;
+    currentResponded = Boolean(responded);
     if (responded) {
       chipEl.classList.remove("inovasy-pending");
       chipEl.classList.add("inovasy-responded");
@@ -460,108 +486,77 @@ injectLoadButton();
     }
   }
 
-  async function loadConversations() {
-    var res = await chrome.storage.local.get([STORAGE_KEYS.conversations]);
-    return res[STORAGE_KEYS.conversations] || {};
+  function renderChipDbOffline() {
+    if (!chipEl || !chipEl.isConnected) return;
+    chipEl.disabled = true;
+    chipEl.classList.remove("inovasy-responded");
+    chipEl.classList.add("inovasy-pending");
+    chipEl.textContent = "DB OFF";
   }
 
-  async function saveConversations(conversations) {
-    await chrome.storage.local.set({
-      [STORAGE_KEYS.conversations]: conversations,
-    });
+  function renderChipSaving() {
+    if (!chipEl || !chipEl.isConnected) return;
+    chipEl.disabled = true;
+    chipEl.classList.remove("inovasy-responded");
+    chipEl.classList.add("inovasy-pending");
+    chipEl.textContent = "Salvando...";
   }
 
   async function upsertPendingConversation(chat) {
     if (!chat || !chat.id) return;
 
-    var conversations = await loadConversations();
-    var existing = conversations[chat.id] || null;
-
-    conversations[chat.id] = {
-      id: chat.id,
-      phone: chat.phone,
-      display: chat.display || existing?.display || "",
-      tags: existing?.tags || [],
-      responded: false,
-      createdAt: existing?.createdAt || now(),
-      lastOpenedAt: now(),
-      lastUpdatedAt: now(),
-      lastRespondedAt: null,
-    };
-
-    await saveConversations(conversations);
-
-    // Persist to DB (always pending on open).
+    // Persist to DB (always pending on open). No local cache.
     if (chat.phone) {
       try {
-        await apiFetch("/api/wa/conversations", {
+        var ts = Date.now();
+        var lastTs = lastPostByPhone[chat.phone] || 0;
+        // Avoid spamming the API if WA fires multiple "chat changed" signals.
+        if (ts - lastTs < 15000) return;
+        lastPostByPhone[chat.phone] = ts;
+
+        var res = await apiFetch("/api/wa/conversations", {
           method: "POST",
           body: JSON.stringify({
             phone: chat.phone,
             display: chat.display || "",
           }),
         });
-      } catch (e) {}
-    }
-  }
 
-  async function setResponded(conversationId, responded) {
-    if (!conversationId) return;
-    var conversations = await loadConversations();
-    var c = conversations[conversationId];
-    if (!c) return;
-
-    conversations[conversationId] = {
-      ...c,
-      responded: Boolean(responded),
-      lastRespondedAt: responded ? now() : null,
-      lastUpdatedAt: now(),
-    };
-
-    await saveConversations(conversations);
-
-    // Persist responded state to DB.
-    if (c && c.phone) {
-      try {
-        await apiFetch("/api/wa/conversations/" + encodeURIComponent(c.phone), {
-          method: "PATCH",
-          body: JSON.stringify({ responded: Boolean(responded) }),
-        });
-      } catch (e) {}
+        if (res && res.ok) {
+          renderChip(false);
+        } else {
+          renderChipDbOffline();
+        }
+      } catch (e) {
+        renderChipDbOffline();
+      }
     }
   }
 
   async function toggleRespondedForCurrentChat() {
     if (!currentChatId) return;
-    var conversations = await loadConversations();
-    var c = conversations[currentChatId];
-    var next = !(c && c.responded);
-    await setResponded(currentChatId, next);
-    renderChip(next);
-  }
+    if (!currentChatId || String(currentChatId).indexOf("unknown:") === 0)
+      return;
 
-  async function syncChipFromStorage(conversationId) {
-    if (!conversationId) return;
-    var conversations = await loadConversations();
-    var c = conversations[conversationId];
-    renderChip(Boolean(c && c.responded));
-  }
-
-  async function syncChipFromDb(conversationId) {
-    if (!conversationId) return;
-    var ts = Date.now();
-    if (ts - lastDbSyncAt < 5000) return;
-    lastDbSyncAt = ts;
+    var phone = String(currentChatId);
+    var next = !currentResponded;
 
     try {
       var res = await apiFetch(
-        "/api/wa/conversations/" + encodeURIComponent(String(conversationId)),
-        { method: "GET" }
+        "/api/wa/conversations/" + encodeURIComponent(phone),
+        {
+          method: "PATCH",
+          body: JSON.stringify({ responded: Boolean(next) }),
+        }
       );
-      var json = await res.json();
-      if (!res.ok || !json || json.ok !== true || !json.data) return;
-      renderChip(Boolean(json.data.responded));
-    } catch (e) {}
+      if (res && res.ok) {
+        renderChip(next);
+      } else {
+        renderChipDbOffline();
+      }
+    } catch (e) {
+      renderChipDbOffline();
+    }
   }
 
   function scheduleCheck() {
@@ -582,16 +577,13 @@ injectLoadButton();
     currentChatDisplay = chat.display;
 
     if (changed) {
-      // On every open (including re-open), reset to pending.
-      renderChip(false);
-      upsertPendingConversation(chat)
-        .then(function () {
-          renderChip(false);
-        })
-        .catch(function () {});
+      // DB-only: show saving state until server confirms.
+      renderChipSaving();
+      upsertPendingConversation(chat).catch(function () {
+        renderChipDbOffline();
+      });
     } else {
-      // No chat change: keep UI in sync with DB (popup can change state).
-      syncChipFromDb(currentChatId).catch(function () {});
+      // No-op (DB-only, no polling).
     }
   }
 
@@ -612,10 +604,10 @@ injectLoadButton();
       var q = "?pending=1&limit=" + encodeURIComponent(String(limit || 50));
       var res = await apiFetch("/api/wa/conversations" + q, { method: "GET" });
       var json = await res.json();
-      if (!res.ok || !json || json.ok !== true) return [];
+      if (!res.ok || !json || json.ok !== true) return null;
       return Array.isArray(json.data) ? json.data : [];
     } catch (e) {
-      return [];
+      return null;
     }
   }
 
@@ -751,16 +743,28 @@ injectLoadButton();
     if (globalOverlayCountEl)
       globalOverlayCountEl.textContent = "Carregando...";
     var items = await fetchPendingConversations(50);
-    if (globalOverlayCountEl)
+    if (!items) {
+      if (globalOverlayCountEl) globalOverlayCountEl.textContent = "DB offline";
+      renderGlobalOverlay([]);
+      return;
+    }
+
+    if (globalOverlayCountEl) {
       globalOverlayCountEl.textContent =
         items.length + " conversas (mostrando ate 50)";
+    }
     renderGlobalOverlay(items);
   }
 
   async function refreshGlobalBadge() {
     if (!globalBtnEl || !globalBtnEl.isConnected) return;
     var count = await fetchPendingCount();
-    if (count === null) return;
+    if (count === null) {
+      globalBtnEl.title = "DB offline";
+      var badge0 = globalBtnEl.querySelector(".inovasy-pending-badge");
+      if (badge0) badge0.style.display = "none";
+      return;
+    }
     var badge = globalBtnEl.querySelector(".inovasy-pending-badge");
     if (!badge) return;
     badge.textContent = String(Math.min(99, count));
@@ -801,36 +805,16 @@ injectLoadButton();
     refreshGlobalBadge().catch(function () {});
   }
 
-  // Detect chat changes via header mutations.
-  try {
-    var mo = new MutationObserver(function () {
-      scheduleCheck();
-    });
-    mo.observe(document.documentElement, {
-      subtree: true,
-      childList: true,
-      characterData: true,
-    });
-  } catch (e) {}
-
-  // Also poll occasionally (WhatsApp sometimes swaps nodes without obvious mutations).
-  setInterval(scheduleCheck, 1500);
+  // Poll occasionally (reduz carga; evita observar o DOM inteiro).
+  setInterval(scheduleCheck, 2000);
   scheduleCheck();
 
   // Global header button (list pending from DB).
-  setInterval(ensureGlobalButton, 2000);
+  setInterval(ensureGlobalButton, 5000);
   setInterval(function () {
     refreshGlobalBadge().catch(function () {});
-  }, 20000);
+  }, 60000);
   ensureGlobalButton();
-
-  // If storage changes (from other features), keep a cheap local sync.
-  chrome.storage.onChanged.addListener(function (changes, area) {
-    if (area !== "local") return;
-    if (!currentChatId) return;
-    if (!changes[STORAGE_KEYS.conversations]) return;
-    syncChipFromStorage(currentChatId).catch(function () {});
-  });
 
   chrome.runtime.onMessage.addListener(function (req, sender, sendResponse) {
     (async function () {
@@ -863,5 +847,16 @@ injectLoadButton();
       });
 
     return true;
+  });
+
+  // Update chip when popup toggles responded.
+  chrome.runtime.onMessage.addListener(function (req, sender, sendResponse) {
+    if (req?.method !== "conversationUpdated") return;
+    try {
+      var phone = String(req?.params?.phone || "").replace(/\D/g, "");
+      if (!phone) return;
+      if (String(currentChatId) !== phone) return;
+      renderChip(Boolean(req?.params?.responded));
+    } catch (e) {}
   });
 })();

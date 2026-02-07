@@ -60,6 +60,28 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
         return { ok: true, tabId: tab.id, reused: false };
       }
 
+      case "notifyWaConversationUpdated": {
+        const phone = String(req?.params?.phone ?? "").replace(/\D/g, "");
+        const responded = Boolean(req?.params?.responded);
+        if (!phone) throw new Error("phone invalido");
+
+        const waTabs = await chrome.tabs.query({
+          url: "https://web.whatsapp.com/*",
+        });
+        await Promise.all(
+          (waTabs || [])
+            .filter((t) => t && t.id)
+            .map((t) =>
+              chrome.tabs.sendMessage(t.id, {
+                method: "conversationUpdated",
+                params: { phone, responded },
+              })
+            )
+        );
+
+        return { ok: true };
+      }
+
       default:
         throw new Error("Metodo nao suportado");
     }
