@@ -102,7 +102,6 @@ export default async function handler(
           createdAt: now,
         },
         $set: {
-          phone,
           display,
           responded: false,
           lastOpenedAt: now,
